@@ -3,9 +3,8 @@
 Isomorphic DC circuit problem banks produced by the circuit-bank workflow
 (circuit-bank-skill + circuit-diagram-skill). Banks only - no tooling.
 
-Each bank folder follows the ESTELA layout and can be loaded in the
-[ESTELA Exam Builder](https://zhongzhou.github.io/ESTELA-physics-problem-bank/standalone-enhanced.html)
-via "Get Problem Banks" -> repo `myrlaphil/circuit-banks`, branch `main`:
+Each bank folder follows the isomorphic-bank-creation layout (`Subject-Unit-Abbreviation-date`, a bank YAML in
+the problem-bank template, a `figures/` folder) so it can sit beside other banks in that format.
 
 | Bank | Items | Contents |
 |---|---|---|
