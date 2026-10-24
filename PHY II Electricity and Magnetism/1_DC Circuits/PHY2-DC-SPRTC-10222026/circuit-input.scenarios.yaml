@@ -1,0 +1,28 @@
+# Review file for the problem-creation workflow.
+# scenarios with status accepted are the kept list.
+# target is copied from context.n_scenarios in the input file.
+source_input: circuit-input.yaml
+target: 10
+update_count: 1
+scenarios:
+- text: 'source: 12 V circuit: 3 || 6 + 4 ask: total current'
+  status: accepted
+- text: 'source: 18 V circuit: (4 + 2) || 6 + 3 ask: total current'
+  status: accepted
+- text: 'source: 20 V circuit: 2 || 3 || 6 + 4 ask: total current'
+  status: accepted
+- text: 'source: 9 V circuit: 3 || 6 + 4 || 12 + 1 ask: total current'
+  status: accepted
+- text: 'source: 10 V circuit: (2 + 4) || (6 + 6) ask: total current'
+  status: accepted
+- text: 'source: 21 V circuit: ((3 || 6) + 4) || 12 + 2 ask: total current'
+  status: accepted
+- text: 'source: 11 V circuit: 4 || 12 || (4 + 2) ask: total current'
+  status: accepted
+- text: 'source: 18 V circuit: (1 + 2) || 6 + 2 || 2 + 1 ask: total current'
+  status: accepted
+- text: 'source: 30 V circuit: (4 + 8) || (3 + 3) + 2 ask: total current'
+  status: accepted
+- text: 'source: 35 V circuit: ((2 + 4) || 3 + 4) || 12 + 1 ask: total current'
+  status: accepted
+rejected: []
