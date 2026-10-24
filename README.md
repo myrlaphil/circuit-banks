@@ -14,3 +14,9 @@ the problem-bank template, a `figures/` folder) so it can sit beside other banks
 Every number, figure, worked solution and distractor is computed deterministically. In the 10-item bank an
 LLM proposed the circuit topologies (each checked by a script for validity and non-isomorphism); in the
 30-item bank even that step is a deterministic enumeration.
+
+## How it works
+
+[docs/How-the-circuit-bank-works.pdf](docs/How-the-circuit-bank-works.pdf) explains the method - what *isomorphic* means, why the
+banks are built for fairness to the student, and how the code works - in eight slide-sized sections plus a catalogue of every
+3-step circuit shape. `docs/build_report.py` regenerates it from the banks in this repository.
