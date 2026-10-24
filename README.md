@@ -9,7 +9,8 @@ via "Get Problem Banks" -> repo `myrlaphil/circuit-banks`, branch `main`:
 
 | Bank | Items | Contents |
 |---|---|---|
-| `PHY II Electricity and Magnetism/1_DC Circuits/PHY2-DC-SPRTC-10222026` | 10 multiple choice | bank YAML, `figures/`, printable PDF with answer key, input scheme and scenario sidecar |
+| `PHY II Electricity and Magnetism/1_DC Circuits/PHY2-DC-SPRTC-10222026` | 10 multiple choice | mixed difficulty (2-5 reduction steps); bank YAML, `figures/`, printable PDF with answer key, input scheme and scenario sidecar |
+| `PHY II Electricity and Magnetism/1_DC Circuits/PHY2-DC-SPRTC3-10232026` | 30 multiple choice | **one difficulty**: every circuit reduces in exactly 3 steps (30 of the 34 possible shapes with 4-6 resistors), enumerated deterministically - no LLM anywhere in this bank |
 
 Every number, figure, worked solution and distractor is computed deterministically; the only
 LLM step chose the circuit topologies, each checked by a script for validity and non-isomorphism.
