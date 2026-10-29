@@ -21,6 +21,7 @@ All in [docs/](docs/):
 
 | File | What it is |
 |---|---|
+| [circuit-bank-cheat-sheet.pdf](docs/circuit-bank-cheat-sheet.pdf) | **start here** — the plain-language version (3 pages): the problem, Chen's way, the No-AI and AI versions, how the fork works, with links into everything else |
 | [How-the-circuit-bank-works.pdf](docs/How-the-circuit-bank-works.pdf) | the full report (13 pages): definition of isomorphic, student fairness, the three pieces, a walk-through, where the AI is and is not, the difficulty ceiling, results, limits; appendix lists all 34 three-step shapes |
 | [How-the-circuit-bank-works.pptx](docs/How-the-circuit-bank-works.pptx) | 12-slide deck with speaker notes |
 | [circuit-bank-2-slides.pptx](docs/circuit-bank-2-slides.pptx) | 2-slide summary deck |
