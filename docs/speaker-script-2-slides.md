@@ -91,6 +91,11 @@ Go down the four dots:
 4. **Critic** (copper) — *the second substitution*
    > "His critic is an AI judging prose. Mine is a script, because a circuit can be checked: does it parse and solve? Is its shape new, or is it a reorder of one we already have? Does it have exactly three steps? Are the values in range? Each failure is written back into Zhongzhou's sidecar as a reason, exactly where his AI critic would have written one."
 
+   > *What "values in range / sensible" means — two different checks, both automatic:*
+   > - **The critic's range check** — every resistor must be within `resistor_range` (1–24 Ω), the battery within `voltage_range` (6–36 V), and the resistor count within 4–6. A 50 Ω resistor or a 48 V battery gets rejected, with that reason written to the sidecar.
+   > - **The enumerator's "clean arithmetic" rule** — when it picks values, it only accepts a set where every intermediate resistance comes out a whole or half ohm and the answer has at most two decimals, so no student is fighting ugly fractions. (Values come from a pool of 1–12 Ω.)
+   > The first is a *rule you set* in the input file; the second is *built into the proposer*. Both are code, not judgement.
+
    > *If asked "then why keep the critic at all, if the enumerator never proposes duplicates?":* because the input also allows an AI proposer (one line: `generator: llm`), and because the critic is the guarantee — it doesn't matter who wrote the candidate.
 
 5. **Circuit engine** (green)
