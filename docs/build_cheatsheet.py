@@ -78,6 +78,20 @@ S.append(P("An AI invents variations, another AI judges them, and a loop keeps c
 S.append(P("Your way — rules first, the LLM only as a tagged fallback", h1))
 S.append(P("<i>Distinction: the same principle as your circuit skill's English front door — rules first; the AI only where no rule exists; and when it is used, it says so (every item carries <font face='Courier'>source: enumerate</font> or <font face='Courier'>source: llm</font>). Chen's loop is kept unchanged; his two AI agents become code; your circuit skill does every number.</i>", red))
 S.append(P("Circuits are special: a computer can draw one, solve one, and tell if two are secretly the same. So:"))
+# ---- the simple run-through, verbatim, in a box
+simple = [
+    "1.  <b>List</b> every possible circuit shape at one difficulty — there are only 34 three-step ones. No guessing.",
+    "2.  <b>Check</b> each with a script: does it solve? is it really new? right number of steps? values sensible?",
+    "3.  <b>Solve and draw</b> each one with your circuit skill — exact numbers, a figure, a worked solution.",
+    "4.  <b>Make the wrong answers</b> by deliberately making a common student mistake and computing what it gives.",
+    "5.  <b>Package</b> it in Chen's format, plus a PDF with an answer key.",
+]
+boxed = Table([[P("<b>The simple run-through</b>", body)]] + [[P(t, step)] for t in simple], colWidths=[6.8 * inch], hAlign="LEFT")
+boxed.setStyle(TableStyle([("BOX", (0, 0), (-1, -1), 0.8, colors.HexColor("#8A2A1B")), ("BACKGROUND", (0, 0), (-1, -1), colors.HexColor("#FBF3EF")),
+                           ("LEFTPADDING", (0, 0), (-1, -1), 10), ("RIGHTPADDING", (0, 0), (-1, -1), 10), ("TOPPADDING", (0, 0), (-1, -1), 2), ("BOTTOMPADDING", (0, 0), (-1, -1), 2)]))
+S.append(boxed)
+S.append(Spacer(1, 8))
+S.append(P("<b>The same five steps, with the details and the links:</b>", body))
 steps = [
     ("1.", "<b>List</b> every possible circuit shape at one difficulty — there are only 34 three-step ones. No guessing. "
             "<b>Where the LLM comes in:</b> the list is exhaustive, so if you ask for more than exist the run stops and tells you to widen the box — an LLM cannot invent shapes that do not exist (tested: every fallback proposal came back as a duplicate). "
