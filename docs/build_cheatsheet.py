@@ -89,8 +89,7 @@ simple = [
 boxed = Table([[P("<b>The simple run-through</b>", body)]] + [[P(t, step)] for t in simple], colWidths=[6.8 * inch], hAlign="LEFT")
 boxed.setStyle(TableStyle([("BOX", (0, 0), (-1, -1), 0.8, colors.HexColor("#8A2A1B")), ("BACKGROUND", (0, 0), (-1, -1), colors.HexColor("#FBF3EF")),
                            ("LEFTPADDING", (0, 0), (-1, -1), 10), ("RIGHTPADDING", (0, 0), (-1, -1), 10), ("TOPPADDING", (0, 0), (-1, -1), 2), ("BOTTOMPADDING", (0, 0), (-1, -1), 2)]))
-S.append(boxed)
-S.append(Spacer(1, 8))
+S.append(KeepTogether([boxed, Spacer(1, 8)]))
 S.append(P("<b>The same five steps, with the details and the links:</b>", body))
 steps = [
     ("1.", "<b>List</b> every possible circuit shape at one difficulty — there are only 34 three-step ones. No guessing. "
