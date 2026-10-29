@@ -1,68 +1,99 @@
 # Review file for the problem-creation workflow.
 # scenarios with status accepted are the kept list.
 # target is copied from context.n_scenarios in the input file.
+# source = who proposed the scenario: enumerate (rules) or llm (fallback proposer).
 source_input: PHY II Electricity and Magnetism/1_DC Circuits/PHY2-DC-SPRTC3-10232026/circuit-input.yaml
 target: 30
 update_count: 1
 scenarios:
 - text: 'source: 6 V circuit: 12 || (12 || 4 + 1) ask: total current'
   status: accepted
+  source: enumerate
 - text: 'source: 9 V circuit: (6 + 4) || (9 + 6) ask: total current'
   status: accepted
+  source: enumerate
 - text: 'source: 20 V circuit: 2 || 6 + 2 || 2 ask: total current'
   status: accepted
+  source: enumerate
 - text: 'source: 36 V circuit: 10 || (9 + 1) + 10 ask: total current'
   status: accepted
+  source: enumerate
 - text: 'source: 20 V circuit: 12 || 4 || (10 || 10 + 1) ask: total current'
   status: accepted
+  source: enumerate
 - text: 'source: 36 V circuit: 12 || (4 || 4 + 1 + 1) ask: total current'
   status: accepted
+  source: enumerate
 - text: 'source: 18 V circuit: 3 || (8 || 4 || 8 + 4) ask: total current'
   status: accepted
+  source: enumerate
 - text: 'source: 12 V circuit: 4 || (1 + 4) || (12 + 8) ask: total current'
   status: accepted
+  source: enumerate
 - text: 'source: 18 V circuit: (5 + 5) || (3 + 3 + 4) ask: total current'
   status: accepted
+  source: enumerate
 - text: 'source: 6 V circuit: 2 || 2 + 5 || 5 + 9 ask: total current'
   status: accepted
+  source: enumerate
 - text: 'source: 18 V circuit: 12 || 12 + 12 || 4 || 6 ask: total current'
   status: accepted
+  source: enumerate
 - text: 'source: 30 V circuit: 4 || 6 || (3 + 1) + 6 ask: total current'
   status: accepted
+  source: enumerate
 - text: 'source: 20 V circuit: 12 || (8 + 4) + 10 + 9 ask: total current'
   status: accepted
+  source: enumerate
 - text: 'source: 15 V circuit: 12 || (2 + 1 + 1) + 2 ask: total current'
   status: accepted
+  source: enumerate
 - text: 'source: 36 V circuit: 4 || 12 || 12 || (3 || 6 + 10) ask: total current'
   status: accepted
+  source: enumerate
 - text: 'source: 30 V circuit: 3 || 4 || (2 || 2 + 5 + 6) ask: total current'
   status: accepted
+  source: enumerate
 - text: 'source: 30 V circuit: 2 || 4 || (12 || 12 || 6 + 1) ask: total current'
   status: accepted
+  source: enumerate
 - text: 'source: 18 V circuit: 8 || 8 || (6 + 9) || (10 + 2) ask: total current'
   status: accepted
+  source: enumerate
 - text: 'source: 6 V circuit: 10 || (3 || 6 + 3 + 4 + 1) ask: total current'
   status: accepted
+  source: enumerate
 - text: 'source: 20 V circuit: 5 || (2 || 3 || 6 + 10 + 9) ask: total current'
   status: accepted
+  source: enumerate
 - text: 'source: 15 V circuit: 2 || (3 || 4 || 3 || 12 + 1) ask: total current'
   status: accepted
+  source: enumerate
 - text: 'source: 30 V circuit: 8 || (10 + 6) || (8 + 6 + 2) ask: total current'
   status: accepted
+  source: enumerate
 - text: 'source: 15 V circuit: (8 + 8) || (12 + 12 + 12 + 12) ask: total current'
   status: accepted
+  source: enumerate
 - text: 'source: 6 V circuit: (1 + 9 + 2) || (2 + 9 + 1) ask: total current'
   status: accepted
+  source: enumerate
 - text: 'source: 36 V circuit: 8 || 8 + 6 || 6 + 12 + 6 ask: total current'
   status: accepted
+  source: enumerate
 - text: 'source: 18 V circuit: 2 || 2 + 3 || 12 || 12 + 1 ask: total current'
   status: accepted
+  source: enumerate
 - text: 'source: 24 V circuit: 9 || 9 + 2 || 1 || 6 || 3 ask: total current'
   status: accepted
+  source: enumerate
 - text: 'source: 36 V circuit: 6 || 3 || 2 + 3 || 4 || 12 ask: total current'
   status: accepted
+  source: enumerate
 - text: 'source: 24 V circuit: 6 || 6 || 6 || (4 + 2) + 6 ask: total current'
   status: accepted
+  source: enumerate
 - text: 'source: 12 V circuit: 3 || 12 || (4 + 8) + 8 + 10 ask: total current'
   status: accepted
+  source: enumerate
 rejected: []

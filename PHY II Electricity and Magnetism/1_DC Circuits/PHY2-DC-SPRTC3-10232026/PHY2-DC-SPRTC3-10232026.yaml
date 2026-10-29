@@ -6,7 +6,7 @@ bank_info:
       battery and resistors; the student reduces the network to an equivalent resistance and applies
       Ohm's law to find the total current. The topology (and hence the reduction sequence) changes
       between items, not only the numbers.
-    date created: 10-23-2026
+    date created: 10-29-2026
     status: ready
     learning objectives:
         - DC-SP-1
@@ -21,10 +21,14 @@ bank_info:
         - input scheme: "circuit-input.yaml"
         - scenario sidecar: "circuit-input.scenarios.yaml"
         - figures: "./figures/"
+    provenance: # who proposed each circuit; every item also carries its own `source`
+        - enumerated (rules, no AI): 30
+        - llm (fallback proposer, checked by the critic): 0
+        - other / untagged: 0
     generation details:
-            model: LLM for lingo generation only; deterministic solver for every number
+            model: rules first (enumerator); LLM only as a tagged fallback proposer; deterministic solver for every number
             version: 0.0.1
-            last updated: 10-23-2026
+            last updated: 10-29-2026
     authors:
         - Myrla Phillippe
 
@@ -34,6 +38,7 @@ questions:
     title: "Total current from the battery, 12 || (12 || 4 + 1)"
     points: 3
     figure: ./figures/q1.png
+    source: enumerate   # who proposed this circuit: enumerate (rules) or llm (fallback)
     circuit_lingo: |
         source: 6 V
         circuit: 12 || (12 || 4 + 1)
@@ -97,6 +102,7 @@ questions:
     title: "Total current from the battery, (6 + 4) || (9 + 6)"
     points: 3
     figure: ./figures/q2.png
+    source: enumerate   # who proposed this circuit: enumerate (rules) or llm (fallback)
     circuit_lingo: |
         source: 9 V
         circuit: (6 + 4) || (9 + 6)
@@ -160,6 +166,7 @@ questions:
     title: "Total current from the battery, 2 || 6 + 2 || 2"
     points: 3
     figure: ./figures/q3.png
+    source: enumerate   # who proposed this circuit: enumerate (rules) or llm (fallback)
     circuit_lingo: |
         source: 20 V
         circuit: 2 || 6 + 2 || 2
@@ -223,6 +230,7 @@ questions:
     title: "Total current from the battery, 10 || (9 + 1) + 10"
     points: 3
     figure: ./figures/q4.png
+    source: enumerate   # who proposed this circuit: enumerate (rules) or llm (fallback)
     circuit_lingo: |
         source: 36 V
         circuit: 10 || (9 + 1) + 10
@@ -286,6 +294,7 @@ questions:
     title: "Total current from the battery, 12 || 4 || (10 || 10 + 1)"
     points: 3
     figure: ./figures/q5.png
+    source: enumerate   # who proposed this circuit: enumerate (rules) or llm (fallback)
     circuit_lingo: |
         source: 20 V
         circuit: 12 || 4 || (10 || 10 + 1)
@@ -350,6 +359,7 @@ questions:
     title: "Total current from the battery, 12 || (4 || 4 + 1 + 1)"
     points: 3
     figure: ./figures/q6.png
+    source: enumerate   # who proposed this circuit: enumerate (rules) or llm (fallback)
     circuit_lingo: |
         source: 36 V
         circuit: 12 || (4 || 4 + 1 + 1)
@@ -414,6 +424,7 @@ questions:
     title: "Total current from the battery, 3 || (8 || 4 || 8 + 4)"
     points: 3
     figure: ./figures/q7.png
+    source: enumerate   # who proposed this circuit: enumerate (rules) or llm (fallback)
     circuit_lingo: |
         source: 18 V
         circuit: 3 || (8 || 4 || 8 + 4)
@@ -478,6 +489,7 @@ questions:
     title: "Total current from the battery, 4 || (1 + 4) || (12 + 8)"
     points: 3
     figure: ./figures/q8.png
+    source: enumerate   # who proposed this circuit: enumerate (rules) or llm (fallback)
     circuit_lingo: |
         source: 12 V
         circuit: 4 || (1 + 4) || (12 + 8)
@@ -542,6 +554,7 @@ questions:
     title: "Total current from the battery, (5 + 5) || (3 + 3 + 4)"
     points: 3
     figure: ./figures/q9.png
+    source: enumerate   # who proposed this circuit: enumerate (rules) or llm (fallback)
     circuit_lingo: |
         source: 18 V
         circuit: (5 + 5) || (3 + 3 + 4)
@@ -606,6 +619,7 @@ questions:
     title: "Total current from the battery, 2 || 2 + 5 || 5 + 9"
     points: 3
     figure: ./figures/q10.png
+    source: enumerate   # who proposed this circuit: enumerate (rules) or llm (fallback)
     circuit_lingo: |
         source: 6 V
         circuit: 2 || 2 + 5 || 5 + 9
@@ -670,6 +684,7 @@ questions:
     title: "Total current from the battery, 12 || 12 + 12 || 4 || 6"
     points: 3
     figure: ./figures/q11.png
+    source: enumerate   # who proposed this circuit: enumerate (rules) or llm (fallback)
     circuit_lingo: |
         source: 18 V
         circuit: 12 || 12 + 12 || 4 || 6
@@ -734,6 +749,7 @@ questions:
     title: "Total current from the battery, 4 || 6 || (3 + 1) + 6"
     points: 3
     figure: ./figures/q12.png
+    source: enumerate   # who proposed this circuit: enumerate (rules) or llm (fallback)
     circuit_lingo: |
         source: 30 V
         circuit: 4 || 6 || (3 + 1) + 6
@@ -798,6 +814,7 @@ questions:
     title: "Total current from the battery, 12 || (8 + 4) + 10 + 9"
     points: 3
     figure: ./figures/q13.png
+    source: enumerate   # who proposed this circuit: enumerate (rules) or llm (fallback)
     circuit_lingo: |
         source: 20 V
         circuit: 12 || (8 + 4) + 10 + 9
@@ -862,6 +879,7 @@ questions:
     title: "Total current from the battery, 12 || (2 + 1 + 1) + 2"
     points: 3
     figure: ./figures/q14.png
+    source: enumerate   # who proposed this circuit: enumerate (rules) or llm (fallback)
     circuit_lingo: |
         source: 15 V
         circuit: 12 || (2 + 1 + 1) + 2
@@ -926,6 +944,7 @@ questions:
     title: "Total current from the battery, 4 || 12 || 12 || (3 || 6 + 10)"
     points: 3
     figure: ./figures/q15.png
+    source: enumerate   # who proposed this circuit: enumerate (rules) or llm (fallback)
     circuit_lingo: |
         source: 36 V
         circuit: 4 || 12 || 12 || (3 || 6 + 10)
@@ -991,6 +1010,7 @@ questions:
     title: "Total current from the battery, 3 || 4 || (2 || 2 + 5 + 6)"
     points: 3
     figure: ./figures/q16.png
+    source: enumerate   # who proposed this circuit: enumerate (rules) or llm (fallback)
     circuit_lingo: |
         source: 30 V
         circuit: 3 || 4 || (2 || 2 + 5 + 6)
@@ -1056,6 +1076,7 @@ questions:
     title: "Total current from the battery, 2 || 4 || (12 || 12 || 6 + 1)"
     points: 3
     figure: ./figures/q17.png
+    source: enumerate   # who proposed this circuit: enumerate (rules) or llm (fallback)
     circuit_lingo: |
         source: 30 V
         circuit: 2 || 4 || (12 || 12 || 6 + 1)
@@ -1121,6 +1142,7 @@ questions:
     title: "Total current from the battery, 8 || 8 || (6 + 9) || (10 + 2)"
     points: 3
     figure: ./figures/q18.png
+    source: enumerate   # who proposed this circuit: enumerate (rules) or llm (fallback)
     circuit_lingo: |
         source: 18 V
         circuit: 8 || 8 || (6 + 9) || (10 + 2)
@@ -1186,6 +1208,7 @@ questions:
     title: "Total current from the battery, 10 || (3 || 6 + 3 + 4 + 1)"
     points: 3
     figure: ./figures/q19.png
+    source: enumerate   # who proposed this circuit: enumerate (rules) or llm (fallback)
     circuit_lingo: |
         source: 6 V
         circuit: 10 || (3 || 6 + 3 + 4 + 1)
@@ -1251,6 +1274,7 @@ questions:
     title: "Total current from the battery, 5 || (2 || 3 || 6 + 10 + 9)"
     points: 3
     figure: ./figures/q20.png
+    source: enumerate   # who proposed this circuit: enumerate (rules) or llm (fallback)
     circuit_lingo: |
         source: 20 V
         circuit: 5 || (2 || 3 || 6 + 10 + 9)
@@ -1316,6 +1340,7 @@ questions:
     title: "Total current from the battery, 2 || (3 || 4 || 3 || 12 + 1)"
     points: 3
     figure: ./figures/q21.png
+    source: enumerate   # who proposed this circuit: enumerate (rules) or llm (fallback)
     circuit_lingo: |
         source: 15 V
         circuit: 2 || (3 || 4 || 3 || 12 + 1)
@@ -1381,6 +1406,7 @@ questions:
     title: "Total current from the battery, 8 || (10 + 6) || (8 + 6 + 2)"
     points: 3
     figure: ./figures/q22.png
+    source: enumerate   # who proposed this circuit: enumerate (rules) or llm (fallback)
     circuit_lingo: |
         source: 30 V
         circuit: 8 || (10 + 6) || (8 + 6 + 2)
@@ -1446,6 +1472,7 @@ questions:
     title: "Total current from the battery, (8 + 8) || (12 + 12 + 12 + 12)"
     points: 3
     figure: ./figures/q23.png
+    source: enumerate   # who proposed this circuit: enumerate (rules) or llm (fallback)
     circuit_lingo: |
         source: 15 V
         circuit: (8 + 8) || (12 + 12 + 12 + 12)
@@ -1511,6 +1538,7 @@ questions:
     title: "Total current from the battery, (1 + 9 + 2) || (2 + 9 + 1)"
     points: 3
     figure: ./figures/q24.png
+    source: enumerate   # who proposed this circuit: enumerate (rules) or llm (fallback)
     circuit_lingo: |
         source: 6 V
         circuit: (1 + 9 + 2) || (2 + 9 + 1)
@@ -1576,6 +1604,7 @@ questions:
     title: "Total current from the battery, 8 || 8 + 6 || 6 + 12 + 6"
     points: 3
     figure: ./figures/q25.png
+    source: enumerate   # who proposed this circuit: enumerate (rules) or llm (fallback)
     circuit_lingo: |
         source: 36 V
         circuit: 8 || 8 + 6 || 6 + 12 + 6
@@ -1641,6 +1670,7 @@ questions:
     title: "Total current from the battery, 2 || 2 + 3 || 12 || 12 + 1"
     points: 3
     figure: ./figures/q26.png
+    source: enumerate   # who proposed this circuit: enumerate (rules) or llm (fallback)
     circuit_lingo: |
         source: 18 V
         circuit: 2 || 2 + 3 || 12 || 12 + 1
@@ -1706,6 +1736,7 @@ questions:
     title: "Total current from the battery, 9 || 9 + 2 || 1 || 6 || 3"
     points: 3
     figure: ./figures/q27.png
+    source: enumerate   # who proposed this circuit: enumerate (rules) or llm (fallback)
     circuit_lingo: |
         source: 24 V
         circuit: 9 || 9 + 2 || 1 || 6 || 3
@@ -1771,6 +1802,7 @@ questions:
     title: "Total current from the battery, 6 || 3 || 2 + 3 || 4 || 12"
     points: 3
     figure: ./figures/q28.png
+    source: enumerate   # who proposed this circuit: enumerate (rules) or llm (fallback)
     circuit_lingo: |
         source: 36 V
         circuit: 6 || 3 || 2 + 3 || 4 || 12
@@ -1836,6 +1868,7 @@ questions:
     title: "Total current from the battery, 6 || 6 || 6 || (4 + 2) + 6"
     points: 3
     figure: ./figures/q29.png
+    source: enumerate   # who proposed this circuit: enumerate (rules) or llm (fallback)
     circuit_lingo: |
         source: 24 V
         circuit: 6 || 6 || 6 || (4 + 2) + 6
@@ -1901,6 +1934,7 @@ questions:
     title: "Total current from the battery, 3 || 12 || (4 + 8) + 8 + 10"
     points: 3
     figure: ./figures/q30.png
+    source: enumerate   # who proposed this circuit: enumerate (rules) or llm (fallback)
     circuit_lingo: |
         source: 12 V
         circuit: 3 || 12 || (4 + 8) + 8 + 10

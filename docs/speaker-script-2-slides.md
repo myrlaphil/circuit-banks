@@ -138,7 +138,7 @@ We did that first (the 10-item bank). It works, but at one fixed difficulty ther
 By construction, every item has exactly three reduction steps — that's a design guarantee Zhongzhou's method doesn't have. But it isn't validated by students yet. His group validates with student data: item-accuracy spread plus an extended Fisher's exact test; 15 of their 20 deployed banks came out homogeneous. Ours should be checked the same way after deployment.
 
 **"Where's the AI, then?"**
-In the 30-item bank, nowhere. In the 10-item bank, only in proposing the circuit shapes. Never in a number, a figure, a solution or a distractor.
+Same policy as the circuit skill's English front door: rules first, the LLM only when the rules cannot, and it says so. The enumerator proposes; it is exhaustive, so if you ask for more than the band holds the run stops and says 'widen the band' — an LLM cannot invent shapes that do not exist (we tested: every fallback proposal was a duplicate). The LLM proposes only for families the enumerator does not cover; the critic checks those like any other, and each one is tagged `source: llm` in the sidecar and the bank. In the 30-item bank the rules covered everything (provenance: 30 enumerated, 0 LLM). In the 10-item bank the LLM proposed all ten. Never in a number, a figure, a solution or a distractor.
 
 **"How is this different from what Zhongzhou's paper does?"**
 His variation is mostly *contextual* — same solution structure, different story (traveler and backpack vs dog and sled). Mine is entirely *structural* — no story at all, different reduction path, held to one difficulty. Same definition, opposite end of it. Adding context on top is a wording layer and would be cheap.

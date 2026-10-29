@@ -51,8 +51,8 @@ S.append(Spacer(1, 6))
 
 # ---- repo links up top
 links = [
-    ["<b>No-AI version</b> — 30 items, one difficulty, enumerated", L("30-item bank folder", B30), L("circuit-banks repo", f"{GH}/circuit-banks")],
-    ["<b>AI version</b> — 10 items, shapes proposed by an LLM (the “before” picture)", L("10-item bank folder", B10), L("circuit-banks repo", f"{GH}/circuit-banks")],
+    ["<b>Rules-only bank</b> — 30 items, one difficulty; every circuit proposed by the enumerator (<font face='Courier'>source: enumerate</font>)", L("30-item bank folder", B30), L("circuit-banks repo", f"{GH}/circuit-banks")],
+    ["<b>LLM-proposed bank</b> — 10 items; shapes proposed by the LLM fallback, checked by the critic (<font face='Courier'>source: llm</font>)", L("10-item bank folder", B10), L("circuit-banks repo", f"{GH}/circuit-banks")],
     ["<b>The code, inside Chen's repo</b> (fork, branch <font face='Courier'>circuit-bank</font>; private)", L("fork", FORK), L("the skill folder", f"{FORK}/.cursor/skills/circuit-bank")],
     ["<b>The engine</b> — circuit-diagram-skill (public)", L("circuit-diagram-skill", f"{GH}/circuit-diagram-skill"), L("standalone circuit-bank-skill (private)", f"{GH}/circuit-bank-skill")],
 ]
@@ -75,11 +75,13 @@ S.append(P("An AI invents variations, another AI judges them, and a loop keeps c
            "sidecar file is what makes a bank reproducible, not regeneration."))
 
 # ---- your way (no AI)
-S.append(P("Your way — the No-AI version (30 items)", h1))
-S.append(P("<i>Distinction: Chen's loop is kept and run unchanged; his two AI agents are replaced by code; your circuit skill does every number.</i>", red))
+S.append(P("Your way — rules first, the LLM only as a tagged fallback", h1))
+S.append(P("<i>Distinction: the same principle as your circuit skill's English front door — rules first; the AI only where no rule exists; and when it is used, it says so (every item carries <font face='Courier'>source: enumerate</font> or <font face='Courier'>source: llm</font>). Chen's loop is kept unchanged; his two AI agents become code; your circuit skill does every number.</i>", red))
 S.append(P("Circuits are special: a computer can draw one, solve one, and tell if two are secretly the same. So:"))
 steps = [
-    ("1.", "<b>List</b> every possible circuit shape at one difficulty — there are only 34 three-step ones. No guessing.",
+    ("1.", "<b>List</b> every possible circuit shape at one difficulty — there are only 34 three-step ones. No guessing. "
+            "<b>Where the LLM comes in:</b> the list is exhaustive, so if you ask for more than exist the run stops and tells you to widen the box — an LLM cannot invent shapes that do not exist (tested: every fallback proposal came back as a duplicate). "
+            "The LLM proposes only for families the enumerator does not cover (capacitors, switches, meters, other unknowns); step 2 checks those like any other, and each is tagged <font face='Courier'>source: llm</font>.",
      L("why 34, and what changing the box does", f"{DOCS}/why-34.md")),
     ("2.", "<b>Check</b> each with a script: does it solve? is it really new? right number of steps? values sensible?",
      L("what “values sensible” means", f"{DOCS}/speaker-script-2-slides.md") + " · " + L("the four rejection reasons (report §4.4)", f"{DOCS}/How-the-circuit-bank-works.pdf")),
@@ -92,19 +94,19 @@ steps = [
 ]
 for n, txt, link in steps:
     S.append(P(f"{n}&nbsp;&nbsp;{txt}<br/><font size=9 color='#555555'>→ {link}</font>", step))
-S.append(P("<b>What you got.</b> 30 questions, all three-step, all different, all correct, no AI anywhere — and running it again gives the exact same 30."))
+S.append(P("<b>What you got (30-item bank).</b> 30 questions, all three-step, all different, all correct; the rules covered everything, so the fallback never fired — provenance: 30 enumerated, 0 from the LLM — and running it again gives the exact same 30."))
 S.append(KeepTogether([P("<b>The files:</b> " + L("PHY2-DC-SPRTC3-10232026.yaml — the bank and its answer key", f"{B30}/PHY2-DC-SPRTC3-10232026.yaml")
                          + " · " + L("PHY2-DC-SPRTC3-10232026.pdf — worksheet + worked solutions", f"{B30}/PHY2-DC-SPRTC3-10232026.pdf")
                          + " · " + L("figures/", f"{B30}/figures"), body)]))
 
 # ---- the AI version
-S.append(P("The AI version — the “before” picture (10 items)", h1))
-S.append(P("<i>Distinction: identical to the No-AI version except for step 1 — here an LLM proposed the circuit shapes. Everything after it is the same code.</i>", red))
+S.append(P("The LLM-proposed bank — what the fallback looks like (10 items)", h1))
+S.append(P("<i>Distinction: identical pipeline except step 1 — here the LLM proposed every circuit (it was the only proposer at the time). Everything after it is the same code, and every item is tagged source: llm.</i>", red))
 S.append(P("1.&nbsp;&nbsp;<b>Propose</b>: an LLM writes candidate circuits (Chen's Agent 2, adapted to write circuit lingo). "
            "Different shapes every run; mixed difficulty (2–5 steps) because the difficulty rule did not exist yet.", step))
 S.append(P("2–5.&nbsp;&nbsp;The same script critic, the same circuit skill, the same computed distractors, the same packaging.", step))
-S.append(P("<b>What you got.</b> 10 correct, distinct, reproducible-from-sidecar items — but not regenerable from the input alone, and not one difficulty. "
-           "That is why the 30-item bank replaced the proposer with an enumerator."))
+S.append(P("<b>What you got.</b> 10 correct, distinct items, reproducible from their sidecar — but not regenerable from the input alone, and not one difficulty. "
+           "That is why the enumerator became the first choice and the LLM the fallback. Provenance: 0 enumerated, 10 from the LLM."))
 S.append(KeepTogether([P("<b>The files:</b> " + L("PHY2-DC-SPRTC-10222026.yaml", f"{B10}/PHY2-DC-SPRTC-10222026.yaml")
                          + " · " + L("PHY2-DC-SPRTC-10222026.pdf", f"{B10}/PHY2-DC-SPRTC-10222026.pdf")
                          + " · " + L("figures/", f"{B10}/figures"), body)]))
@@ -135,7 +137,7 @@ S.append(KeepTogether([P("<b>The files (in the fork):</b> " + L("PHY2-DC-SPRTC3-
 # ---- three sentences
 S.append(P("Three sentences to say to anyone", h1))
 for q in ["“Same difficulty, different solution, every time — that's what isomorphic means.”",
-          "“I kept Chen's loop and swapped the two AI steps for code, because circuits can be counted and checked.”",
+          "“I kept Chen's loop; the rules propose and check the circuits, and the LLM only steps in when the rules run out — and says so.”",
           "“Every number in the bank is calculated, including the wrong answers.”"]:
     S.append(P(q, quote))
 
