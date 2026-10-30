@@ -30,7 +30,7 @@ step = ParagraphStyle("st", parent=body, leftIndent=18, firstLineIndent=-18, spa
 quote = ParagraphStyle("q", parent=body, leftIndent=14, textColor=INK, fontSize=11.5, leading=16, spaceAfter=4)
 
 GH = "https://github.com/myrlaphil"
-B30 = f"{GH}/circuit-banks/blob/main/PHY%20II%20Electricity%20and%20Magnetism/1_DC%20Circuits/PHY2-DC-SPRTC3-10232026"
+B30 = f"{GH}/circuit-banks/blob/main/PHY%20II%20Electricity%20and%20Magnetism/1_DC%20Circuits/PHY2-DC-SPRTC3-10292026"
 B10 = f"{GH}/circuit-banks/blob/main/PHY%20II%20Electricity%20and%20Magnetism/1_DC%20Circuits/PHY2-DC-SPRTC-10222026"
 DOCS = f"{GH}/circuit-banks/blob/main/docs"
 FORK = f"{GH}/isomorphic-bank-creation-skills/tree/circuit-bank"
@@ -51,7 +51,7 @@ S.append(Spacer(1, 6))
 
 # ---- repo links up top
 links = [
-    ["<b>Rules-only bank</b> — 30 items, one difficulty; every circuit proposed by the enumerator (<font face='Courier'>source: enumerate</font>)", L("30-item bank folder", B30), L("circuit-banks repo", f"{GH}/circuit-banks")],
+    ["<b>Rules-only bank</b> — 30 items, one difficulty (3 steps, 5–6 resistors); every circuit proposed by the enumerator (<font face='Courier'>source: enumerate</font>)", L("30-item bank folder", B30), L("circuit-banks repo", f"{GH}/circuit-banks")],
     ["<b>LLM-proposed bank</b> — 10 items; shapes proposed by the LLM fallback, checked by the critic (<font face='Courier'>source: llm</font>)", L("10-item bank folder", B10), L("circuit-banks repo", f"{GH}/circuit-banks")],
     ["<b>The code, inside Chen's repo</b> (fork, branch <font face='Courier'>circuit-bank</font>; private)", L("fork", FORK), L("the skill folder", f"{FORK}/.cursor/skills/circuit-bank")],
     ["<b>The engine</b> — circuit-diagram-skill (public)", L("circuit-diagram-skill", f"{GH}/circuit-diagram-skill"), L("standalone circuit-bank-skill (private)", f"{GH}/circuit-bank-skill")],
@@ -80,10 +80,10 @@ S.append(P("<i>Distinction: the same principle as your circuit skill's English f
 S.append(P("Circuits are special: a computer can draw one, solve one, and tell if two are secretly the same. So:"))
 # ---- the simple run-through, verbatim, in a box
 simple = [
-    "1.  <b>List</b> every possible circuit shape at one difficulty — there are only 34 three-step ones. No guessing.",
+    "1.  <b>List</b> every possible circuit shape at one difficulty — exactly 30 three-step ones with 5–6 resistors. No guessing.",
     "2.  <b>Check</b> each with a script: does it solve? is it really new? right number of steps? values sensible?",
     "3.  <b>Solve and draw</b> each one with your circuit skill — exact numbers, a figure, a worked solution.",
-    "4.  <b>Make the wrong answers</b> by deliberately making a common student mistake and computing what it gives.",
+    "4.  <b>Make the wrong answers</b> by deliberately making a common student mistake and computing what it gives — plus one decoy near the largest value.",
     "5.  <b>Package</b> it in Chen's format, plus a PDF with an answer key.",
 ]
 boxed = Table([[P("<b>The simple run-through</b>", body)]] + [[P(t, step)] for t in simple], colWidths=[6.8 * inch], hAlign="LEFT")
@@ -92,7 +92,7 @@ boxed.setStyle(TableStyle([("BOX", (0, 0), (-1, -1), 0.8, colors.HexColor("#8A2A
 S.append(KeepTogether([boxed, Spacer(1, 8)]))
 S.append(P("<b>The same five steps, with the details and the links:</b>", body))
 steps = [
-    ("1.", "<b>List</b> every possible circuit shape at one difficulty — there are only 34 three-step ones. No guessing. "
+    ("1.", "<b>List</b> every possible circuit shape at one difficulty — with 5–6 resistors there are exactly 30 three-step ones, and the bank uses every one. No guessing. "
             "<b>Where the LLM comes in:</b> the list is exhaustive, so if you ask for more than exist the run stops and tells you to widen the box — an LLM cannot invent shapes that do not exist (tested: every fallback proposal came back as a duplicate). "
             "The LLM proposes only for families the enumerator does not cover (capacitors, switches, meters, other unknowns); step 2 checks those like any other, and each is tagged <font face='Courier'>source: llm</font>.",
      L("why 34, and what changing the box does", f"{DOCS}/why-34.md")),
@@ -100,16 +100,16 @@ steps = [
      L("what “values sensible” means", f"{DOCS}/speaker-script-2-slides.md") + " · " + L("the four rejection reasons (report §4.4)", f"{DOCS}/How-the-circuit-bank-works.pdf")),
     ("3.", "<b>Solve and draw</b> each one with your circuit skill — exact numbers, a figure, a worked solution.",
      L("circuit-diagram-skill", f"{GH}/circuit-diagram-skill")),
-    ("4.", "<b>Make the wrong answers</b> by deliberately making a common student mistake and computing what it gives.",
+    ("4.", "<b>Make the wrong answers</b> by deliberately making a common student mistake and computing what it gives — three of those, plus a fifth option placed near the largest value so a lone big number is not a giveaway by size.",
      L("worked example, q1 (report §2)", f"{DOCS}/How-the-circuit-bank-works.pdf")),
     ("5.", "<b>Package</b> it in Chen's format, plus a PDF with an answer key.",
      L("the whole pipeline as one chart", f"{DOCS}/circuit-bank-flowchart.svg")),
 ]
 for n, txt, link in steps:
     S.append(P(f"{n}&nbsp;&nbsp;{txt}<br/><font size=9 color='#555555'>→ {link}</font>", step))
-S.append(P("<b>What you got (30-item bank).</b> 30 questions, all three-step, all different, all correct; the rules covered everything, so the fallback never fired — provenance: 30 enumerated, 0 from the LLM — and running it again gives the exact same 30."))
-S.append(KeepTogether([P("<b>The files:</b> " + L("PHY2-DC-SPRTC3-10232026.yaml — the bank and its answer key", f"{B30}/PHY2-DC-SPRTC3-10232026.yaml")
-                         + " · " + L("PHY2-DC-SPRTC3-10232026.pdf — worksheet + worked solutions", f"{B30}/PHY2-DC-SPRTC3-10232026.pdf")
+S.append(P("<b>What you got (30-item bank).</b> 30 questions, all exactly three reduction steps with 5–6 resistors (one step = one series run or parallel group collapsed into a single resistor), all different, all correct; the rules covered everything, so the fallback never fired — provenance: 30 enumerated, 0 from the LLM — and running it again gives the exact same 30."))
+S.append(KeepTogether([P("<b>The files:</b> " + L("PHY2-DC-SPRTC3-10292026.yaml — the bank and its answer key", f"{B30}/PHY2-DC-SPRTC3-10292026.yaml")
+                         + " · " + L("PHY2-DC-SPRTC3-10292026.pdf — worksheet + worked solutions", f"{B30}/PHY2-DC-SPRTC3-10292026.pdf")
                          + " · " + L("figures/", f"{B30}/figures"), body)]))
 
 # ---- the AI version
@@ -142,8 +142,8 @@ for n, txt, link in fork_steps:
 S.append(P("<b>The proof it worked as desired:</b> his own <font face='Courier'>validate_input.py</font> accepted the circuit input; his "
            "<font face='Courier'>scenario_list.py</font> ran the loop (target 30 → needed 30 → complete); the 30-item bank came out identical to the "
            "standalone run, because everything downstream of his loop is deterministic."))
-S.append(KeepTogether([P("<b>The files (in the fork):</b> " + L("PHY2-DC-SPRTC3-10232026.yaml", f"{FORK}/PHY%20II%20Electricity%20and%20Magnetism/1_DC%20Circuits/PHY2-DC-SPRTC3-10232026/PHY2-DC-SPRTC3-10232026.yaml")
-                         + " · " + L("PHY2-DC-SPRTC3-10232026.pdf", f"{FORK}/PHY%20II%20Electricity%20and%20Magnetism/1_DC%20Circuits/PHY2-DC-SPRTC3-10232026/PHY2-DC-SPRTC3-10232026.pdf")
+S.append(KeepTogether([P("<b>The files (in the fork):</b> " + L("PHY2-DC-SPRTC3-10292026.yaml", f"{FORK}/PHY%20II%20Electricity%20and%20Magnetism/1_DC%20Circuits/PHY2-DC-SPRTC3-10292026/PHY2-DC-SPRTC3-10292026.yaml")
+                         + " · " + L("PHY2-DC-SPRTC3-10292026.pdf", f"{FORK}/PHY%20II%20Electricity%20and%20Magnetism/1_DC%20Circuits/PHY2-DC-SPRTC3-10292026/PHY2-DC-SPRTC3-10292026.pdf")
                          + " · " + L("the 10-item bank", f"{FORK}/PHY%20II%20Electricity%20and%20Magnetism/1_DC%20Circuits/PHY2-DC-SPRTC-10222026")
                          + "  (private repo — opens for you)", body)]))
 

@@ -21,6 +21,10 @@ bank_info:
         - input scheme: "circuit-input.yaml"
         - scenario sidecar: "circuit-input.scenarios.yaml"
         - figures: "./figures/"
+    difficulty: # one step = one series run or parallel group collapsed into a single resistor
+        - reduction steps per item: 2 x3, 3 x3, 4 x3, 5 x1
+        - resistors per item: 3 x1, 4 x4, 5 x3, 6 x2
+        - parallel groups per item: 1 x6, 2 x4
     provenance: # who proposed each circuit; every item also carries its own `source`
         - enumerated (rules, no AI): 0
         - llm (fallback proposer, checked by the critic): 10
@@ -57,6 +61,9 @@ questions:
         text: "1.33 A"
         correct: false
     - answer:
+        text: "2.40 A"
+        correct: false
+    - answer:
         text: "2.00 A"
         correct: true
     feedback:
@@ -90,6 +97,7 @@ questions:
             - 0.92 A: Student adds every resistor as if they were all in series.
             - 2.67 A: Student adds reciprocals for the parallel group but forgets to invert the sum.
             - 1.33 A: Student reports the current through R1 (one branch) instead of the total.
+            - 2.40 A: No single mistake - a number close to the largest option, so a lone large value is not a giveaway by size.
             - 2.00 A: Correct.
         on_correct: Good job!
         on_incorrect: Reduce the circuit step by step - combine the series and parallel groups first, then work back with Ohm's law.
@@ -113,6 +121,9 @@ questions:
         correct: false
     - answer:
         text: "1.50 A"
+        correct: false
+    - answer:
+        text: "4.86 A"
         correct: false
     - answer:
         text: "3.00 A"
@@ -153,6 +164,7 @@ questions:
             
             - 5.40 A: Student adds reciprocals for the parallel group but forgets to invert the sum.
             - 1.50 A: Student reports the current through R1 (one branch) instead of the total.
+            - 4.86 A: No single mistake - a number close to the largest option, so a lone large value is not a giveaway by size.
             - 3.00 A: Correct.
             - 1.20 A: Student adds every resistor as if they were all in series.
         on_correct: Good job!
@@ -174,6 +186,9 @@ questions:
     answers:
     - answer:
         text: "6.82 A"
+        correct: false
+    - answer:
+        text: "6.14 A"
         correct: false
     - answer:
         text: "4.00 A"
@@ -214,6 +229,7 @@ questions:
             **Answer options (computed, each wrong option is one named mistake)**
             
             - 6.82 A: Student treats series groups as parallel and parallel groups as series.
+            - 6.14 A: No single mistake - a number close to the largest option, so a lone large value is not a giveaway by size.
             - 4.00 A: Correct.
             - 1.33 A: Student adds every resistor as if they were all in series.
             - 2.00 A: Student reports the current through R1 (one branch) instead of the total.
@@ -234,6 +250,9 @@ questions:
         The circuit shown is powered by a 9 V battery.
         Determine the total current supplied by the battery of the circuit shown.
     answers:
+    - answer:
+        text: "4.42 A"
+        correct: false
     - answer:
         text: "1.50 A"
         correct: true
@@ -278,6 +297,7 @@ questions:
             
             **Answer options (computed, each wrong option is one named mistake)**
             
+            - 4.42 A: No single mistake - a number close to the largest option, so a lone large value is not a giveaway by size.
             - 1.50 A: Correct.
             - 0.35 A: Student adds every resistor as if they were all in series.
             - 4.91 A: Student adds reciprocals for the parallel group but forgets to invert the sum.
@@ -300,6 +320,9 @@ questions:
         Determine the total current supplied by the battery of the circuit shown.
     answers:
     - answer:
+        text: "2.50 A"
+        correct: true
+    - answer:
         text: "0.56 A"
         correct: false
     - answer:
@@ -309,8 +332,8 @@ questions:
         text: "1.67 A"
         correct: false
     - answer:
-        text: "2.50 A"
-        correct: true
+        text: "36.00 A"
+        correct: false
     feedback:
         general: |
             **Question.** Determine the total current supplied by the battery of the circuit shown.
@@ -342,10 +365,11 @@ questions:
             
             **Answer options (computed, each wrong option is one named mistake)**
             
+            - 2.50 A: Correct.
             - 0.56 A: Student adds every resistor as if they were all in series.
             - 40.00 A: Student adds reciprocals for the parallel group but forgets to invert the sum.
             - 1.67 A: Student reports the current through R1 (one branch) instead of the total.
-            - 2.50 A: Correct.
+            - 36.00 A: No single mistake - a number close to the largest option, so a lone large value is not a giveaway by size.
         on_correct: Good job!
         on_incorrect: Reduce the circuit step by step - combine the series and parallel groups first, then work back with Ohm's law.
 
@@ -364,17 +388,20 @@ questions:
         Determine the total current supplied by the battery of the circuit shown.
     answers:
     - answer:
+        text: "0.78 A"
+        correct: false
+    - answer:
         text: "9.11 A"
         correct: false
     - answer:
         text: "2.33 A"
         correct: false
     - answer:
+        text: "8.20 A"
+        correct: false
+    - answer:
         text: "3.50 A"
         correct: true
-    - answer:
-        text: "0.78 A"
-        correct: false
     feedback:
         general: |
             **Question.** Determine the total current supplied by the battery of the circuit shown.
@@ -409,10 +436,11 @@ questions:
             
             **Answer options (computed, each wrong option is one named mistake)**
             
+            - 0.78 A: Student adds every resistor as if they were all in series.
             - 9.11 A: Student adds reciprocals for the parallel group but forgets to invert the sum.
             - 2.33 A: Student reports the current through R3 (one branch) instead of the total.
+            - 8.20 A: No single mistake - a number close to the largest option, so a lone large value is not a giveaway by size.
             - 3.50 A: Correct.
-            - 0.78 A: Student adds every resistor as if they were all in series.
         on_correct: Good job!
         on_incorrect: Reduce the circuit step by step - combine the series and parallel groups first, then work back with Ohm's law.
 
@@ -431,16 +459,19 @@ questions:
         Determine the total current supplied by the battery of the circuit shown.
     answers:
     - answer:
+        text: "22.00 A"
+        correct: false
+    - answer:
         text: "2.75 A"
+        correct: false
+    - answer:
+        text: "19.80 A"
         correct: false
     - answer:
         text: "5.50 A"
         correct: true
     - answer:
         text: "0.50 A"
-        correct: false
-    - answer:
-        text: "22.00 A"
         correct: false
     feedback:
         general: |
@@ -471,10 +502,11 @@ questions:
             
             **Answer options (computed, each wrong option is one named mistake)**
             
+            - 22.00 A: Student adds reciprocals for the parallel group but forgets to invert the sum.
             - 2.75 A: Student reports the current through R1 (one branch) instead of the total.
+            - 19.80 A: No single mistake - a number close to the largest option, so a lone large value is not a giveaway by size.
             - 5.50 A: Correct.
             - 0.50 A: Student adds every resistor as if they were all in series.
-            - 22.00 A: Student adds reciprocals for the parallel group but forgets to invert the sum.
         on_correct: Good job!
         on_incorrect: Reduce the circuit step by step - combine the series and parallel groups first, then work back with Ohm's law.
 
@@ -493,6 +525,12 @@ questions:
         Determine the total current supplied by the battery of the circuit shown.
     answers:
     - answer:
+        text: "3.00 A"
+        correct: false
+    - answer:
+        text: "6.48 A"
+        correct: false
+    - answer:
         text: "4.50 A"
         correct: true
     - answer:
@@ -500,9 +538,6 @@ questions:
         correct: false
     - answer:
         text: "7.20 A"
-        correct: false
-    - answer:
-        text: "3.00 A"
         correct: false
     feedback:
         general: |
@@ -539,10 +574,11 @@ questions:
             
             **Answer options (computed, each wrong option is one named mistake)**
             
+            - 3.00 A: Student reports the current through R1 (one branch) instead of the total.
+            - 6.48 A: No single mistake - a number close to the largest option, so a lone large value is not a giveaway by size.
             - 4.50 A: Correct.
             - 1.29 A: Student adds every resistor as if they were all in series.
             - 7.20 A: Student adds reciprocals for the parallel group but forgets to invert the sum.
-            - 3.00 A: Student reports the current through R1 (one branch) instead of the total.
         on_correct: Good job!
         on_incorrect: Reduce the circuit step by step - combine the series and parallel groups first, then work back with Ohm's law.
 
@@ -561,6 +597,12 @@ questions:
         Determine the total current supplied by the battery of the circuit shown.
     answers:
     - answer:
+        text: "12.00 A"
+        correct: false
+    - answer:
+        text: "5.00 A"
+        correct: true
+    - answer:
         text: "1.50 A"
         correct: false
     - answer:
@@ -569,9 +611,6 @@ questions:
     - answer:
         text: "3.33 A"
         correct: false
-    - answer:
-        text: "5.00 A"
-        correct: true
     feedback:
         general: |
             **Question.** Determine the total current supplied by the battery of the circuit shown.
@@ -606,10 +645,11 @@ questions:
             
             **Answer options (computed, each wrong option is one named mistake)**
             
+            - 12.00 A: No single mistake - a number close to the largest option, so a lone large value is not a giveaway by size.
+            - 5.00 A: Correct.
             - 1.50 A: Student adds every resistor as if they were all in series.
             - 13.33 A: Student adds reciprocals for the parallel group but forgets to invert the sum.
             - 3.33 A: Student reports the current through R3 (one branch) instead of the total.
-            - 5.00 A: Correct.
         on_correct: Good job!
         on_incorrect: Reduce the circuit step by step - combine the series and parallel groups first, then work back with Ohm's law.
 
@@ -628,16 +668,19 @@ questions:
         Determine the total current supplied by the battery of the circuit shown.
     answers:
     - answer:
+        text: "7.00 A"
+        correct: true
+    - answer:
+        text: "1.35 A"
+        correct: false
+    - answer:
         text: "26.81 A"
         correct: false
     - answer:
         text: "4.67 A"
         correct: false
     - answer:
-        text: "7.00 A"
-        correct: true
-    - answer:
-        text: "1.35 A"
+        text: "24.13 A"
         correct: false
     feedback:
         general: |
@@ -676,9 +719,10 @@ questions:
             
             **Answer options (computed, each wrong option is one named mistake)**
             
-            - 26.81 A: Student adds reciprocals for the parallel group but forgets to invert the sum.
-            - 4.67 A: Student reports the current through R4 (one branch) instead of the total.
             - 7.00 A: Correct.
             - 1.35 A: Student adds every resistor as if they were all in series.
+            - 26.81 A: Student adds reciprocals for the parallel group but forgets to invert the sum.
+            - 4.67 A: Student reports the current through R4 (one branch) instead of the total.
+            - 24.13 A: No single mistake - a number close to the largest option, so a lone large value is not a giveaway by size.
         on_correct: Good job!
         on_incorrect: Reduce the circuit step by step - combine the series and parallel groups first, then work back with Ohm's law.

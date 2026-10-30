@@ -8,7 +8,7 @@ context:
   scenario: A single battery drives a network of resistors connected in series and parallel. The student reduces the network to one equivalent resistance and applies Ohm's law.
   scenario_specifications:
     - Every scenario is a different series/parallel topology (a different reduction sequence), not only different numbers.
-    - Between 4 and 6 resistors, and every circuit reduces in exactly 3 series/parallel steps (one difficulty for the whole bank).
+    - Between 5 and 6 resistors, and every circuit reduces in exactly 3 series/parallel steps (one difficulty for the whole bank).
     - Resistors only - no capacitors, switches, ammeters or voltmeters.
     - No bridge circuits; every network must reduce by series/parallel steps alone.
     - Values between 1 and 24 ohms, chosen so that parallel combinations come out to simple numbers.
@@ -26,7 +26,7 @@ structure:
   question_unknowns: I   # not used yet (as in the original repo); later unknown-rotation pass
 
 bank:
-  bank_id: PHY2-DC-SPRTC3-10232026   # 3-step difficulty band
+  bank_id: PHY2-DC-SPRTC3-10292026   # 3 steps, 5-6 resistors
   description: |-
     Isomorphic numerical problems. Each item is a different series-parallel topology of a single
     battery and resistors; the student reduces the network to an equivalent resistance and applies
@@ -50,7 +50,7 @@ other (optional):
   resistor_range: [1, 24]   # ohms
   voltage_range: [6, 36]    # volts
   max_resistors: 6
-  min_resistors: 4
+  min_resistors: 5
   reduction_steps: 3       # exact (or [3, 4] for a band); one step = one group reduced. Same difficulty for every item.
   generator: enumerate     # enumerate = every shape in the band, values by seed (no LLM, default); llm = Agent 2 proposes
   seed: 0                  # enumerate only: change to get different values for the same shapes

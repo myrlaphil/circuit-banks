@@ -14,7 +14,8 @@ What *is* a setting is the box you count inside. Change the box, change the coun
 
 | Resistors allowed | Steps | Shapes available |
 |---|---|---|
-| 4–6 | exactly 3 | **34** ← the 30-item bank uses 30 of these |
+| 4–6 | exactly 3 | 34 |
+| **5–6** | **exactly 3** | **30** ← the 30-item bank uses every one |
 | 4–6 | exactly 2 | 18 |
 | 4–6 | exactly 4 | 30 |
 | 4–6 | 3 or 4 | 64 |
@@ -38,7 +39,7 @@ So the ceiling can be raised — but notice the trade:
 - **A band of steps** (3 or 4) → nearly doubles the pool, but now items differ in difficulty by one step —
   exactly what the one-difficulty rule was meant to avoid.
 
-That is why 34 was the honest ceiling for *this* bank: one difficulty, classroom-sized circuits. Wanting 50
+The bank uses the 5–6 resistor box: exactly 30 shapes at 3 steps, so both the structural difficulty (3 steps) and the arithmetic load (5–6 resistors) sit in a narrow band. Wanting 50
 items at that difficulty is not a matter of trying harder — the shapes do not exist. Either widen the box
 (and say so on the slide) or make a second bank at the next difficulty.
 

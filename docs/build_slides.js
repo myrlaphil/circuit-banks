@@ -7,7 +7,7 @@ const { applyTheme } = require(process.env.PPTX_SKILL + "/scripts/apply_theme.js
 const ROOT = path.resolve(__dirname, "..");
 const BANKS = path.join(ROOT, "PHY II Electricity and Magnetism", "1_DC Circuits");
 const B10 = path.join(BANKS, "PHY2-DC-SPRTC-10222026", "figures");
-const B30 = path.join(BANKS, "PHY2-DC-SPRTC3-10232026", "figures");
+const B30 = path.join(BANKS, "PHY2-DC-SPRTC3-10292026", "figures");
 const ONLY = process.env.ONLY;   // ONLY=2 builds just slide 2 (for Quick Look QA, which shows only the first slide)
 const OUT = ONLY ? path.join(process.env.TMPDIR || "/tmp", `slide-${ONLY}.pptx`) : path.join(__dirname, "circuit-bank-2-slides.pptx");
 
@@ -92,9 +92,9 @@ if (ONLY !== "2") {
 
   // right-bottom: student-facing guarantees
   const rows = [
-    ["One difficulty per bank", "every item reduces in exactly 3 steps"],
+    ["One difficulty per bank", "every item reduces in exactly 3 steps, with 5–6 resistors"],
     ["Every item a new path", "canonical-shape check: same shape = same problem"],
-    ["Wrong answers are real mistakes", "each distractor is computed from one named error"],
+    ["Wrong answers are real mistakes", "three computed from one named error each, plus a decoy near the largest"],
     ["One drawing style, clean arithmetic", "the only thing that varies is the physics"],
   ];
   s.addText("Built with the student in mind", { x: R, y: 4.55, w: 6.1, h: 0.35, fontSize: 12.5, bold: true, color: C.text1, margin: 0, isTextBox: true, objectName: "guarantees heading" });
@@ -145,7 +145,7 @@ if (ONLY !== "2") {
   });
 
   // stats row
-  const stats = [["34", "distinct 3-step shapes\nwith 4–6 resistors"], ["30", "items in the bank —\n30 of those 34"], ["0", "rejections, one pass;\nno LLM anywhere"], ["=", "same input + seed →\nsame bank, byte for byte"]];
+  const stats = [["30", "distinct 3-step shapes\nwith 5–6 resistors"], ["30", "items in the bank —\nevery one of them"], ["0", "rejections, one pass;\nno LLM anywhere"], ["=", "same input + seed →\nsame bank, byte for byte"]];
   stats.forEach(([n, l], i) => {
     const x = 0.6 + i * 3.08;
     s.addShape(pres.ShapeType.roundRect, { x, y: 3.1, w: 2.95, h: 1.3, fill: { color: THEME.colors.lt2 }, line: { color: "FFFFFF", width: 0 }, rectRadius: 0.08, objectName: "stat card " + (i + 1) });
@@ -154,18 +154,19 @@ if (ONLY !== "2") {
   });
 
   // bottom left: one item with computed distractors
-  s.addText("One item, four computed options", { x: 0.6, y: 4.65, w: 6.0, h: 0.35, fontSize: 12.5, bold: true, color: C.text1, margin: 0, isTextBox: true, objectName: "item heading" });
+  s.addText("One item, five computed options", { x: 0.6, y: 4.65, w: 6.0, h: 0.35, fontSize: 12.5, bold: true, color: C.text1, margin: 0, isTextBox: true, objectName: "item heading" });
   s.addShape(pres.ShapeType.roundRect, { x: 0.6, y: 5.05, w: 2.6, h: 1.85, fill: { color: "FFFFFF" }, line: { color: "D8D2CA", width: 0.75 }, rectRadius: 0.06, objectName: "item frame" });
   img(s, path.join(B10, "q1.png"), 0.68, 5.12, 2.44, 1.7, "item figure");
   const opts = [
     ["0.92 A", "adds all resistors in series"],
     ["2.67 A", "sums reciprocals, forgets to invert"],
     ["1.33 A", "reports one branch current"],
+    ["2.40 A", "decoy near the largest option"],
     ["2.00 A", "correct: 3 ‖ 6 = 2 Ω; + 4 = 6 Ω; 12 / 6"],
   ];
   opts.forEach(([v, why], i) => {
-    const y = 5.05 + i * 0.46;
-    const ok = i === 3;
+    const y = 5.0 + i * 0.38;
+    const ok = i === 4;
     s.addText([{ text: v + "   ", options: { bold: true, fontFace: "Courier New", color: ok ? C.accent1 : C.text1 } }, { text: why, options: { color: ok ? C.text1 : C.text2, italic: !ok } }],
       { x: 3.35, y, w: 3.3, h: 0.42, fontSize: 11, margin: 0, isTextBox: true, valign: "middle", objectName: "option " + (i + 1) });
   });
@@ -188,7 +189,7 @@ if (ONLY !== "2") {
   s.addNotes("Chen's generate-critique-count loop runs unchanged (scenario_list.py). Two of his agents are replaced because circuits can be enumerated and verified: " +
     "the proposer is an enumerator over all series-parallel shapes in the difficulty band, and the critic is a script that parses, solves, canonicalises the shape, counts reduction steps and checks ranges. " +
     "The circuit engine (circuit-diagram-skill) produces every figure, number and worked solution; distractors are recomputed from named student mistakes. " +
-    "34 shapes exist at 3 steps with 4-6 resistors; the bank uses 30 of them; same input and seed regenerate the identical bank.");
+    "exactly 30 shapes exist at 3 steps with 5-6 resistors; the bank uses every one; same input and seed regenerate the identical bank.");
 }
 
 (async () => {

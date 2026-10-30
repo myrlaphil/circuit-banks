@@ -129,7 +129,7 @@ down(y1, y1 + 40)
 
 y = y1 + 40
 y1 = stage(y, 150, GLUE, "7  Assemble the bank", ["distractors.py — three wrong answers, each one named mistake",
-                                                   "(all_series, no_invert, branch_current; fallbacks on collision)",
+                                                   "(all_series, no_invert, branch_current) + a decoy near the largest",
                                                    "assemble_bank.py → bank YAML in Chen's template, status ready",
                                                    "bank_to_pdf.py → printable worksheet + answer key"], "new")
 file_(y + 5, "<id>.yaml", "the bank — Chen's template; importable"); side(y + 33)
@@ -147,11 +147,11 @@ for i, ln in enumerate(["the definition of isomorphic (same objective, variation
     text(58, y + 62 + i * 22, ln, 13.5, INK if ln.startswith(("Nothing", "(.cursor")) else MUTED)
 P.append(f'<rect x="{60 + bw}" y="{y}" width="{bw}" height="290" rx="12" fill="{GLUE}" stroke="#D8D2CA"/>')
 text(78 + bw, y + 32, "What changed — and why", 18, INK, weight="bold")
-for i, ln in enumerate(["Agent 2 → enumerator: circuits are a finite set (34 shapes at", "   3 steps); list them instead of guessing",
+for i, ln in enumerate(["Agent 2 → enumerator: circuits are a finite set (30 shapes at", "   3 steps, 5–6 resistors); list them instead of guessing",
                         "Agent 3 → script: a circuit can be parsed, solved and canonicalised,", "   so 'is this a new problem?' is computed, not judged",
                         "Agents 4 + 5 → circuit engine: his sympy stage expresses formulas,", "   not topologies; the engine also draws the figure",
                         "added: a difficulty band (reduction steps), computed distractors,", "   figures, PDF, and a 'no two answers repeat' rule",
-                        "result: 30 items, one difficulty, 0 rejections, no LLM; same seed → same bank"]):
+                        "result: 30 items, one difficulty (3 steps, 5–6 R), 0 rejections, no LLM; same seed → same bank"]):
     text(78 + bw, y + 62 + i * 22, ln, 13.5, INK if ln.startswith("result") else MUTED)
 
 P.append("</svg>")

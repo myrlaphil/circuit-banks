@@ -85,7 +85,7 @@
 <rect x="230" y="1250" width="560" height="150" rx="12" fill="#F7E3D4" stroke="#D8D2CA"/>
 <text x="248" y="1282" font-size="20" fill="#1E1E1E" text-anchor="start" font-weight="bold" font-family="Helvetica, Arial, sans-serif">7  Assemble the bank</text>
 <text x="248" y="1310" font-size="14" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">distractors.py — three wrong answers, each one named mistake</text>
-<text x="248" y="1330" font-size="14" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">(all_series, no_invert, branch_current; fallbacks on collision)</text>
+<text x="248" y="1330" font-size="14" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">(all_series, no_invert, branch_current) + a decoy near the largest</text>
 <text x="248" y="1350" font-size="14" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">assemble_bank.py → bank YAML in Chen's template, status ready</text>
 <text x="248" y="1370" font-size="14" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">bank_to_pdf.py → printable worksheet + answer key</text>
 <text x="776" y="1388" font-size="12" fill="#8A2A1B" text-anchor="end" font-weight="normal" font-family="Helvetica, Arial, sans-serif">new</text>
@@ -110,13 +110,13 @@
 <text x="58" y="1688" font-size="13.5" fill="#1E1E1E" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">(.cursor/skills/circuit-bank/) and calls his script in place.</text>
 <rect x="600.0" y="1450" width="540.0" height="290" rx="12" fill="#F7E3D4" stroke="#D8D2CA"/>
 <text x="618.0" y="1482" font-size="18" fill="#1E1E1E" text-anchor="start" font-weight="bold" font-family="Helvetica, Arial, sans-serif">What changed — and why</text>
-<text x="618.0" y="1512" font-size="13.5" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">Agent 2 → enumerator: circuits are a finite set (34 shapes at</text>
-<text x="618.0" y="1534" font-size="13.5" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">   3 steps); list them instead of guessing</text>
+<text x="618.0" y="1512" font-size="13.5" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">Agent 2 → enumerator: circuits are a finite set (30 shapes at</text>
+<text x="618.0" y="1534" font-size="13.5" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">   3 steps, 5–6 resistors); list them instead of guessing</text>
 <text x="618.0" y="1556" font-size="13.5" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">Agent 3 → script: a circuit can be parsed, solved and canonicalised,</text>
 <text x="618.0" y="1578" font-size="13.5" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">   so 'is this a new problem?' is computed, not judged</text>
 <text x="618.0" y="1600" font-size="13.5" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">Agents 4 + 5 → circuit engine: his sympy stage expresses formulas,</text>
 <text x="618.0" y="1622" font-size="13.5" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">   not topologies; the engine also draws the figure</text>
 <text x="618.0" y="1644" font-size="13.5" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">added: a difficulty band (reduction steps), computed distractors,</text>
 <text x="618.0" y="1666" font-size="13.5" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">   figures, PDF, and a 'no two answers repeat' rule</text>
-<text x="618.0" y="1688" font-size="13.5" fill="#1E1E1E" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">result: 30 items, one difficulty, 0 rejections, no LLM; same seed → same bank</text>
+<text x="618.0" y="1688" font-size="13.5" fill="#1E1E1E" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">result: 30 items, one difficulty (3 steps, 5–6 R), 0 rejections, no LLM; same seed → same bank</text>
 </svg>

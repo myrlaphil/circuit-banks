@@ -82,9 +82,9 @@ Go down the four dots:
    > *If asked "what's a sidecar?":* just a second file that sits beside the input and records the state of the loop. His word.
 
 3. **Enumerate** (copper) — *this is the key substitution*
-   > "In Zhongzhou's pipeline an AI proposes the variations. For circuits I don't need to guess, because a series-parallel circuit is a tree, and you can list every tree. With four to six resistors and exactly three reduction steps there are exactly 34 distinct shapes. So the proposer simply lists them, then assigns resistor values from a small pool using a seed, keeping only combinations where the arithmetic is clean and no two answers repeat."
+   > "In Zhongzhou's pipeline an AI proposes the variations. For circuits I don't need to guess, because a series-parallel circuit is a tree, and you can list every tree. With five or six resistors and exactly three reduction steps there are exactly 30 distinct shapes. So the proposer simply lists them, then assigns resistor values from a small pool using a seed, keeping only combinations where the arithmetic is clean and no two answers repeat."
 
-   > *Check yourself on "shape":* a shape is the circuit with the numbers removed — 'a parallel pair, then series'. Two circuits with the same shape are the same problem. 34 is the count of such shapes at 3 steps with 4–6 resistors; it is a count, not a setting. **See [why-34.md](why-34.md)** for the table of what the count becomes if you allow more resistors or a band of steps, and the trade-off that goes with it.
+   > *Check yourself on "shape":* a shape is the circuit with the numbers removed — 'a parallel pair, then series'. Two circuits with the same shape are the same problem. 30 is the count of such shapes at 3 steps with 5–6 resistors; it is a count, not a setting. **See [why-34.md](why-34.md)** for the table of what the count becomes if you allow more resistors or a band of steps, and the trade-off that goes with it.
 
    > *Check yourself on "seed":* a fixed starting value for the random number generator. Same seed, same choices — so the bank is reproducible.
 
@@ -92,7 +92,7 @@ Go down the four dots:
    > "His critic is an AI judging prose. Mine is a script, because a circuit can be checked: does it parse and solve? Is its shape new, or is it a reorder of one we already have? Does it have exactly three steps? Are the values in range? Each failure is written back into Zhongzhou's sidecar as a reason, exactly where his AI critic would have written one."
 
    > *What "values in range / sensible" means — two different checks, both automatic:*
-   > - **The critic's range check** — every resistor must be within `resistor_range` (1–24 Ω), the battery within `voltage_range` (6–36 V), and the resistor count within 4–6. A 50 Ω resistor or a 48 V battery gets rejected, with that reason written to the sidecar.
+   > - **The critic's range check** — every resistor must be within `resistor_range` (1–24 Ω), the battery within `voltage_range` (6–36 V), and the resistor count within 5–6. A 50 Ω resistor or a 48 V battery gets rejected, with that reason written to the sidecar.
    > - **The enumerator's "clean arithmetic" rule** — when it picks values, it only accepts a set where every intermediate resistance comes out a whole or half ohm and the answer has at most two decimals, so no student is fighting ugly fractions. (Values come from a pool of 1–12 Ω.)
    > The first is a *rule you set* in the input file; the second is *built into the proposer*. Both are code, not judgement.
 
@@ -106,11 +106,11 @@ Go down the four dots:
 
 ### The four numbers (middle row)
 
-> "34 — the number of three-step shapes that exist. 30 — the bank uses 30 of them. 0 — rejections; the enumerator never proposes a bad one, so the critic kept all 30 in a single pass, and there is no AI anywhere in this bank. And 'equals' — same input and seed give the same bank, byte for byte."
+> "30 — the number of three-step shapes with five or six resistors. 30 — the bank uses every one of them. 0 — rejections; the enumerator never proposes a bad one, so the critic kept all 30 in a single pass, and there is no AI anywhere in this bank. And 'equals' — same input and seed give the same bank, byte for byte."
 
 ### One item, four computed options (bottom left)
 
-> "Here is why the wrong answers matter. Twelve volts, 3 ohm and 6 ohm in parallel, then 4 ohm. The right answer is 2 amps. The three wrong options aren't random: 0.92 A is what you get if you add all three resistors as if they were in series. 2.67 A is the classic mistake — you add the reciprocals of the parallel pair and forget to flip the sum back. 1.33 A is the current through just one branch, reported as the total. Each wrong option names a misconception, and the answer key records which."
+> "Here is why the wrong answers matter. Twelve volts, 3 ohm and 6 ohm in parallel, then 4 ohm. The right answer is 2 amps. The wrong options aren't random: 0.92 A is what you get if you add all three resistors as if they were in series. 2.67 A is the classic mistake — you add the reciprocals of the parallel pair and forget to flip the sum back. 1.33 A is the current through just one branch, reported as the total. Each of those three names a misconception, and the answer key records which. The fifth option is a decoy placed near the largest value, so the one big number isn't a giveaway by size."
 
 > *Work the arithmetic once so you can do it live:*
 > 3 ‖ 6 → 1/3 + 1/6 = 1/2 → 2 Ω. Plus 4 → 6 Ω. 12 V / 6 Ω = **2 A**.
@@ -132,7 +132,7 @@ Go down the four dots:
 No. A parameterised generator varies the numbers in one fixed solution. Here the numbers are almost incidental; what varies is the solution path, and the critic rejects anything that is only a renumbering.
 
 **"Why not let the AI propose and just filter?"**
-We did that first (the 10-item bank). It works, but at one fixed difficulty there are only 34 possible shapes, and an AI guessing shapes won't find 30 of 34 inside Zhongzhou's five-pass limit. Enumeration lists all 34 and is reproducible. The AI proposer is still there as an option.
+We did that first (the 10-item bank). It works, but at one fixed difficulty there are only 30 possible shapes, and an AI guessing shapes won't find all 30 inside Zhongzhou's five-pass limit. Enumeration lists all 30 and is reproducible. The AI proposer is still there as an option.
 
 **"How do you know the difficulty is really the same?"**
 By construction, every item has exactly three reduction steps — that's a design guarantee Zhongzhou's method doesn't have. But it isn't validated by students yet. His group validates with student data: item-accuracy spread plus an extended Fisher's exact test; 15 of their 20 deployed banks came out homogeneous. Ours should be checked the same way after deployment.

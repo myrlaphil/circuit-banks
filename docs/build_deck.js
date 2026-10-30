@@ -10,7 +10,7 @@ const { applyTheme } = require(process.env.PPTX_SKILL + "/scripts/apply_theme.js
 const ROOT = path.resolve(__dirname, "..");
 const BANKS = path.join(ROOT, "PHY II Electricity and Magnetism", "1_DC Circuits");
 const B10 = path.join(BANKS, "PHY2-DC-SPRTC-10222026", "figures");
-const B30 = path.join(BANKS, "PHY2-DC-SPRTC3-10232026", "figures");
+const B30 = path.join(BANKS, "PHY2-DC-SPRTC3-10292026", "figures");
 const ONLY = process.env.ONLY ? Number(process.env.ONLY) : null;
 const OUT = ONLY ? path.join(process.env.TMPDIR || "/tmp", `deck-slide-${ONLY}.pptx`) : path.join(__dirname, "How-the-circuit-bank-works.pptx");
 
@@ -175,9 +175,9 @@ const SEC = "How the circuit bank works";
     s.addText("Built with the student in mind", { placeholder: "title" });
     const rows = [
       ["Design choice", "What the student experiences", "How it is enforced"],
-      ["One difficulty per bank", "Your drawn problem takes the same number of steps as your neighbour's.", "reduction_steps: 3 — the critic rejects any other count"],
+      ["One difficulty per bank", "Your drawn problem takes the same number of steps (3) with the same number of resistors (5–6) as your neighbour's.", "reduction_steps: 3, resistors 5–6 — the critic rejects anything else"],
       ["Every item a different path", "You cannot pass by memorising last year's problem.", "canonical-shape check: same shape = same problem"],
-      ["Wrong answers are real mistakes", "Each distractor is the number one specific error produces.", "distractors.py re-solves the circuit as a mistaken student would"],
+      ["Wrong answers are real mistakes", "Three options are the numbers one specific error each produces; a fifth sits near the largest so a lone big value is no giveaway.", "distractors.py re-solves the circuit as a mistaken student would, then adds a decoy near the largest"],
       ["Honest sizes", "A 144 A distractor is what the mistake really gives.", "deliberately not capped"],
       ["One drawing style", "The figure never changes style between items.", "layout: ladder for the whole bank"],
       ["Clean arithmetic", "Every intermediate resistance is a whole or half ohm.", "enumerator accepts only such value sets; pool ≤ 12 Ω"],
@@ -199,14 +199,15 @@ const SEC = "How the circuit bank works";
       ["0.92 A", "all_series", "adds every resistor as if in series: 12 / (3 + 6 + 4)"],
       ["2.67 A", "no_invert", "sums the reciprocals of the parallel pair but forgets to invert: 1/3 + 1/6 = 0.5 “Ω”"],
       ["1.33 A", "branch_current", "reports the current through R1 (one branch) instead of the total"],
+      ["2.40 A", "decoy", "0.9 × the largest option — so the lone large value is not a giveaway by size"],
       ["2.00 A", "correct", "3 ‖ 6 = 2 Ω, + 4 = 6 Ω, 12 V / 6 Ω"],
     ];
     opts.forEach(([v, key, why], i) => {
-      const y = 1.5 + i * 1.12, ok = key === "correct";
-      s.addShape(pres.ShapeType.roundRect, { x: 6.3, y, w: 6.4, h: 0.98, fill: { color: ok ? K.accent5 : K.lt2 }, line: { color: "FFFFFF", width: 0 }, rectRadius: 0.08, objectName: `option card ${i + 1}` });
-      s.addText(v, { x: 6.45, y: y + 0.08, w: 1.5, h: 0.82, fontSize: 22, bold: true, fontFace: "Courier New", color: ok ? C.accent1 : C.text1, valign: "middle", margin: 0, isTextBox: true, objectName: `option ${i + 1}` });
+      const y = 1.5 + i * 0.92, ok = key === "correct";
+      s.addShape(pres.ShapeType.roundRect, { x: 6.3, y, w: 6.4, h: 0.82, fill: { color: ok ? K.accent5 : K.lt2 }, line: { color: "FFFFFF", width: 0 }, rectRadius: 0.08, objectName: `option card ${i + 1}` });
+      s.addText(v, { x: 6.45, y: y + 0.06, w: 1.5, h: 0.7, fontSize: 20, bold: true, fontFace: "Courier New", color: ok ? C.accent1 : C.text1, valign: "middle", margin: 0, isTextBox: true, objectName: `option ${i + 1}` });
       s.addText([{ text: key, options: { bold: true, fontFace: "Courier New", color: C.text1, breakLine: true } }, { text: why, options: { color: C.text2 } }],
-        { x: 8.0, y: y + 0.08, w: 4.6, h: 0.82, fontSize: 11.5, margin: 0, isTextBox: true, valign: "middle", objectName: `option why ${i + 1}` });
+        { x: 8.0, y: y + 0.06, w: 4.6, h: 0.7, fontSize: 11, margin: 0, isTextBox: true, valign: "middle", objectName: `option why ${i + 1}` });
     });
     s.addText("Fallbacks (series_as_parallel, all_parallel, first_only) are used only when a value collides. Option order rotates per item; the mistake behind each option is written into the answer key.",
       { x: 0.6, y: 6.05, w: 12.1, h: 0.7, fontSize: 11.5, color: C.text2, margin: 0, isTextBox: true, valign: "top", objectName: "fallback note" });
@@ -289,8 +290,8 @@ const SEC = "How the circuit bank works";
     const L = 0.6, LW = 5.6;
     heading(s, "Input (excerpt)", L, 1.4, LW, "input heading");
     s.addShape(pres.ShapeType.rect, { x: L, y: 1.8, w: LW, h: 2.3, fill: { color: "F6F4F0" }, line: { color: "FFFFFF", width: 0 }, objectName: "input box" });
-    s.addText(["name: Series-parallel resistor networks: total current", "n_scenarios: 30", "bank_id: PHY2-DC-SPRTC3-10232026", "question_type: multiple_choice     layout: ladder",
-      "resistor_range: [1, 24]     voltage_range: [6, 36]", "min_resistors: 4     max_resistors: 6", "reduction_steps: 3", "generator: enumerate     seed: 0"].join("\n"),
+    s.addText(["name: Series-parallel resistor networks: total current", "n_scenarios: 30", "bank_id: PHY2-DC-SPRTC3-10292026", "question_type: multiple_choice     layout: ladder",
+      "resistor_range: [1, 24]     voltage_range: [6, 36]", "min_resistors: 5     max_resistors: 6", "reduction_steps: 3", "generator: enumerate     seed: 0"].join("\n"),
       { x: L + 0.15, y: 1.9, w: LW - 0.3, h: 2.1, fontSize: 11, fontFace: "Courier New", color: C.text1, margin: 0, isTextBox: true, valign: "top", objectName: "input text" });
     heading(s, "Enumerator output (one of 30)", L, 4.4, LW, "enum heading");
     s.addShape(pres.ShapeType.rect, { x: L, y: 4.8, w: LW, h: 1.2, fill: { color: "F6F4F0" }, line: { color: "FFFFFF", width: 0 }, objectName: "enum box" });
@@ -333,7 +334,7 @@ const SEC = "How the circuit bank works";
     s.addShape(pres.ShapeType.roundRect, { x: 0.6, y: 6.05, w: 12.1, h: 0.8, fill: { color: K.accent5 }, line: { color: "FFFFFF", width: 0 }, rectRadius: 0.08, objectName: "repro card" });
     s.addText([{ text: "Reproducibility.  ", options: { bold: true, color: C.text1 } }, { text: "Same input + same seed → the same 30 scenarios. Same sidecar → the same bank, byte for byte (verified). The sidecar is the source of truth; YAML, figures and PDF are derived.", options: { color: C.text1 } }],
       { x: 0.8, y: 6.1, w: 11.7, h: 0.7, fontSize: 12.5, margin: 0, isTextBox: true, valign: "middle", objectName: "repro text" });
-    s.addNotes("When the LLM proposer is used, correctness is unchanged — the critic and the engine do not care who wrote the string — but the set of shapes differs from run to run and completeness is not assured. That mattered once we fixed one difficulty: finding 30 of 34 shapes is a job for enumeration.");
+    s.addNotes("When the LLM proposer is used, correctness is unchanged — the critic and the engine do not care who wrote the string — but the set of shapes differs from run to run and completeness is not assured. That mattered once we fixed one difficulty: finding all 30 shapes is a job for enumeration.");
   }
 }
 
@@ -352,15 +353,15 @@ const SEC = "How the circuit bank works";
     });
     const R = 8.2, RW = 4.5;
     s.addShape(pres.ShapeType.roundRect, { x: R, y: 1.4, w: RW, h: 1.5, fill: { color: K.lt2 }, line: { color: "FFFFFF", width: 0 }, rectRadius: 0.08, objectName: "stat card" });
-    s.addText("34", { x: R + 0.15, y: 1.45, w: 1.4, h: 1.4, fontSize: 48, bold: true, color: C.accent1, align: "center", valign: "middle", margin: 0, isTextBox: true, objectName: "stat 34" });
-    s.addText("distinct shapes at exactly 3 steps — so a one-difficulty bank of 30 uses 30 of them", { x: R + 1.6, y: 1.5, w: RW - 1.75, h: 1.3, fontSize: 12.5, color: C.text1, margin: 0, isTextBox: true, valign: "middle", objectName: "stat label" });
+    s.addText("30", { x: R + 0.15, y: 1.45, w: 1.4, h: 1.4, fontSize: 48, bold: true, color: C.accent1, align: "center", valign: "middle", margin: 0, isTextBox: true, objectName: "stat 30" });
+    s.addText("distinct 3-step shapes with 5–6 resistors (34 with 4–6). The bank uses every one of the 30", { x: R + 1.6, y: 1.5, w: RW - 1.75, h: 1.3, fontSize: 12.5, color: C.text1, margin: 0, isTextBox: true, valign: "middle", objectName: "stat label" });
     dotRows(s, [
       ["Fixing difficulty = fixing the step count.", "one reduction step per group collapsed"],
       ["The set is finite and small.", "2, 4, 10, 24, 66 shapes for 2–6 resistors — the classic series-parallel sequence"],
       ["Wanting more at one difficulty", "means allowing more resistors, not inventing shapes — and that is a different difficulty"],
-      ["Enumeration, not guessing.", "an LLM finding 30 of 34 within 5 passes is unlikely; the enumerator lists all 34"],
+      ["Enumeration, not guessing.", "an LLM finding all 30 within 5 passes is unlikely; the enumerator lists every one"],
     ], R, 3.15, RW, 0.9, K.accent2, "ceiling", 11.5);
-    s.addNotes("The counts come from enumerating series-parallel trees with alternating series/parallel nodes. At exactly three steps with four to six resistors there are 34 shapes; the 30-item bank uses 30 of them. The first bank mixed 2 to 5 steps — structurally isomorphic, but not fair as a random draw.");
+    s.addNotes("The counts come from enumerating series-parallel trees with alternating series/parallel nodes. At exactly three steps there are 34 shapes with four to six resistors and exactly 30 with five to six; the bank uses every one of those 30, so the arithmetic load is also held in a narrow band. The first bank mixed 2 to 5 steps — structurally isomorphic, but not fair as a random draw.");
   }
 }
 
@@ -371,7 +372,7 @@ const SEC = "How the circuit bank works";
     s.addText("Results and verification", { placeholder: "title" });
     const banks = [
       ["PHY2-DC-SPRTC-10222026", "10 items", "mixed difficulty, 2–5 steps", "proposer: LLM", "0 rejections — 10 distinct shapes", "answers: several repeat", path.join(B10, "q5.png")],
-      ["PHY2-DC-SPRTC3-10232026", "30 items", "one difficulty: exactly 3 steps, 4–6 resistors", "proposer: enumerator", "0 rejections — 30 of the 34 shapes", "answers: all distinct", path.join(B30, "q2.png")],
+      ["PHY2-DC-SPRTC3-10292026", "30 items", "one difficulty: exactly 3 steps, 5–6 resistors", "proposer: enumerator", "0 rejections — all 30 shapes", "answers: all distinct", path.join(B30, "q4.png")],
     ];
     banks.forEach(([id, items, diff, prop, rej, ans, f], i) => {
       const x = 0.6 + i * 6.2, w = 5.9;

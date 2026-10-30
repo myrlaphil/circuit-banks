@@ -22,7 +22,7 @@ from reportlab.platypus import (Image, KeepTogether, PageBreak, Paragraph, Simpl
 ROOT = Path(__file__).resolve().parent.parent          # the circuit-banks repository
 BANKS = ROOT / "PHY II Electricity and Magnetism" / "1_DC Circuits"
 B10 = BANKS / "PHY2-DC-SPRTC-10222026"
-B30 = BANKS / "PHY2-DC-SPRTC3-10232026"
+B30 = BANKS / "PHY2-DC-SPRTC3-10292026"
 SKILL = Path.home() / ".claude" / "skills" / "circuit-bank-skill" / "scripts"
 sys.path.insert(0, str(SKILL))
 import enumerate_lingo as EN  # noqa: E402
@@ -151,7 +151,7 @@ side30 = yaml.safe_load((B30 / "circuit-input.scenarios.yaml").read_text())
 inp30 = (B30 / "circuit-input.yaml").read_text()
 
 # shape catalogue for 3 steps, 4-6 resistors
-cat = EN.all_shapes(4, 6, (3, 3))
+cat = EN.all_shapes(5, 6, (3, 3))
 cat_rows = [(EN.leaves_of(t), EN.render(t, [0] * EN.leaves_of(t)).replace("0", "R")) for t in cat]
 counts = {}
 for n in range(3, 7):
@@ -167,12 +167,12 @@ S = story.append
 S(Spacer(1, 1.2 * inch))
 S(P("How the circuit bank works", title))
 S(P("Isomorphic DC-circuit problem banks: what “isomorphic” means, why it is built for fairness to the student, "
-    "and how the code produces 30 variations with every number computed, not guessed.", subtitle))
+    "and how the code produces 30 variations at one difficulty with every number computed, not guessed.", subtitle))
 S(P("Myrla Phillippe · research-group presentation notes · October 2026", small))
 S(Spacer(1, 0.3 * inch))
 S(P("<b>In one sentence.</b> Take Zhongzhou Chen's isomorphic-bank method, feed it a domain where the “scenario” is a circuit "
     "topology that a computer can enumerate and verify, and let a deterministic circuit engine do everything numerical — "
-    "the result is a bank where every item has a different solution path, the same difficulty, computed wrong answers, "
+    "the result is a bank where every item has a different solution path, the same difficulty (exactly three reduction steps, five or six resistors), computed wrong answers, "
     "and an answer key that regenerates byte-for-byte.", callout))
 S(P("<b>Suggested slide order</b> (each section below is one or two slides): 1 What isomorphic means · 2 Built for the student · "
     "3 The three pieces · 4 Walk-through of one run · 5 Where the AI is and is not · 6 Difficulty has a ceiling · "
@@ -211,20 +211,21 @@ S(PageBreak())
 # ---- 2 student
 S(P("SLIDE 2", slide)); S(P("2. Built with the student in mind", h1))
 S(table([["Design choice", "What the student experiences", "How it is enforced"],
-         ["One difficulty per bank", "Whoever you are, your drawn problem takes the same number of reduction steps as your neighbour's.", "<font face='Courier'>reduction_steps: 3</font> in the input; the critic rejects any candidate with a different count."],
+         ["One difficulty per bank", "Whoever you are, your drawn problem takes the same number of reduction steps (3) with the same number of resistors (5–6) as your neighbour's.", "<font face='Courier'>reduction_steps: 3</font>, <font face='Courier'>min/max_resistors: 5/6</font> in the input; the critic rejects any candidate outside them. One step = one series run or parallel group collapsed into a single resistor."],
          ["Every item a different solution path", "You cannot pass by memorising last year's problem; you have to reduce the network you were given.", "Canonical-shape check: two circuits with the same tree shape are the same problem, whatever the numbers."],
-         ["Wrong answers are real mistakes", "Each distractor is the number you get by making one specific error — not a random nearby value.", "<font face='Courier'>distractors.py</font> recomputes the circuit as a mistaken student would (all-series, forgot-to-invert, branch current)."],
+         ["Wrong answers are real mistakes", "Three distractors are the numbers you get by making one specific error each; a fifth option sits near the largest value so a lone big number is not a giveaway by size.", "<font face='Courier'>distractors.py</font> recomputes the circuit as a mistaken student would (all-series, forgot-to-invert, branch current) and adds a decoy at 0.9 × the largest option."],
          ["Honest sizes", "A distractor of 144 A is what the mistake really gives; its implausibility is itself feedback.", "Deliberately not capped (a documented decision)."],
          ["One drawing style", "The figure never changes style between items, so the only thing that varies is the physics.", "<font face='Courier'>layout: ladder</font> for the whole bank; style is never a variation axis."],
          ["Clean arithmetic", "Every intermediate resistance is a whole or half ohm; answers have at most two decimals.", "The enumerator only accepts value sets that satisfy this; resistor pool ≤ 12 Ω."],
          ["Worked solution for every item", "After the exam, the feedback shows every reduction step and a per-resistor table.", "Produced by the circuit engine, stored in <font face='Courier'>feedback.general</font>."]],
         widths=[1.45 * inch, 2.75 * inch, 2.4 * inch]))
 S(Spacer(1, 8))
-S(P("Example of computed distractors — item q1 of the 10-item bank (12 V, <font face='Courier'>3 || 6 + 4</font>, correct 2.00 A):", h2))
-S(table([["Option", "The mistake that produces it"],
+S(P("Example of computed options — item q1 of the 10-item bank (12 V, <font face='Courier'>3 || 6 + 4</font>, correct 2.00 A):", h2))
+S(table([["Option", "Where it comes from"],
          ["0.92 A", "adds every resistor as if in series: 12 / (3 + 6 + 4)"],
          ["2.67 A", "adds the reciprocals of the parallel pair but forgets to invert: R<sub>12</sub> = 1/3 + 1/6 = 0.5 “Ω”"],
          ["1.33 A", "reports the current through R<sub>1</sub> (one branch) instead of the total"],
+         ["2.40 A", "decoy: 0.9 × the largest option, so the large value is not alone"],
          ["<b>2.00 A</b>", "<b>correct</b>: 3 ‖ 6 = 2 Ω, + 4 = 6 Ω, 12 V / 6 Ω"]], widths=[1.0 * inch, 5.6 * inch]))
 S(PageBreak())
 
@@ -271,8 +272,8 @@ S(P("<font face='Courier'>validate_input.py</font> (his Agent 1 check) passes th
 
 S(P("4.3 Propose candidates — the enumerator", h2))
 S(P("Every series-parallel network is a tree whose internal nodes alternate <i>series</i> and <i>parallel</i>. The enumerator generates all such "
-    "trees with 4–6 resistors, keeps those with exactly 3 internal nodes (= 3 reduction steps), and skips shapes already accepted. "
-    f"There are <b>{len(cat)}</b> of them (appendix A lists all). For each shape it then picks resistor values from a fixed pool "
+    "trees with 5–6 resistors, keeps those with exactly 3 internal nodes (= 3 reduction steps), and skips shapes already accepted. "
+    f"There are <b>{len(cat)}</b> of them (appendix A lists all) — so a 30-item bank uses every one. For each shape it then picks resistor values from a fixed pool "
     "(1–12 Ω) and a battery voltage, using a seed, until every intermediate resistance is a multiple of 0.5 Ω, the answer has ≤ 2 decimals, "
     "and no earlier item has the same answer. Output: 30 three-line lingo strings — the same JSON an LLM proposer would return."))
 S(P("source: 9 V<br/>circuit: (6 + 4) || (9 + 6)<br/>ask: total current", mono))
@@ -291,7 +292,7 @@ S(P("The canonical shape ignores the order of siblings, so <font face='Courier'>
 
 S(P("4.5 Numbers, figure, worked solution, distractors", h2))
 S(P("For each accepted lingo the circuit engine draws the figure (ladder layout, US symbols) and writes the reduction steps, the per-part "
-    "table and the answer. <font face='Courier'>distractors.py</font> re-walks the same tree three wrong ways. Everything is assembled into one "
+    "table and the answer. <font face='Courier'>distractors.py</font> re-walks the same tree three wrong ways and adds a decoy near the largest option. Everything is assembled into one "
     "bank YAML in Chen's template (so it can be imported wherever his banks are) and rendered to a PDF worksheet with an answer key."))
 S(KeepTogether(fig(B30 / "figures" / "q2.png", 3.6 * inch, 1.9 * inch,
                    f"Item q2 of the 30-item bank: <font face='Courier'>{esc(rows30[1][1])}</font>, {rows30[1][2]} → {rows30[1][3]}. "
@@ -315,7 +316,7 @@ S(P("<b>Reproducibility.</b> Same input + same seed → the same 30 scenarios. S
     "are all derived from it.", callout))
 S(P("When the LLM proposer <i>is</i> used (we ran it for the first 10-item bank), correctness is unchanged — the critic and the engine "
     "do not care who wrote the string — but two guarantees are lost: the set of shapes differs from run to run, and completeness is not "
-    "assured. That mattered as soon as we fixed one difficulty (next section): finding 30 of 34 possible shapes is a job for enumeration, not guessing.", small))
+    "assured. That mattered as soon as we fixed one difficulty (next section): finding all 30 possible shapes is a job for enumeration, not guessing.", small))
 
 # ---- 6 difficulty
 S(PageBreak())
@@ -324,8 +325,8 @@ S(P("Fixing one difficulty means fixing the number of reduction steps. The numbe
     "(the counts 2, 4, 10, 24, 66 for 2–6 resistors are the classic series-parallel network sequence):"))
 S(table([["Reduction steps", "Distinct shapes with 3–6 resistors", "Largest one-difficulty bank"]] +
         [[str(k), str(v), str(v)] for k, v in sorted(counts.items())], widths=[1.6 * inch, 2.6 * inch, 2.2 * inch]))
-S(P("So a 30-item bank at exactly 3 steps uses 30 of the 34 shapes that exist. Wanting more items at one difficulty means allowing more "
-    "resistors, not inventing more shapes — and that is a different difficulty. The first bank (10 items, mixed 2–5 steps) is kept as a "
+S(P("At exactly 3 steps there are 34 shapes with 4–6 resistors; restricting to 5–6 resistors (so the arithmetic load is also held in a narrow band) leaves exactly 30 — the bank uses every one. "
+    "Wanting more items at one difficulty means allowing more resistors, not inventing more shapes — and that is a different difficulty. The first bank (10 items, mixed 2–5 steps) is kept as a "
     "contrast: structurally isomorphic, but not fair as a random draw.", small))
 S(PageBreak())
 
@@ -333,7 +334,7 @@ S(PageBreak())
 S(P("SLIDE 7", slide)); S(P("7. Results and verification", h1))
 S(table([["Bank", "Items", "Difficulty", "Proposer", "Critic rejections", "Answers"],
          [info10["bank_id"], "10", "mixed, 2–5 steps", "LLM", "0 (10 distinct shapes)", "several repeat"],
-         [info30["bank_id"], "30", "exactly 3 steps, 4–6 resistors", "enumerator", "0 (30 of 34 shapes)", "all distinct"]],
+         [info30["bank_id"], "30", "exactly 3 steps, 5–6 resistors", "enumerator", "0 (all 30 shapes)", "all distinct"]],
         widths=[2.0 * inch, 0.5 * inch, 1.45 * inch, 0.8 * inch, 1.15 * inch, 0.7 * inch]))
 S(Spacer(1, 8))
 S(P("The 30-item bank", h2))
@@ -360,7 +361,7 @@ S(table([["Topic", "Status"],
 S(PageBreak())
 
 # ---- appendix A: catalogue
-S(P("Appendix A — all 3-step shapes with 4–6 resistors (the 30-item bank uses 30 of these)", h1))
+S(P("Appendix A — all 3-step shapes with 5–6 resistors (the 30-item bank uses every one)", h1))
 half = (len(cat_rows) + 1) // 2
 left = [["#", "R", "shape"]] + [[str(i + 1), str(n), f"<font face='Courier'>{esc(s)}</font>"] for i, (n, s) in enumerate(cat_rows[:half])]
 right = [["#", "R", "shape"]] + [[str(i + 1 + half), str(n), f"<font face='Courier'>{esc(s)}</font>"] for i, (n, s) in enumerate(cat_rows[half:])]
