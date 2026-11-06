@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="570" height="692" viewBox="0 0 1140 1384" font-family="Helvetica, Arial, sans-serif">
+<rect width="1140" height="1384" fill="#FFFFFF"/>
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#777"/></marker></defs>
+<text x="40" y="50" font-size="30" fill="#1E1E1E" text-anchor="start" font-weight="bold" font-family="Helvetica, Arial, sans-serif">From a one-page request to an exam-ready problem bank</text>
+<text x="40" y="78" font-size="14" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">Every arrow is a program step. AI appears in exactly one place.</text>
+<rect x="40" y="98" width="18" height="14" fill="#DCE6EE" stroke="#C9C2B8"/>
+<text x="66" y="110" font-size="13" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">rule-based code (same input, same output, every time)</text>
+<rect x="477.6" y="98" width="18" height="14" fill="#F3D9D3" stroke="#C9C2B8"/>
+<text x="503.6" y="110" font-size="13" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">AI language model</text>
+<rect x="656.0" y="98" width="18" height="14" fill="#E2EEDC" stroke="#C9C2B8"/>
+<text x="682.0" y="110" font-size="13" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">file or output</text>
+<rect x="812.8" y="98" width="18" height="14" fill="#F3EFEA" stroke="#C9C2B8"/>
+<text x="838.8" y="110" font-size="13" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">goal / context</text>
+<rect x="110" y="150" width="640" height="122" rx="12" fill="#F3EFEA" stroke="#D8D2CA"/>
+<text x="128" y="180" font-size="19" fill="#1E1E1E" text-anchor="start" font-weight="bold" font-family="Helvetica, Arial, sans-serif">Goal</text>
+<text x="128" y="208" font-size="14" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">30 exam problems that all ask the same question (total current from the battery),</text>
+<text x="128" y="228" font-size="14" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">each on a different circuit, all at one defendable difficulty,</text>
+<text x="128" y="248" font-size="14" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">ready to load into an exam builder.</text>
+<text x="736" y="262" font-size="12" fill="#8A2A1B" text-anchor="end" font-weight="normal" font-family="Helvetica, Arial, sans-serif">problem to solve</text>
+<path d="M430.0,272 L430.0,312" stroke="#777" stroke-width="2" fill="none" marker-end="url(#a)"/>
+<rect x="110" y="312" width="640" height="122" rx="12" fill="#F3EFEA" stroke="#D8D2CA"/>
+<text x="128" y="342" font-size="19" fill="#1E1E1E" text-anchor="start" font-weight="bold" font-family="Helvetica, Arial, sans-serif">1  Request</text>
+<text x="128" y="370" font-size="14" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">One short file written by the instructor:</text>
+<text x="140" y="390" font-size="13" fill="#1E1E1E" text-anchor="start" font-weight="normal" font-family="Menlo, Courier, monospace">how many: 30   voltage: 6–24 V   resistors: 1–12 Ω</text>
+<text x="140" y="410" font-size="13" fill="#1E1E1E" text-anchor="start" font-weight="normal" font-family="Menlo, Courier, monospace">difficulty: 3 reduction steps, 5–6 resistors per circuit</text>
+<text x="736" y="424" font-size="12" fill="#8A2A1B" text-anchor="end" font-weight="normal" font-family="Helvetica, Arial, sans-serif">plain settings, no code</text>
+<rect x="800" y="302" width="300" height="216" rx="12" fill="#F3D9D3" stroke="#D8D2CA"/>
+<text x="818" y="332" font-size="19" fill="#1E1E1E" text-anchor="start" font-weight="bold" font-family="Helvetica, Arial, sans-serif">Where AI is used</text>
+<text x="818" y="360" font-size="14" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">Reads the request as written and</text>
+<text x="818" y="380" font-size="14" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">fixes typos or wording.</text>
+<text x="818" y="400" font-size="14" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">It never invents circuits, numbers,</text>
+<text x="818" y="420" font-size="14" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">answers or wrong options.</text>
+<text x="818" y="440" font-size="14" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">Only if the request needs a circuit</text>
+<text x="818" y="460" font-size="14" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">type no rule can produce may AI</text>
+<text x="818" y="480" font-size="14" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">propose one; such items are tagged</text>
+<text x="818" y="500" font-size="14" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">and still checked in step 3.</text>
+<path d="M750,384 L800,384" stroke="#777" stroke-width="1.5" fill="none" marker-end="url(#a)" stroke-dasharray="5,4"/>
+<text x="775.0" y="377" font-size="11" fill="#555555" text-anchor="middle" font-weight="normal" font-family="Helvetica, Arial, sans-serif">checks the request</text>
+<path d="M430.0,434 L430.0,474" stroke="#777" stroke-width="2" fill="none" marker-end="url(#a)"/>
+<rect x="110" y="474" width="640" height="202" rx="12" fill="#DCE6EE" stroke="#D8D2CA"/>
+<text x="128" y="504" font-size="19" fill="#1E1E1E" text-anchor="start" font-weight="bold" font-family="Helvetica, Arial, sans-serif">2  List every circuit that fits</text>
+<text x="128" y="532" font-size="14" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">Code enumerates all circuit shapes with exactly 3 reduction steps and 5–6 resistors.</text>
+<text x="128" y="552" font-size="14" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">(A reduction step = merging one series run or one parallel group into a single resistor.)</text>
+<text x="128" y="572" font-size="14" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">There are exactly 30 such shapes, so the bank has 30 distinct circuits.</text>
+<text x="128" y="592" font-size="14" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">Each shape gets resistor and battery values, written in a tiny text notation, “circuit lingo”:</text>
+<text x="140" y="612" font-size="13" fill="#1E1E1E" text-anchor="start" font-weight="normal" font-family="Menlo, Courier, monospace">source: 20 V</text>
+<text x="140" y="632" font-size="13" fill="#1E1E1E" text-anchor="start" font-weight="normal" font-family="Menlo, Courier, monospace">circuit: 12 || 4 || (10 || 10 + 1)      ( || = parallel, + = series )</text>
+<text x="140" y="652" font-size="13" fill="#1E1E1E" text-anchor="start" font-weight="normal" font-family="Menlo, Courier, monospace">ask: total current</text>
+<text x="736" y="666" font-size="12" fill="#8A2A1B" text-anchor="end" font-weight="normal" font-family="Helvetica, Arial, sans-serif">enumerator</text>
+<path d="M430.0,676 L430.0,716" stroke="#777" stroke-width="2" fill="none" marker-end="url(#a)"/>
+<rect x="110" y="716" width="640" height="122" rx="12" fill="#DCE6EE" stroke="#D8D2CA"/>
+<text x="128" y="746" font-size="19" fill="#1E1E1E" text-anchor="start" font-weight="bold" font-family="Helvetica, Arial, sans-serif">3  Check every circuit</text>
+<text x="128" y="774" font-size="14" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">Each lingo line is parsed and solved by the circuit code.</text>
+<text x="128" y="794" font-size="14" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">Rejected if: it does not parse, values are outside the request, the step count is wrong,</text>
+<text x="128" y="814" font-size="14" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">or the shape repeats one already accepted.  Accepted items are counted toward the 30.</text>
+<text x="736" y="828" font-size="12" fill="#8A2A1B" text-anchor="end" font-weight="normal" font-family="Helvetica, Arial, sans-serif">critic</text>
+<path d="M430.0,838 L430.0,878" stroke="#777" stroke-width="2" fill="none" marker-end="url(#a)"/>
+<rect x="110" y="878" width="640" height="162" rx="12" fill="#DCE6EE" stroke="#D8D2CA"/>
+<text x="128" y="908" font-size="19" fill="#1E1E1E" text-anchor="start" font-weight="bold" font-family="Helvetica, Arial, sans-serif">4  Build each problem</text>
+<text x="128" y="936" font-size="14" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">Solve it step by step (worked solution).</text>
+<text x="128" y="956" font-size="14" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">Draw the circuit with Schemdraw (the figure).</text>
+<text x="128" y="976" font-size="14" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">Compute the wrong options from known student mistakes: all resistors added in series,</text>
+<text x="128" y="996" font-size="14" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">parallel group not inverted, a branch current reported, plus one decoy near the largest value.</text>
+<text x="128" y="1016" font-size="14" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">Shuffle the option order.</text>
+<text x="736" y="1030" font-size="12" fill="#8A2A1B" text-anchor="end" font-weight="normal" font-family="Helvetica, Arial, sans-serif">circuit-diagram engine</text>
+<path d="M430.0,1040 L430.0,1080" stroke="#777" stroke-width="2" fill="none" marker-end="url(#a)"/>
+<rect x="110" y="1080" width="640" height="122" rx="12" fill="#E2EEDC" stroke="#D8D2CA"/>
+<text x="128" y="1110" font-size="19" fill="#1E1E1E" text-anchor="start" font-weight="bold" font-family="Helvetica, Arial, sans-serif">5  Output</text>
+<text x="128" y="1138" font-size="14" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">One bank file (YAML) with 30 problems, figures, answers, wrong options and solutions,</text>
+<text x="128" y="1158" font-size="14" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">plus a PDF worksheet and answer key.</text>
+<text x="128" y="1178" font-size="14" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">Every item carries a tag saying whether code or AI proposed it (here: 30 code, 0 AI).</text>
+<path d="M430.0,1202 L430.0,1242" stroke="#777" stroke-width="2" fill="none" marker-end="url(#a)"/>
+<rect x="110" y="1242" width="640" height="122" rx="12" fill="#E2EEDC" stroke="#D8D2CA"/>
+<text x="128" y="1272" font-size="19" fill="#1E1E1E" text-anchor="start" font-weight="bold" font-family="Helvetica, Arial, sans-serif">6  Use</text>
+<text x="128" y="1300" font-size="14" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">The bank loads into the ESTELA exam builder straight from GitHub.</text>
+<text x="128" y="1320" font-size="14" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">Each exam version draws one of the 30 problems, so students get different circuits</text>
+<text x="128" y="1340" font-size="14" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">of the same difficulty.  Export to Canvas (QTI), PDF or LaTeX.</text>
+</svg>
