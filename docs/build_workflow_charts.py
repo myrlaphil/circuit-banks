@@ -79,15 +79,15 @@ class Chart:
         top = self.y if y is None else y
         h = 52 + 25 * len(lines) + pad_bottom
         if T["glossy"]:
+            # one solid box with a single smooth gradient: a touch lighter at the top, the box colour below (no seams)
             gid = f"g{len(self.p)}"
             self.p.append(f'<linearGradient id="{gid}" x1="0" y1="0" x2="0" y2="1">'
-                          f'<stop offset="0" stop-color="{fill}" stop-opacity="1"/>'
-                          f'<stop offset="1" stop-color="#000000" stop-opacity="0.45"/></linearGradient>')
-            self.p.append(f'<rect x="{x}" y="{top}" width="{w}" height="{h}" rx="16" fill="{fill}"/>')
+                          f'<stop offset="0" stop-color="#FFFFFF" stop-opacity="0.16"/>'
+                          f'<stop offset="0.6" stop-color="#FFFFFF" stop-opacity="0"/>'
+                          f'<stop offset="1" stop-color="#000000" stop-opacity="0.12"/></linearGradient>')
+            self.p.append(f'<rect x="{x}" y="{top}" width="{w}" height="{h}" rx="16" fill="{fill}" filter="url(#shadow)"/>')
             self.p.append(f'<rect x="{x}" y="{top}" width="{w}" height="{h}" rx="16" fill="url(#{gid})" '
-                          f'stroke="{EDGE}" stroke-width="1.5" filter="url(#shadow)"/>')
-            # the sheen: a soft white band across the top half
-            self.p.append(f'<rect x="{x + 2}" y="{top + 2}" width="{w - 4}" height="{h * 0.48}" rx="14" fill="url(#sheen)"/>')
+                          f'stroke="{EDGE}" stroke-width="1.5"/>')
         else:
             self.p.append(f'<rect x="{x}" y="{top}" width="{w}" height="{h}" rx="14" fill="{fill}" stroke="{EDGE}" stroke-width="1.5"/>')
         self.text(x + 20, top + 34, title, 22, INK, weight="bold")
@@ -132,9 +132,7 @@ class Chart:
                 f'orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="{T["arrow"]}"/></marker>'
                 '<filter id="shadow" x="-5%" y="-5%" width="110%" height="120%">'
                 '<feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000" flood-opacity="0.55"/></filter>'
-                '<linearGradient id="sheen" x1="0" y1="0" x2="0" y2="1">'
-                '<stop offset="0" stop-color="#FFFFFF" stop-opacity="0.22"/>'
-                '<stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></linearGradient></defs>']
+                '</defs>']
         path.write_text("\n".join(head + self.p + ["</svg>"]), encoding="utf-8")
         if shutil.which("rsvg-convert"):
             subprocess.run(["rsvg-convert", "-z", "2", "-o", str(path.with_suffix(".png")), str(path)], check=True)
