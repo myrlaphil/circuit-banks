@@ -359,7 +359,7 @@ HTML_TPL = """<!doctype html>
   svg {{ width:100%; height:auto; display:block; }}
   .dark {{ display:block; }} .light {{ display:none; }}
   html[data-theme="light"] .dark {{ display:none; }} html[data-theme="light"] .light {{ display:block; }}
-  .byline {{ display:flex; align-items:center; gap:16px; padding:8px 16px 0; }}
+  .byline {{ display:flex; align-items:center; gap:16px; padding:12px 16px 24px; justify-content:flex-end; }}
   .byline img {{ width:72px; height:72px; border-radius:50%; object-fit:cover; object-position:top; border:2px solid rgba(128,128,128,.4); }}
   .byline .name {{ font-size:20px; font-weight:bold; }}
   .byline .role {{ font-size:15px; opacity:.8; }}
@@ -368,9 +368,9 @@ HTML_TPL = """<!doctype html>
 <body>
 <div class="bar"><button onclick="toggle()">Light / dark</button><button onclick="document.documentElement.requestFullscreen()">Full screen</button></div>
 <main>
-<div class="byline"><img src="data:image/jpeg;base64,{photo}" alt="Myrla Phillippe"><div><div class="name">Myrla Phillippe</div><div class="role">Physics Graduate Student</div></div></div>
 <div class="dark">{dark}</div>
 <div class="light">{light}</div>
+<div class="byline"><img src="data:image/jpeg;base64,{photo}" alt="Myrla Phillippe"><div><div class="name">Myrla Phillippe</div><div class="role">Physics Graduate Student</div></div></div>
 </main>
 <script>
 function toggle(){{const h=document.documentElement;h.dataset.theme=h.dataset.theme==='light'?'':'light';}}
