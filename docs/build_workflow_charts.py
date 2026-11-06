@@ -6,7 +6,7 @@ Each exists as: light SVG/PNG, dark glossy SVG/PNG (keywords in amber), two half
 and four self-contained HTML pages:
     workflow-simple.html / workflow-detailed.html             the whole chart, fitted to the screen
     workflow-simple-slides.html / workflow-detailed-slides.html two screens (Goal..step 3 | the rest), arrow keys
-The byline (photo, name, role) is drawn inside each chart in whichever bottom corner has free space.
+The byline (photo, name, role) sits in the header of every chart, top right.
 Colour = what kind of thing does the work: rule-based code, AI (language model), file / output.
     python3 docs/build_workflow_charts.py      (PNGs need rsvg-convert)
 """
@@ -57,17 +57,17 @@ class Chart:
         self.bx, self.bw, self.sx, self.sw = box_x, box_w, side_x, side_w
         self.lx, self.lw = left_x, left_w
         self.w = side_x + side_w + 30
-        self.y = 160
-        self.bottoms = {"main": 150, "right": 150, "left": 150}      # lowest drawn edge per column
-        self.used = {"main": True, "right": False, "left": False}
-        self.text(30, 52, title, 36, INK, weight="bold")
-        self.text(30, 84, subtitle, 17)
+        self.y = 136
+        self.bottoms = {"main": 130, "right": 130, "left": 130}      # lowest drawn edge per column
+        self.text(30, 46, title, 34, INK, weight="bold")
+        self.text(30, 74, subtitle, 16)
         lx = 30
         for fill, t in ((CODE, "rule-based code (same input, same output, every time)"), (AI, "AI language model"),
                         (OUT, "file or output"), (GOAL, "goal / context")):
-            self.p.append(f'<rect x="{lx}" y="104" width="22" height="16" fill="{fill}" stroke="{T["legend_edge"]}"/>')
-            self.text(lx + 30, 117, t, 15)
-            lx += 30 + 8.0 * len(t) + 36
+            self.p.append(f'<rect x="{lx}" y="92" width="20" height="15" fill="{fill}" stroke="{T["legend_edge"]}"/>')
+            self.text(lx + 28, 104, t, 14)
+            lx += 28 + 7.6 * len(t) + 32
+        self.byline()
 
     # ---- bookkeeping
     def _col(self, x):
@@ -80,7 +80,6 @@ class Chart:
     def _touch(self, x, bottom):
         c = self._col(x)
         self.bottoms[c] = max(self.bottoms[c], bottom)
-        self.used[c] = True
 
     @staticmethod
     def esc(s):
@@ -203,31 +202,20 @@ class Chart:
             self.text(x + 30, cy, st, 14)
         self.panel(x, y, w, cy + 26 - y, OUT, at=mark)
 
-    # ---- byline inside the chart, in the emptiest bottom corner
+    # ---- byline: photo + name in the header, top right
     def byline(self):
-        cols = [c for c in ("left", "main", "right") if self.used[c]]
-        col = min(cols, key=lambda c: self.bottoms[c])
-        y = self.bottoms[col] + 22
         r = 40
-        if col == "right":
-            x_img = self.sx + self.sw - 2 * r
-            x_txt, anchor = x_img - 16, "end"
-        else:
-            x_img = {"left": self.lx, "main": self.bx}[col]
-            x_txt, anchor = x_img + 2 * r + 16, "start"
+        y, x_img = 18, self.w - 30 - 2 * r
         data = base64.b64encode(PHOTO.read_bytes()).decode("ascii")
-        cid = f"clip{int(y)}"
-        self.p.append(f'<clipPath id="{cid}"><circle cx="{x_img + r}" cy="{y + r}" r="{r}"/></clipPath>')
+        self.p.append(f'<clipPath id="clip"><circle cx="{x_img + r}" cy="{y + r}" r="{r}"/></clipPath>')
         self.p.append(f'<image x="{x_img}" y="{y}" width="{2 * r}" height="{2 * r}" preserveAspectRatio="xMidYMin slice" '
-                      f'clip-path="url(#{cid})" href="data:image/jpeg;base64,{data}"/>')
+                      f'clip-path="url(#clip)" href="data:image/jpeg;base64,{data}"/>')
         self.p.append(f'<circle cx="{x_img + r}" cy="{y + r}" r="{r}" fill="none" stroke="{T["legend_edge"]}" stroke-width="2"/>')
-        self.text(x_txt, y + 34, NAME, 20, INK, anchor, weight="bold")
-        self.text(x_txt, y + 58, ROLE, 15, MUTED, anchor)
-        self._touch(x_img, y + 2 * r)
+        self.text(x_img - 16, y + 34, NAME, 20, INK, "end", weight="bold")
+        self.text(x_img - 16, y + 58, ROLE, 15, MUTED, "end")
 
     def save(self, path):
-        self.byline()
-        h = max(self.bottoms.values()) + 24
+        h = max(self.bottoms.values()) + 20
         head = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{self.w // 2}" height="{h // 2}" '
                 f'viewBox="0 0 {self.w} {h}" font-family="{F}">',
                 f'<rect width="{self.w}" height="{h}" fill="{T["bg"]}"/>',
@@ -281,14 +269,14 @@ def simple(part=None):
             "Rejected if: it does not parse, values are outside the request, the step count is wrong,",
             "or the shape repeats one already accepted.  Accepted items are counted toward the 30."], tag="critic", gap=10 if part == 1 else 56)
         if part == 1:
-            c.arrow(b, b + 50, "continued on the next page: steps 4–6")
-            c.bottoms["main"] = b + 50
+            c.arrow(b, b + 44, "continued on the next page: steps 4–6")
+            c.bottoms["main"] = b + 44
         else:
             c.arrow(b, c.y)
     if part != 1:
         if part == 2:
-            c.y = 215
-            c.arrow(140, c.y, "from step 3: the accepted circuits")
+            c.y = 186
+            c.arrow(124, c.y, "from step 3: the accepted circuits")
         t, b = c.box(CODE, "4  Build each problem", [
             "Solve it step by step (worked solution).",
             "Draw the circuit with Schemdraw (the figure).",
@@ -362,14 +350,14 @@ def detailed(part=None):
             tag="critic.py --apply", gap=10 if part == 1 else 56)
         c.loop(b - 20, loop_top + 20, "fewer than 30\naccepted:\nnext pass\n(max 5)", x_gutter=gutter)
         if part == 1:
-            c.arrow(b, b + 50, "continued on the next page: steps 5–7")
-            c.bottoms["main"] = b + 50
+            c.arrow(b, b + 44, "continued on the next page: steps 5–7")
+            c.bottoms["main"] = b + 44
         else:
             c.arrow(b, c.y)
     if part != 1:
         if part == 2:
-            c.y = 215
-            c.arrow(140, c.y, "from step 4: the 30 accepted circuits")
+            c.y = 186
+            c.arrow(124, c.y, "from step 4: the 30 accepted circuits")
         t, b = c.box(CODE, "5  Assemble  (replaces Agents 4 & 5)", [
             "For each accepted lingo, the circuit-diagram engine:",
             "   • parses and solves, producing a numbered reduction (3 steps) and the total current;",
