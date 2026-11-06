@@ -64,9 +64,13 @@ class Chart:
     def text(self, x, y, s, size=16, fill=None, anchor="start", weight="normal", family=F, keywords=False):
         fill = MUTED if fill is None else fill
         if keywords:
-            parts = _KW.split(s)
-            body = "".join(f'<tspan fill="{T["key"]}" font-weight="bold">{self.esc(t)}</tspan>' if i % 2 else self.esc(t)
-                           for i, t in enumerate(parts))
+            # «…» forces a whole phrase into the accent colour; otherwise single keywords are matched
+            def kw(seg):
+                parts = _KW.split(seg)
+                return "".join(f'<tspan fill="{T["key"]}" font-weight="bold">{self.esc(t)}</tspan>' if i % 2 else self.esc(t)
+                               for i, t in enumerate(parts))
+            body = "".join(f'<tspan fill="{T["key"]}" font-weight="bold">{self.esc(t)}</tspan>' if i % 2 else kw(t)
+                           for i, t in enumerate(re.split("«(.*?)»", s)))
         else:
             body = self.esc(s)
         self.p.append(f'<text x="{x}" y="{y}" font-size="{size}" fill="{fill}" text-anchor="{anchor}" '
@@ -153,8 +157,8 @@ def simple():
     # AI side box next to the request
     c.box(AI, "Where AI is used", ["Reads the request as written and",
                                    "fixes typos or wording.",
-                                   "It never invents circuits, numbers,",
-                                   "answers or wrong options.",
+                                   "«It never invents circuits, numbers,»",
+                                   "«answers or wrong options.»",
                                    "Only if the request needs a circuit",
                                    "type no rule can produce may AI",
                                    "propose one; such items are tagged",
@@ -179,12 +183,12 @@ def simple():
     t, b = c.box(CODE, "4  Build each problem", [
         "Solve it step by step (worked solution).",
         "Draw the circuit with Schemdraw (the figure).",
-        "Compute the wrong options from known student mistakes: all resistors added in series,",
+        "«Compute the wrong options from known student mistakes»: all resistors added in series,",
         "parallel group not inverted, a branch current reported, plus one decoy near the largest value.",
         "Shuffle the option order."], tag="circuit-diagram engine")
     c.arrow(b, c.y)
-    t, b = c.box(OUT, "5  Output", ["One bank file (YAML) with 30 problems, figures, answers, wrong options and solutions,",
-                                    "plus a PDF worksheet and answer key.",
+    t, b = c.box(OUT, "5  Output", ["One bank file (YAML) with 30 problems, «figures», «answers», wrong options and «solutions»,",
+                                    "plus a «PDF» and an «HTML» worksheet, each with its answer key.",
                                     "Every item carries a tag saying whether code or AI proposed it (here: 30 code, 0 AI)."])
     c.arrow(b, c.y)
     t, b = c.box(OUT, "6  Use", ["The bank loads into the ESTELA exam builder straight from GitHub.",
@@ -261,8 +265,8 @@ def detailed():
     t, b = c.box(OUT, "6  Bank file", ["Problem-bank YAML in the shared template: 30 multiple-choice items, 5 options each,",
                                        "figure paths, worked solutions, feedback, per-item source tag,",
                                        "a difficulty block (steps 3 ×30; resistors 5 ×10, 6 ×20; parallel groups 1 ×15, 2 ×15)",
-                                       "and a provenance count (enumerate 30, llm 0).   PDF worksheet + key alongside."])
-    file_(t + 16, "PHY2-DC-SPRTC3-10292026.yaml", "+ Figures/q1…q30.png + .pdf")
+                                       "and a provenance count (enumerate 30, llm 0).   PDF + HTML worksheet with key alongside."])
+    file_(t + 16, "PHY2-DC-SPRTC3-10292026.yaml", "+ Figures/q1…q30.png + .pdf + .html")
     c.side_arrow(t + 48)
     c.arrow(b, c.y)
 

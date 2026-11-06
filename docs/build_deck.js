@@ -228,7 +228,7 @@ const SEC = "How the circuit bank works";
         "A small language — circuit lingo: (4 + 2) || 6 + 3 — a parser, a series/parallel solver with worked steps, and a Schemdraw figure generator. Same text in → same figure, numbers and solution out.",
         "AI inside: none. An LLM may only translate an unreadable sentence into lingo; it never invents circuits."],
       ["circuit-bank skill", "this project", K.accent6,
-        "Runs Chen's loop for circuits: an enumerator proposes every shape in the difficulty band; a script critic replaces his LLM critic; the circuit engine replaces his sympy stage; computed distractors; bank YAML + PDF.",
+        "Runs Chen's loop for circuits: an enumerator proposes every shape in the difficulty band; a script critic replaces his LLM critic; the circuit engine replaces his sympy stage; computed distractors; bank YAML + PDF + HTML.",
         "AI inside: none by default. An LLM proposer exists as an opt-in (generator: llm) for comparison."],
     ];
     pieces.forEach(([t, who, fill, what, ai], i) => {
@@ -254,7 +254,7 @@ const SEC = "How the circuit bank works";
       ["Enumerate", "every shape in the band;\nvalues from a pool by seed", K.accent6],
       ["Critic (script)", "parse · solve · canonical shape\n· reduction steps · ranges", K.accent6],
       ["Circuit engine", "figure (Schemdraw), numbers,\nworked solution", K.accent5],
-      ["Bank + PDF", "computed distractors;\nChen's YAML template; PDF", K.accent6],
+      ["Bank + PDF", "computed distractors;\nChen's YAML template; PDF + HTML", K.accent6],
     ];
     const PX = 0.6, PY = 1.7, BW = 1.9, BH = 1.5, PG = 0.14;
     stages.forEach(([t, note, fill], i) => {
@@ -310,7 +310,7 @@ const SEC = "How the circuit bank works";
       s.addText([{ text: k, options: { bold: true, color: C.text1, breakLine: true } }, { text: v, options: { color: C.text2, italic: true } }],
         { x: R + 0.15, y: y + 0.06, w: RW - 0.3, h: 0.75, fontSize: 11.5, margin: 0, isTextBox: true, valign: "middle", objectName: `check text ${i + 1}` });
     });
-    s.addText([{ text: "This run: ", options: { bold: true, color: C.text1 } }, { text: "Chen's validate_input.py ok · receive → needed 30 · enumerator wrote 30 · critic kept 30, rejected 0 · 30 items, 0 failures · PDF built.", options: { color: C.text2 } }],
+    s.addText([{ text: "This run: ", options: { bold: true, color: C.text1 } }, { text: "Chen's validate_input.py ok · receive → needed 30 · enumerator wrote 30 · critic kept 30, rejected 0 · 30 items, 0 failures · PDF + HTML built.", options: { color: C.text2 } }],
       { x: R, y: 5.7, w: RW, h: 1.05, fontSize: 12, margin: 0, isTextBox: true, valign: "top", objectName: "run summary" });
     s.addNotes("The number of items lives in the input file, never in a chat message — one of Chen's rules we kept. The enumerator writes the same JSON an LLM proposer would, so add_lingo.py and the critic run unchanged. Because the enumerator never proposes a duplicate or an invalid circuit, the critic is a safety net here: 30 of 30 kept in one pass.");
   }
@@ -332,7 +332,7 @@ const SEC = "How the circuit bank works";
       ["Wording", "not generated", "fixed template from the engine"],
     ], 0.6, 1.45, [3.2, 4.2, 4.7], 0.56, { fs: 12 });
     s.addShape(pres.ShapeType.roundRect, { x: 0.6, y: 6.05, w: 12.1, h: 0.8, fill: { color: K.accent5 }, line: { color: "FFFFFF", width: 0 }, rectRadius: 0.08, objectName: "repro card" });
-    s.addText([{ text: "Reproducibility.  ", options: { bold: true, color: C.text1 } }, { text: "Same input + same seed → the same 30 scenarios. Same sidecar → the same bank, byte for byte (verified). The sidecar is the source of truth; YAML, figures and PDF are derived.", options: { color: C.text1 } }],
+    s.addText([{ text: "Reproducibility.  ", options: { bold: true, color: C.text1 } }, { text: "Same input + same seed → the same 30 scenarios. Same sidecar → the same bank, byte for byte (verified). The sidecar is the source of truth; YAML, figures, PDF and HTML are derived.", options: { color: C.text1 } }],
       { x: 0.8, y: 6.1, w: 11.7, h: 0.7, fontSize: 12.5, margin: 0, isTextBox: true, valign: "middle", objectName: "repro text" });
     s.addNotes("When the LLM proposer is used, correctness is unchanged — the critic and the engine do not care who wrote the string — but the set of shapes differs from run to run and completeness is not assured. That mattered once we fixed one difficulty: finding all 30 shapes is a job for enumeration.");
   }

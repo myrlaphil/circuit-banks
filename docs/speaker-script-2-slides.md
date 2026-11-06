@@ -102,7 +102,7 @@ Go down the four dots:
    > "Every accepted item goes through my circuit skill: it parses the one-line description, solves the circuit step by step, draws the figure, and writes the worked solution. Same text in, same output out — no AI."
 
 6. **Bank + PDF** (copper)
-   > "Then the wrong answers are computed, and everything is written in Zhongzhou's bank format, plus a printable PDF with an answer key."
+   > "Then the wrong answers are computed, and everything is written in Zhongzhou's bank format, plus a printable PDF and a self-contained HTML page, each with an answer key."
 
 ### The four numbers (middle row)
 

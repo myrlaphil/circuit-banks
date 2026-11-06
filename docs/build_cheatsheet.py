@@ -84,7 +84,7 @@ simple = [
     "2.  <b>Check</b> each with a script: does it solve? is it really new? right number of steps? values sensible?",
     "3.  <b>Solve and draw</b> each one with your circuit skill — exact numbers, a figure, a worked solution.",
     "4.  <b>Make the wrong answers</b> by deliberately making a common student mistake and computing what it gives — plus one decoy near the largest value.",
-    "5.  <b>Package</b> it in Chen's format, plus a PDF with an answer key.",
+    "5.  <b>Package</b> it in Chen's format, plus a PDF and an HTML page with an answer key.",
 ]
 boxed = Table([[P("<b>The simple run-through</b>", body)]] + [[P(t, step)] for t in simple], colWidths=[6.8 * inch], hAlign="LEFT")
 boxed.setStyle(TableStyle([("BOX", (0, 0), (-1, -1), 0.8, colors.HexColor("#8A2A1B")), ("BACKGROUND", (0, 0), (-1, -1), colors.HexColor("#FBF3EF")),
@@ -102,7 +102,7 @@ steps = [
      L("circuit-diagram-skill", f"{GH}/circuit-diagram-skill")),
     ("4.", "<b>Make the wrong answers</b> by deliberately making a common student mistake and computing what it gives — three of those, plus a fifth option placed near the largest value so a lone big number is not a giveaway by size.",
      L("worked example, q1 (report §2)", f"{DOCS}/How-the-circuit-bank-works.pdf")),
-    ("5.", "<b>Package</b> it in Chen's format, plus a PDF with an answer key.",
+    ("5.", "<b>Package</b> it in Chen's format, plus a PDF and an HTML page with an answer key.",
      L("the whole pipeline as one chart", f"{DOCS}/circuit-bank-flowchart.svg")),
 ]
 for n, txt, link in steps:

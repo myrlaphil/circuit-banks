@@ -87,7 +87,7 @@
 <text x="248" y="1310" font-size="14" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">distractors.py — three wrong answers, each one named mistake</text>
 <text x="248" y="1330" font-size="14" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">(all_series, no_invert, branch_current) + a decoy near the largest</text>
 <text x="248" y="1350" font-size="14" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">assemble_bank.py → bank YAML in Chen's template, status ready</text>
-<text x="248" y="1370" font-size="14" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">bank_to_pdf.py → printable worksheet + answer key</text>
+<text x="248" y="1370" font-size="14" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">bank_to_pdf.py / bank_to_html.py → worksheet + answer key (PDF, HTML)</text>
 <text x="776" y="1388" font-size="12" fill="#8A2A1B" text-anchor="end" font-weight="normal" font-family="Helvetica, Arial, sans-serif">new</text>
 <rect x="830" y="1255" width="310" height="56" rx="6" fill="#F3EFEA" stroke="#C9C2B8" stroke-dasharray="4,3"/>
 <text x="985.0" y="1279" font-size="13" fill="#1E1E1E" text-anchor="middle" font-weight="normal" font-family="Menlo, Courier, monospace">&lt;id&gt;.yaml</text>

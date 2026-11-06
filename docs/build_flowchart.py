@@ -131,7 +131,7 @@ y = y1 + 40
 y1 = stage(y, 150, GLUE, "7  Assemble the bank", ["distractors.py — three wrong answers, each one named mistake",
                                                    "(all_series, no_invert, branch_current) + a decoy near the largest",
                                                    "assemble_bank.py → bank YAML in Chen's template, status ready",
-                                                   "bank_to_pdf.py → printable worksheet + answer key"], "new")
+                                                   "bank_to_pdf.py / bank_to_html.py → worksheet + answer key (PDF, HTML)"], "new")
 file_(y + 5, "<id>.yaml", "the bank — Chen's template; importable"); side(y + 33)
 file_(y + 68, "<id>.pdf", "worksheet + key — for humans, never students"); side(y + 96)
 

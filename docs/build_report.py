@@ -388,7 +388,8 @@ S(P("<br/>".join(esc(l) for l in [
     "$PY $S/add_lingo.py --file $SC --json BANK/agent2.json",
     "$PY $S/critic.py --file $SC --apply            # Agent 3 as a script",
     "$PY $S/assemble_bank.py --input $IN --file $SC --out BANK   # Agents 4+5 via circuit skill",
-    "$PY $S/bank_to_pdf.py --bank BANK/<bank_id>.yaml"]), mono))
+    "$PY $S/bank_to_pdf.py --bank BANK/<bank_id>.yaml",
+    "$PY $S/bank_to_html.py --bank BANK/<bank_id>.yaml"]), mono))
 S(P("Files a bank folder contains (Chen's layout):", h2))
 S(table([["File", "Role"],
          ["<font face='Courier'>circuit-input.yaml</font>", "the recipe: family, specs, count, ranges, difficulty, seed"],

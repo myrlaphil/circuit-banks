@@ -108,10 +108,10 @@
 <text x="300" y="1592" font-size="16" fill="#E3E8F0" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">Problem-bank <tspan fill="#FFD166" font-weight="bold">YAML</tspan> in the shared template: 30 multiple-choice items, 5 options each,</text>
 <text x="300" y="1617" font-size="16" fill="#E3E8F0" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">figure paths, worked solutions, feedback, per-item source tag,</text>
 <text x="300" y="1642" font-size="16" fill="#E3E8F0" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">a <tspan fill="#FFD166" font-weight="bold">difficulty</tspan> block (steps 3 ×30; resistors 5 ×10, 6 ×20; parallel groups 1 ×15, 2 ×15)</text>
-<text x="300" y="1667" font-size="16" fill="#E3E8F0" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">and a <tspan fill="#FFD166" font-weight="bold">provenance</tspan> count (enumerate 30, llm 0).   PDF worksheet + key alongside.</text>
+<text x="300" y="1667" font-size="16" fill="#E3E8F0" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">and a <tspan fill="#FFD166" font-weight="bold">provenance</tspan> count (enumerate 30, llm 0).   PDF + HTML worksheet with key alongside.</text>
 <rect x="1200" y="1542" width="370" height="64" rx="8" fill="#2F6B4F" stroke="rgba(255,255,255,0.35)" stroke-dasharray="4,3" filter="url(#shadow)"/>
 <text x="1385.0" y="1569" font-size="15" fill="#BFE6FF" text-anchor="middle" font-weight="normal" font-family="Menlo, Courier, monospace">PHY2-DC-SPRTC3-10292026.yaml</text>
-<text x="1385.0" y="1592" font-size="13" fill="#E3E8F0" text-anchor="middle" font-weight="normal" font-family="Helvetica, Arial, sans-serif">+ Figures/q1…q30.png + .pdf</text>
+<text x="1385.0" y="1592" font-size="13" fill="#E3E8F0" text-anchor="middle" font-weight="normal" font-family="Helvetica, Arial, sans-serif">+ Figures/q1…q30.png + .pdf + .html</text>
 <path d="M1100,1574 L1200,1574" stroke="#F2F5F9" stroke-width="4" stroke-linecap="round" fill="none" marker-end="url(#a)" stroke-dasharray="8,6"/>
 <path d="M690.0,1696 L690.0,1752" stroke="#F2F5F9" stroke-width="7" stroke-linecap="round" fill="none" marker-end="url(#a)"/>
 <linearGradient id="g113" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF" stop-opacity="0.16"/><stop offset="0.6" stop-color="#FFFFFF" stop-opacity="0"/><stop offset="1" stop-color="#000000" stop-opacity="0.12"/></linearGradient>
