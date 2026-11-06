@@ -359,11 +359,16 @@ HTML_TPL = """<!doctype html>
   svg {{ width:100%; height:auto; display:block; }}
   .dark {{ display:block; }} .light {{ display:none; }}
   html[data-theme="light"] .dark {{ display:none; }} html[data-theme="light"] .light {{ display:block; }}
+  .byline {{ display:flex; align-items:center; gap:16px; padding:8px 16px 0; }}
+  .byline img {{ width:72px; height:72px; border-radius:50%; object-fit:cover; object-position:top; border:2px solid rgba(128,128,128,.4); }}
+  .byline .name {{ font-size:20px; font-weight:bold; }}
+  .byline .role {{ font-size:15px; opacity:.8; }}
   @media print {{ .bar {{ display:none; }} }}
 </style></head>
 <body>
 <div class="bar"><button onclick="toggle()">Light / dark</button><button onclick="document.documentElement.requestFullscreen()">Full screen</button></div>
 <main>
+<div class="byline"><img src="data:image/jpeg;base64,{photo}" alt="Myrla Phillippe"><div><div class="name">Myrla Phillippe</div><div class="role">Physics Graduate Student</div></div></div>
 <div class="dark">{dark}</div>
 <div class="light">{light}</div>
 </main>
@@ -376,11 +381,13 @@ function toggle(){{const h=document.documentElement;h.dataset.theme=h.dataset.th
 
 def html_pages():
     """one self-contained HTML page per chart, both themes embedded, light/dark toggle + full-screen button"""
+    import base64
     strip = lambda t: re.sub(r'<svg ([^>]*?)width="\d+" height="\d+" ', r'<svg \1', t, count=1)
+    photo = base64.b64encode((HERE / "myrla-phillippe.jpg").read_bytes()).decode("ascii")
     for name, title in (("simple", "Circuit problem bank — workflow (simple)"),
                         ("detailed", "Circuit problem bank — workflow (detailed)")):
         out = HERE / f"workflow-{name}.html"
-        out.write_text(HTML_TPL.format(title=title, dark=strip((HERE / f"workflow-{name}-dark.svg").read_text()),
+        out.write_text(HTML_TPL.format(title=title, photo=photo, dark=strip((HERE / f"workflow-{name}-dark.svg").read_text()),
                                        light=strip((HERE / f"workflow-{name}.svg").read_text())), encoding="utf-8")
         print(out.name)
 
