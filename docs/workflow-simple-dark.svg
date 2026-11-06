@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="710" height="845" viewBox="0 0 1420 1691" font-family="Helvetica, Arial, sans-serif">
+<rect width="1420" height="1691" fill="#0F141B"/>
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#F2F5F9"/></marker><filter id="shadow" x="-5%" y="-5%" width="110%" height="120%"><feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000" flood-opacity="0.55"/></filter><linearGradient id="sheen" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF" stop-opacity="0.22"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></linearGradient></defs>
+<text x="40" y="56" font-size="36" fill="#FFFFFF" text-anchor="start" font-weight="bold" font-family="Helvetica, Arial, sans-serif">From a one-page request to an exam-ready problem bank</text>
+<text x="40" y="88" font-size="17" fill="#E3E8F0" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">Every arrow is a program step. AI appears in exactly one place.</text>
+<rect x="40" y="110" width="22" height="16" fill="#2B4C7E" stroke="rgba(255,255,255,0.35)"/>
+<text x="70" y="123" font-size="15" fill="#E3E8F0" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">rule-based code (same input, same output, every time)</text>
+<rect x="530.0" y="110" width="22" height="16" fill="#8C3550" stroke="rgba(255,255,255,0.35)"/>
+<text x="560.0" y="123" font-size="15" fill="#E3E8F0" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">AI language model</text>
+<rect x="732.0" y="110" width="22" height="16" fill="#2F6B4F" stroke="rgba(255,255,255,0.35)"/>
+<text x="762.0" y="123" font-size="15" fill="#E3E8F0" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">file or output</text>
+<rect x="910.0" y="110" width="22" height="16" fill="#3F4756" stroke="rgba(255,255,255,0.35)"/>
+<text x="940.0" y="123" font-size="15" fill="#E3E8F0" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">goal / context</text>
+<linearGradient id="g10" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3F4756" stop-opacity="1"/><stop offset="1" stop-color="#000000" stop-opacity="0.45"/></linearGradient>
+<rect x="120" y="170" width="780" height="145" rx="16" fill="#3F4756"/>
+<rect x="120" y="170" width="780" height="145" rx="16" fill="url(#g10)" stroke="rgba(255,255,255,0.28)" stroke-width="1.5" filter="url(#shadow)"/>
+<rect x="122" y="172" width="776" height="69.6" rx="14" fill="url(#sheen)"/>
+<text x="140" y="204" font-size="22" fill="#FFFFFF" text-anchor="start" font-weight="bold" font-family="Helvetica, Arial, sans-serif">Goal</text>
+<text x="140" y="236" font-size="16" fill="#E3E8F0" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">30 exam problems that all ask the same question (total current from the battery),</text>
+<text x="140" y="261" font-size="16" fill="#E3E8F0" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">each on a different circuit, all at one defendable <tspan fill="#FFD166" font-weight="bold">difficulty</tspan>,</text>
+<text x="140" y="286" font-size="16" fill="#E3E8F0" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">ready to load into an exam builder.</text>
+<text x="884" y="303" font-size="14" fill="#FFD166" text-anchor="end" font-weight="normal" font-family="Helvetica, Arial, sans-serif">problem to solve</text>
+<path d="M510.0,315 L510.0,371" stroke="#F2F5F9" stroke-width="7" stroke-linecap="round" fill="none" marker-end="url(#a)"/>
+<linearGradient id="g20" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3F4756" stop-opacity="1"/><stop offset="1" stop-color="#000000" stop-opacity="0.45"/></linearGradient>
+<rect x="120" y="371" width="780" height="145" rx="16" fill="#3F4756"/>
+<rect x="120" y="371" width="780" height="145" rx="16" fill="url(#g20)" stroke="rgba(255,255,255,0.28)" stroke-width="1.5" filter="url(#shadow)"/>
+<rect x="122" y="373" width="776" height="69.6" rx="14" fill="url(#sheen)"/>
+<text x="140" y="405" font-size="22" fill="#FFFFFF" text-anchor="start" font-weight="bold" font-family="Helvetica, Arial, sans-serif">1  Request</text>
+<text x="140" y="437" font-size="16" fill="#E3E8F0" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">One short file written by the instructor:</text>
+<text x="152" y="462" font-size="15" fill="#BFE6FF" text-anchor="start" font-weight="normal" font-family="Menlo, Courier, monospace">how many: 30   voltage: 6–24 V   resistors: 1–12 Ω</text>
+<text x="152" y="487" font-size="15" fill="#BFE6FF" text-anchor="start" font-weight="normal" font-family="Menlo, Courier, monospace">difficulty: 3 reduction steps, 5–6 resistors per circuit</text>
+<text x="884" y="504" font-size="14" fill="#FFD166" text-anchor="end" font-weight="normal" font-family="Helvetica, Arial, sans-serif">plain settings, no code</text>
+<linearGradient id="g29" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8C3550" stop-opacity="1"/><stop offset="1" stop-color="#000000" stop-opacity="0.45"/></linearGradient>
+<rect x="1010" y="351" width="370" height="266" rx="16" fill="#8C3550"/>
+<rect x="1010" y="351" width="370" height="266" rx="16" fill="url(#g29)" stroke="rgba(255,255,255,0.28)" stroke-width="1.5" filter="url(#shadow)"/>
+<rect x="1012" y="353" width="366" height="127.67999999999999" rx="14" fill="url(#sheen)"/>
+<text x="1030" y="385" font-size="22" fill="#FFFFFF" text-anchor="start" font-weight="bold" font-family="Helvetica, Arial, sans-serif">Where AI is used</text>
+<text x="1030" y="417" font-size="16" fill="#E3E8F0" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">Reads the request as written and</text>
+<text x="1030" y="442" font-size="16" fill="#E3E8F0" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">fixes typos or wording.</text>
+<text x="1030" y="467" font-size="16" fill="#E3E8F0" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">It never invents circuits, numbers,</text>
+<text x="1030" y="492" font-size="16" fill="#E3E8F0" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">answers or <tspan fill="#FFD166" font-weight="bold">wrong options</tspan>.</text>
+<text x="1030" y="517" font-size="16" fill="#E3E8F0" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">Only if the request needs a circuit</text>
+<text x="1030" y="542" font-size="16" fill="#E3E8F0" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">type no rule can produce may <tspan fill="#FFD166" font-weight="bold">AI</tspan></text>
+<text x="1030" y="567" font-size="16" fill="#E3E8F0" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">propose one; such items are tagged</text>
+<text x="1030" y="592" font-size="16" fill="#E3E8F0" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">and still checked in step 3.</text>
+<path d="M900,461 L1010,461" stroke="#F2F5F9" stroke-width="4" stroke-linecap="round" fill="none" marker-end="url(#a)" stroke-dasharray="8,6"/>
+<text x="955.0" y="451" font-size="13" fill="#E3E8F0" text-anchor="middle" font-weight="normal" font-family="Helvetica, Arial, sans-serif">reads it</text>
+<path d="M510.0,516 L510.0,572" stroke="#F2F5F9" stroke-width="7" stroke-linecap="round" fill="none" marker-end="url(#a)"/>
+<linearGradient id="g45" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2B4C7E" stop-opacity="1"/><stop offset="1" stop-color="#000000" stop-opacity="0.45"/></linearGradient>
+<rect x="120" y="572" width="780" height="245" rx="16" fill="#2B4C7E"/>
+<rect x="120" y="572" width="780" height="245" rx="16" fill="url(#g45)" stroke="rgba(255,255,255,0.28)" stroke-width="1.5" filter="url(#shadow)"/>
+<rect x="122" y="574" width="776" height="117.6" rx="14" fill="url(#sheen)"/>
+<text x="140" y="606" font-size="22" fill="#FFFFFF" text-anchor="start" font-weight="bold" font-family="Helvetica, Arial, sans-serif">2  List every circuit that fits</text>
+<text x="140" y="638" font-size="16" fill="#E3E8F0" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">Code enumerates all circuit shapes with exactly <tspan fill="#FFD166" font-weight="bold">3 reduction steps</tspan> and <tspan fill="#FFD166" font-weight="bold">5–6 resistors</tspan>.</text>
+<text x="140" y="663" font-size="16" fill="#E3E8F0" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">(A <tspan fill="#FFD166" font-weight="bold">reduction step</tspan> = merging one series run or one parallel group into a single resistor.)</text>
+<text x="140" y="688" font-size="16" fill="#E3E8F0" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">There are <tspan fill="#FFD166" font-weight="bold">exactly 30</tspan> such shapes, so the bank has <tspan fill="#FFD166" font-weight="bold">30 distinct circuits</tspan>.</text>
+<text x="140" y="713" font-size="16" fill="#E3E8F0" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">Each shape gets resistor and battery values, written in a tiny text notation, “<tspan fill="#FFD166" font-weight="bold">circuit lingo</tspan>”:</text>
+<text x="152" y="738" font-size="15" fill="#BFE6FF" text-anchor="start" font-weight="normal" font-family="Menlo, Courier, monospace">source: 20 V</text>
+<text x="152" y="763" font-size="15" fill="#BFE6FF" text-anchor="start" font-weight="normal" font-family="Menlo, Courier, monospace">circuit: 12 || 4 || (10 || 10 + 1)      ( || = parallel, + = series )</text>
+<text x="152" y="788" font-size="15" fill="#BFE6FF" text-anchor="start" font-weight="normal" font-family="Menlo, Courier, monospace">ask: total current</text>
+<text x="884" y="805" font-size="14" fill="#FFD166" text-anchor="end" font-weight="normal" font-family="Helvetica, Arial, sans-serif">enumerator</text>
+<path d="M510.0,817 L510.0,873" stroke="#F2F5F9" stroke-width="7" stroke-linecap="round" fill="none" marker-end="url(#a)"/>
+<linearGradient id="g59" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2B4C7E" stop-opacity="1"/><stop offset="1" stop-color="#000000" stop-opacity="0.45"/></linearGradient>
+<rect x="120" y="873" width="780" height="145" rx="16" fill="#2B4C7E"/>
+<rect x="120" y="873" width="780" height="145" rx="16" fill="url(#g59)" stroke="rgba(255,255,255,0.28)" stroke-width="1.5" filter="url(#shadow)"/>
+<rect x="122" y="875" width="776" height="69.6" rx="14" fill="url(#sheen)"/>
+<text x="140" y="907" font-size="22" fill="#FFFFFF" text-anchor="start" font-weight="bold" font-family="Helvetica, Arial, sans-serif">3  Check every circuit</text>
+<text x="140" y="939" font-size="16" fill="#E3E8F0" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">Each <tspan fill="#FFD166" font-weight="bold">lingo</tspan> line is parsed and solved by the circuit code.</text>
+<text x="140" y="964" font-size="16" fill="#E3E8F0" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">Rejected if: it does not parse, values are outside the request, the step count is wrong,</text>
+<text x="140" y="989" font-size="16" fill="#E3E8F0" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">or the shape repeats one already accepted.  Accepted items are counted toward the 30.</text>
+<text x="884" y="1006" font-size="14" fill="#FFD166" text-anchor="end" font-weight="normal" font-family="Helvetica, Arial, sans-serif">critic</text>
+<path d="M510.0,1018 L510.0,1074" stroke="#F2F5F9" stroke-width="7" stroke-linecap="round" fill="none" marker-end="url(#a)"/>
+<linearGradient id="g69" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2B4C7E" stop-opacity="1"/><stop offset="1" stop-color="#000000" stop-opacity="0.45"/></linearGradient>
+<rect x="120" y="1074" width="780" height="195" rx="16" fill="#2B4C7E"/>
+<rect x="120" y="1074" width="780" height="195" rx="16" fill="url(#g69)" stroke="rgba(255,255,255,0.28)" stroke-width="1.5" filter="url(#shadow)"/>
+<rect x="122" y="1076" width="776" height="93.6" rx="14" fill="url(#sheen)"/>
+<text x="140" y="1108" font-size="22" fill="#FFFFFF" text-anchor="start" font-weight="bold" font-family="Helvetica, Arial, sans-serif">4  Build each problem</text>
+<text x="140" y="1140" font-size="16" fill="#E3E8F0" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">Solve it step by step (<tspan fill="#FFD166" font-weight="bold">worked solution</tspan>).</text>
+<text x="140" y="1165" font-size="16" fill="#E3E8F0" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">Draw the circuit with <tspan fill="#FFD166" font-weight="bold">Schemdraw</tspan> (the figure).</text>
+<text x="140" y="1190" font-size="16" fill="#E3E8F0" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">Compute the <tspan fill="#FFD166" font-weight="bold">wrong options</tspan> from known student mistakes: all resistors added in series,</text>
+<text x="140" y="1215" font-size="16" fill="#E3E8F0" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">parallel group not inverted, a branch current reported, plus one decoy near the largest value.</text>
+<text x="140" y="1240" font-size="16" fill="#E3E8F0" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">Shuffle the option order.</text>
+<text x="884" y="1257" font-size="14" fill="#FFD166" text-anchor="end" font-weight="normal" font-family="Helvetica, Arial, sans-serif">circuit-diagram engine</text>
+<path d="M510.0,1269 L510.0,1325" stroke="#F2F5F9" stroke-width="7" stroke-linecap="round" fill="none" marker-end="url(#a)"/>
+<linearGradient id="g81" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2F6B4F" stop-opacity="1"/><stop offset="1" stop-color="#000000" stop-opacity="0.45"/></linearGradient>
+<rect x="120" y="1325" width="780" height="145" rx="16" fill="#2F6B4F"/>
+<rect x="120" y="1325" width="780" height="145" rx="16" fill="url(#g81)" stroke="rgba(255,255,255,0.28)" stroke-width="1.5" filter="url(#shadow)"/>
+<rect x="122" y="1327" width="776" height="69.6" rx="14" fill="url(#sheen)"/>
+<text x="140" y="1359" font-size="22" fill="#FFFFFF" text-anchor="start" font-weight="bold" font-family="Helvetica, Arial, sans-serif">5  Output</text>
+<text x="140" y="1391" font-size="16" fill="#E3E8F0" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">One bank file (<tspan fill="#FFD166" font-weight="bold">YAML</tspan>) with <tspan fill="#FFD166" font-weight="bold">30 problems</tspan>, figures, answers, <tspan fill="#FFD166" font-weight="bold">wrong options</tspan> and solutions,</text>
+<text x="140" y="1416" font-size="16" fill="#E3E8F0" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">plus a PDF worksheet and answer key.</text>
+<text x="140" y="1441" font-size="16" fill="#E3E8F0" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">Every item carries a tag saying whether code or <tspan fill="#FFD166" font-weight="bold">AI</tspan> proposed it (here: 30 code, 0 <tspan fill="#FFD166" font-weight="bold">AI</tspan>).</text>
+<path d="M510.0,1470 L510.0,1526" stroke="#F2F5F9" stroke-width="7" stroke-linecap="round" fill="none" marker-end="url(#a)"/>
+<linearGradient id="g90" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2F6B4F" stop-opacity="1"/><stop offset="1" stop-color="#000000" stop-opacity="0.45"/></linearGradient>
+<rect x="120" y="1526" width="780" height="145" rx="16" fill="#2F6B4F"/>
+<rect x="120" y="1526" width="780" height="145" rx="16" fill="url(#g90)" stroke="rgba(255,255,255,0.28)" stroke-width="1.5" filter="url(#shadow)"/>
+<rect x="122" y="1528" width="776" height="69.6" rx="14" fill="url(#sheen)"/>
+<text x="140" y="1560" font-size="22" fill="#FFFFFF" text-anchor="start" font-weight="bold" font-family="Helvetica, Arial, sans-serif">6  Use</text>
+<text x="140" y="1592" font-size="16" fill="#E3E8F0" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">The bank loads into the <tspan fill="#FFD166" font-weight="bold">ESTELA</tspan> exam builder straight from GitHub.</text>
+<text x="140" y="1617" font-size="16" fill="#E3E8F0" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">Each exam version draws one of the <tspan fill="#FFD166" font-weight="bold">30 problems</tspan>, so students get different circuits</text>
+<text x="140" y="1642" font-size="16" fill="#E3E8F0" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">of the same <tspan fill="#FFD166" font-weight="bold">difficulty</tspan>.  Export to <tspan fill="#FFD166" font-weight="bold">Canvas</tspan> (<tspan fill="#FFD166" font-weight="bold">QTI</tspan>), PDF or LaTeX.</text>
+</svg>

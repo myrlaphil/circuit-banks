@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="800" height="971" viewBox="0 0 1600 1942" font-family="Helvetica, Arial, sans-serif">
 <rect width="1600" height="1942" fill="#FFFFFF"/>
-<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#555"/></marker></defs>
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#555555"/></marker><filter id="shadow" x="-5%" y="-5%" width="110%" height="120%"><feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000" flood-opacity="0.55"/></filter><linearGradient id="sheen" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF" stop-opacity="0.22"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></linearGradient></defs>
 <text x="40" y="56" font-size="36" fill="#1E1E1E" text-anchor="start" font-weight="bold" font-family="Helvetica, Arial, sans-serif">Circuit problem-bank workflow — detailed</text>
 <text x="40" y="88" font-size="17" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">Generate → check → count loop from the isomorphic-bank-creation framework; every numerical stage is rule-based code.</text>
 <rect x="40" y="110" width="22" height="16" fill="#DCE6EE" stroke="#C9C2B8"/>
@@ -13,25 +13,25 @@
 <text x="940.0" y="123" font-size="15" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">goal / context</text>
 <rect x="280" y="170" width="820" height="120" rx="14" fill="#F3EFEA" stroke="#D8D2CA" stroke-width="1.5"/>
 <text x="300" y="204" font-size="22" fill="#1E1E1E" text-anchor="start" font-weight="bold" font-family="Helvetica, Arial, sans-serif">Goal</text>
-<text x="300" y="236" font-size="16" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">An isomorphic bank: same objective, variation beyond numbers (the circuit topology changes),</text>
-<text x="300" y="261" font-size="16" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">each variant has its own solution path, and difficulty is held constant and defined up front.</text>
-<path d="M690.0,290 L690.0,346" stroke="#555" stroke-width="4" fill="none" marker-end="url(#a)"/>
+<text x="300" y="236" font-size="16" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">An <tspan fill="#8A2A1B" font-weight="bold">isomorphic</tspan> bank: same objective, variation beyond numbers (the circuit topology changes),</text>
+<text x="300" y="261" font-size="16" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">each variant has its own solution path, and <tspan fill="#8A2A1B" font-weight="bold">difficulty</tspan> is held constant and defined up front.</text>
+<path d="M690.0,290 L690.0,346" stroke="#555555" stroke-width="7" stroke-linecap="round" fill="none" marker-end="url(#a)"/>
 <rect x="280" y="346" width="820" height="170" rx="14" fill="#F3EFEA" stroke="#D8D2CA" stroke-width="1.5"/>
 <text x="300" y="380" font-size="22" fill="#1E1E1E" text-anchor="start" font-weight="bold" font-family="Helvetica, Arial, sans-serif">1  Input scheme</text>
 <text x="300" y="412" font-size="16" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">Bank metadata (id, title, learning objective, question type = multiple choice).</text>
 <text x="300" y="437" font-size="16" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">Counts: n_scenarios 30.   Ranges: resistors 1–12 Ω, voltage 6–24 V.</text>
 <text x="300" y="462" font-size="16" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">Difficulty: reduction_steps 3, min_resistors 5, max_resistors 6.</text>
-<text x="300" y="487" font-size="16" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">Generator: auto (rules first, AI only as a tagged fallback), seed 0.</text>
+<text x="300" y="487" font-size="16" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">Generator: auto (rules first, <tspan fill="#8A2A1B" font-weight="bold">AI</tspan> only as a tagged fallback), <tspan fill="#8A2A1B" font-weight="bold">seed</tspan> 0.</text>
 <text x="1084" y="504" font-size="14" fill="#8A2A1B" text-anchor="end" font-weight="normal" font-family="Helvetica, Arial, sans-serif">validated by schema check</text>
 <rect x="1200" y="362" width="370" height="64" rx="8" fill="#E2EEDC" stroke="#C9C2B8" stroke-dasharray="4,3"/>
 <text x="1385.0" y="389" font-size="15" fill="#1E1E1E" text-anchor="middle" font-weight="normal" font-family="Menlo, Courier, monospace">circuit-input.yaml</text>
 <text x="1385.0" y="412" font-size="13" fill="#555555" text-anchor="middle" font-weight="normal" font-family="Helvetica, Arial, sans-serif">the recipe; the item count lives here, never in chat</text>
-<path d="M1100,394 L1200,394" stroke="#555" stroke-width="3" fill="none" marker-end="url(#a)" stroke-dasharray="8,6"/>
+<path d="M1100,394 L1200,394" stroke="#555555" stroke-width="4" stroke-linecap="round" fill="none" marker-end="url(#a)" stroke-dasharray="8,6"/>
 <rect x="1200" y="446" width="370" height="112" rx="14" fill="#F3D9D3" stroke="#D8D2CA" stroke-width="1.5"/>
 <text x="1220" y="480" font-size="22" fill="#1E1E1E" text-anchor="start" font-weight="bold" font-family="Helvetica, Arial, sans-serif">AI, step 1</text>
 <text x="1220" y="512" font-size="16" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">Turns a plain-English request into</text>
 <text x="1220" y="537" font-size="16" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">this file; fixes typos. Nothing numerical.</text>
-<path d="M690.0,516 L690.0,572" stroke="#555" stroke-width="4" fill="none" marker-end="url(#a)"/>
+<path d="M690.0,516 L690.0,572" stroke="#555555" stroke-width="7" stroke-linecap="round" fill="none" marker-end="url(#a)"/>
 <rect x="280" y="572" width="820" height="120" rx="14" fill="#DCE6EE" stroke="#D8D2CA" stroke-width="1.5"/>
 <text x="300" y="606" font-size="22" fill="#1E1E1E" text-anchor="start" font-weight="bold" font-family="Helvetica, Arial, sans-serif">2  Scenario list</text>
 <text x="300" y="638" font-size="16" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">A sidecar file tracks the target (30), accepted / pending / rejected scenarios,</text>
@@ -40,66 +40,66 @@
 <rect x="1200" y="596" width="370" height="64" rx="8" fill="#E2EEDC" stroke="#C9C2B8" stroke-dasharray="4,3"/>
 <text x="1385.0" y="623" font-size="15" fill="#1E1E1E" text-anchor="middle" font-weight="normal" font-family="Menlo, Courier, monospace">circuit-input.scenarios.yaml</text>
 <text x="1385.0" y="646" font-size="13" fill="#555555" text-anchor="middle" font-weight="normal" font-family="Helvetica, Arial, sans-serif">source of truth for what is in the bank</text>
-<path d="M1100,628 L1200,628" stroke="#555" stroke-width="3" fill="none" marker-end="url(#a)" stroke-dasharray="8,6"/>
-<path d="M690.0,692 L690.0,748" stroke="#555" stroke-width="4" fill="none" marker-end="url(#a)"/>
+<path d="M1100,628 L1200,628" stroke="#555555" stroke-width="4" stroke-linecap="round" fill="none" marker-end="url(#a)" stroke-dasharray="8,6"/>
+<path d="M690.0,692 L690.0,748" stroke="#555555" stroke-width="7" stroke-linecap="round" fill="none" marker-end="url(#a)"/>
 <rect x="280" y="748" width="820" height="195" rx="14" fill="#DCE6EE" stroke="#D8D2CA" stroke-width="1.5"/>
 <text x="300" y="782" font-size="22" fill="#1E1E1E" text-anchor="start" font-weight="bold" font-family="Helvetica, Arial, sans-serif">3  Generate  (Agent 2)</text>
 <text x="300" y="814" font-size="16" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">Enumerator lists all series-parallel shapes in the band: 5 resistors → 10 shapes, 6 → 20; total 30.</text>
 <text x="300" y="839" font-size="16" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">Canonical signature ignores sibling order, so 3 || 6 + 4 and 6 || 3 + 4 are one shape.</text>
 <text x="300" y="864" font-size="16" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">Values from the pool {1,2,3,4,5,6,8,9,10,12} Ω with “clean arithmetic”: half-ohm intermediates,</text>
-<text x="300" y="889" font-size="16" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">answers to ≤ 2 decimals, no repeated answers.  Deterministic: same seed → identical bank.</text>
+<text x="300" y="889" font-size="16" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">answers to ≤ 2 decimals, no repeated answers.  Deterministic: same <tspan fill="#8A2A1B" font-weight="bold">seed</tspan> → identical bank.</text>
 <text x="312" y="914" font-size="15" fill="#1E1E1E" text-anchor="start" font-weight="normal" font-family="Menlo, Courier, monospace">source: 20 V   circuit: 12 || 4 || (10 || 10 + 1)   ask: total current</text>
 <text x="1084" y="931" font-size="14" fill="#8A2A1B" text-anchor="end" font-weight="normal" font-family="Helvetica, Arial, sans-serif">enumerate_lingo.py</text>
 <rect x="1200" y="748" width="370" height="212" rx="14" fill="#F3D9D3" stroke="#D8D2CA" stroke-width="1.5"/>
 <text x="1220" y="782" font-size="22" fill="#1E1E1E" text-anchor="start" font-weight="bold" font-family="Helvetica, Arial, sans-serif">AI, fallback only</text>
 <text x="1220" y="814" font-size="16" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">Used when the request asks for a</text>
-<text x="1220" y="839" font-size="16" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">family the enumerator has no rule for</text>
+<text x="1220" y="839" font-size="16" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">family the <tspan fill="#8A2A1B" font-weight="bold">enumerator</tspan> has no rule for</text>
 <text x="1220" y="864" font-size="16" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">(capacitors, meters, other asks).</text>
 <text x="1220" y="889" font-size="16" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">Proposals go through step 4 like any</text>
-<text x="1220" y="914" font-size="16" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">other and are tagged source: llm.</text>
-<text x="1220" y="939" font-size="16" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">Enumerated items: source: enumerate.</text>
-<path d="M1100,848 L1200,848" stroke="#555" stroke-width="3" fill="none" marker-end="url(#a)" stroke-dasharray="8,6"/>
+<text x="1220" y="914" font-size="16" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">other and are tagged <tspan fill="#8A2A1B" font-weight="bold">source: llm</tspan>.</text>
+<text x="1220" y="939" font-size="16" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">Enumerated items: <tspan fill="#8A2A1B" font-weight="bold">source: enumerate</tspan>.</text>
+<path d="M1100,848 L1200,848" stroke="#555555" stroke-width="4" stroke-linecap="round" fill="none" marker-end="url(#a)" stroke-dasharray="8,6"/>
 <text x="1150.0" y="838" font-size="13" fill="#555555" text-anchor="middle" font-weight="normal" font-family="Helvetica, Arial, sans-serif">if no rule fits</text>
-<path d="M690.0,943 L690.0,999" stroke="#555" stroke-width="4" fill="none" marker-end="url(#a)"/>
+<path d="M690.0,943 L690.0,999" stroke="#555555" stroke-width="7" stroke-linecap="round" fill="none" marker-end="url(#a)"/>
 <rect x="280" y="999" width="820" height="170" rx="14" fill="#DCE6EE" stroke="#D8D2CA" stroke-width="1.5"/>
 <text x="300" y="1033" font-size="22" fill="#1E1E1E" text-anchor="start" font-weight="bold" font-family="Helvetica, Arial, sans-serif">4  Critique  (Agent 3)</text>
-<text x="300" y="1065" font-size="16" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">For every proposal: parse the lingo → solve → check ranges → count reduction steps → compare</text>
-<text x="300" y="1090" font-size="16" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">canonical shape with everything accepted so far.  Rejections carry a reason</text>
+<text x="300" y="1065" font-size="16" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">For every proposal: parse the <tspan fill="#8A2A1B" font-weight="bold">lingo</tspan> → solve → check ranges → count <tspan fill="#8A2A1B" font-weight="bold">reduction steps</tspan> → compare</text>
+<text x="300" y="1090" font-size="16" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif"><tspan fill="#8A2A1B" font-weight="bold">canonical shape</tspan> with everything accepted so far.  Rejections carry a reason</text>
 <text x="300" y="1115" font-size="16" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">(does not parse / outside ranges / wrong step count / repeated shape / repeated answer).</text>
 <text x="300" y="1140" font-size="16" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">Accepted items are added via the framework's own add command; counts go back to the sidecar.</text>
 <text x="1084" y="1157" font-size="14" fill="#8A2A1B" text-anchor="end" font-weight="normal" font-family="Helvetica, Arial, sans-serif">critic.py --apply</text>
-<path d="M280,1149 L190,1149 L190,768 L280,768" stroke="#555" stroke-width="4" fill="none" marker-end="url(#a)"/>
+<path d="M280,1149 L190,1149 L190,768 L280,768" stroke="#555555" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none" marker-end="url(#a)"/>
 <text x="180" y="958.5" font-size="15" fill="#555555" text-anchor="end" font-weight="normal" font-family="Helvetica, Arial, sans-serif">fewer than 30</text>
 <text x="180" y="977.5" font-size="15" fill="#555555" text-anchor="end" font-weight="normal" font-family="Helvetica, Arial, sans-serif">accepted:</text>
 <text x="180" y="996.5" font-size="15" fill="#555555" text-anchor="end" font-weight="normal" font-family="Helvetica, Arial, sans-serif">next pass</text>
 <text x="180" y="1015.5" font-size="15" fill="#555555" text-anchor="end" font-weight="normal" font-family="Helvetica, Arial, sans-serif">(max 5)</text>
-<path d="M690.0,1169 L690.0,1225" stroke="#555" stroke-width="4" fill="none" marker-end="url(#a)"/>
+<path d="M690.0,1169 L690.0,1225" stroke="#555555" stroke-width="7" stroke-linecap="round" fill="none" marker-end="url(#a)"/>
 <rect x="280" y="1225" width="820" height="245" rx="14" fill="#DCE6EE" stroke="#D8D2CA" stroke-width="1.5"/>
 <text x="300" y="1259" font-size="22" fill="#1E1E1E" text-anchor="start" font-weight="bold" font-family="Helvetica, Arial, sans-serif">5  Assemble  (replaces Agents 4 &amp; 5)</text>
-<text x="300" y="1291" font-size="16" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">For each accepted lingo, the circuit-diagram engine:</text>
+<text x="300" y="1291" font-size="16" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">For each accepted <tspan fill="#8A2A1B" font-weight="bold">lingo</tspan>, the <tspan fill="#8A2A1B" font-weight="bold">circuit-diagram engine</tspan>:</text>
 <text x="300" y="1316" font-size="16" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">   • parses and solves, producing a numbered reduction (3 steps) and the total current;</text>
-<text x="300" y="1341" font-size="16" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">   • draws the figure with Schemdraw in the textbook (ladder) layout;</text>
-<text x="300" y="1366" font-size="16" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">   • computes distractors: all_series, no_invert, branch_current (+ fallbacks),</text>
+<text x="300" y="1341" font-size="16" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">   • draws the figure with <tspan fill="#8A2A1B" font-weight="bold">Schemdraw</tspan> in the textbook (ladder) layout;</text>
+<text x="300" y="1366" font-size="16" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">   • computes <tspan fill="#8A2A1B" font-weight="bold">distractors</tspan>: all_series, no_invert, branch_current (+ fallbacks),</text>
 <text x="300" y="1391" font-size="16" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">     and decoy_near_largest = 0.9 × the largest option;</text>
 <text x="300" y="1416" font-size="16" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">   • rotates the correct answer's position (k = n mod 5) so it is not always the same letter;</text>
 <text x="300" y="1441" font-size="16" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">   • writes feedback naming the mistake behind each wrong option.</text>
 <text x="1084" y="1458" font-size="14" fill="#8A2A1B" text-anchor="end" font-weight="normal" font-family="Helvetica, Arial, sans-serif">assemble_bank.py + distractors.py</text>
-<path d="M690.0,1470 L690.0,1526" stroke="#555" stroke-width="4" fill="none" marker-end="url(#a)"/>
+<path d="M690.0,1470 L690.0,1526" stroke="#555555" stroke-width="7" stroke-linecap="round" fill="none" marker-end="url(#a)"/>
 <rect x="280" y="1526" width="820" height="170" rx="14" fill="#E2EEDC" stroke="#D8D2CA" stroke-width="1.5"/>
 <text x="300" y="1560" font-size="22" fill="#1E1E1E" text-anchor="start" font-weight="bold" font-family="Helvetica, Arial, sans-serif">6  Bank file</text>
-<text x="300" y="1592" font-size="16" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">Problem-bank YAML in the shared template: 30 multiple-choice items, 5 options each,</text>
+<text x="300" y="1592" font-size="16" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">Problem-bank <tspan fill="#8A2A1B" font-weight="bold">YAML</tspan> in the shared template: 30 multiple-choice items, 5 options each,</text>
 <text x="300" y="1617" font-size="16" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">figure paths, worked solutions, feedback, per-item source tag,</text>
-<text x="300" y="1642" font-size="16" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">a difficulty block (steps 3 ×30; resistors 5 ×10, 6 ×20; parallel groups 1 ×15, 2 ×15)</text>
-<text x="300" y="1667" font-size="16" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">and a provenance count (enumerate 30, llm 0).   PDF worksheet + key alongside.</text>
+<text x="300" y="1642" font-size="16" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">a <tspan fill="#8A2A1B" font-weight="bold">difficulty</tspan> block (steps 3 ×30; resistors 5 ×10, 6 ×20; parallel groups 1 ×15, 2 ×15)</text>
+<text x="300" y="1667" font-size="16" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">and a <tspan fill="#8A2A1B" font-weight="bold">provenance</tspan> count (enumerate 30, llm 0).   PDF worksheet + key alongside.</text>
 <rect x="1200" y="1542" width="370" height="64" rx="8" fill="#E2EEDC" stroke="#C9C2B8" stroke-dasharray="4,3"/>
 <text x="1385.0" y="1569" font-size="15" fill="#1E1E1E" text-anchor="middle" font-weight="normal" font-family="Menlo, Courier, monospace">PHY2-DC-SPRTC3-10292026.yaml</text>
 <text x="1385.0" y="1592" font-size="13" fill="#555555" text-anchor="middle" font-weight="normal" font-family="Helvetica, Arial, sans-serif">+ Figures/q1…q30.png + .pdf</text>
-<path d="M1100,1574 L1200,1574" stroke="#555" stroke-width="3" fill="none" marker-end="url(#a)" stroke-dasharray="8,6"/>
-<path d="M690.0,1696 L690.0,1752" stroke="#555" stroke-width="4" fill="none" marker-end="url(#a)"/>
+<path d="M1100,1574 L1200,1574" stroke="#555555" stroke-width="4" stroke-linecap="round" fill="none" marker-end="url(#a)" stroke-dasharray="8,6"/>
+<path d="M690.0,1696 L690.0,1752" stroke="#555555" stroke-width="7" stroke-linecap="round" fill="none" marker-end="url(#a)"/>
 <rect x="280" y="1752" width="820" height="170" rx="14" fill="#E2EEDC" stroke="#D8D2CA" stroke-width="1.5"/>
 <text x="300" y="1786" font-size="22" fill="#1E1E1E" text-anchor="start" font-weight="bold" font-family="Helvetica, Arial, sans-serif">7  Delivery</text>
-<text x="300" y="1818" font-size="16" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">Folder added to the ESTELA problem-bank repository (pull request).</text>
-<text x="300" y="1843" font-size="16" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">ESTELA Enhanced Exam Builder loads it from GitHub: each exam version draws one item,</text>
-<text x="300" y="1868" font-size="16" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">exports Canvas QTI, PDF or LaTeX.</text>
-<text x="300" y="1893" font-size="16" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">Planned validation: item-accuracy spread + extended Fisher's exact test on student data.</text>
+<text x="300" y="1818" font-size="16" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">Folder added to the <tspan fill="#8A2A1B" font-weight="bold">ESTELA</tspan> problem-bank repository (pull request).</text>
+<text x="300" y="1843" font-size="16" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif"><tspan fill="#8A2A1B" font-weight="bold">ESTELA</tspan> Enhanced Exam Builder loads it from GitHub: each exam version draws one item,</text>
+<text x="300" y="1868" font-size="16" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">exports <tspan fill="#8A2A1B" font-weight="bold">Canvas</tspan> <tspan fill="#8A2A1B" font-weight="bold">QTI</tspan>, PDF or LaTeX.</text>
+<text x="300" y="1893" font-size="16" fill="#555555" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">Planned validation: item-accuracy spread + extended <tspan fill="#8A2A1B" font-weight="bold">Fisher's exact test</tspan> on student data.</text>
 </svg>

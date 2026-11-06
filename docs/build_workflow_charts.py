@@ -3,17 +3,44 @@
     workflow-simple.svg    - for someone hearing about the project for the first time
     workflow-detailed.svg  - for someone who knows problem banks and wants the mechanics
 Colour = what kind of thing does the work: rule-based code, AI (language model), file / output.
+Written twice: light (print) and -dark (glossy, for screens; keywords in amber).
     python3 docs/build_workflow_charts.py      (also writes PNGs if rsvg-convert is installed)
 """
+import re
 import shutil
 import subprocess
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-CODE, AI, OUT, GOAL = "#DCE6EE", "#F3D9D3", "#E2EEDC", "#F3EFEA"
-INK, MUTED, ACC, EDGE = "#1E1E1E", "#555555", "#8A2A1B", "#D8D2CA"
 F = "Helvetica, Arial, sans-serif"
 MONO = "Menlo, Courier, monospace"
+
+THEMES = {
+    "light": dict(bg="#FFFFFF", code="#DCE6EE", ai="#F3D9D3", out="#E2EEDC", goal="#F3EFEA",
+                  ink="#1E1E1E", muted="#555555", acc="#8A2A1B", edge="#D8D2CA", arrow="#555555",
+                  mono="#1E1E1E", key="#8A2A1B", legend_edge="#C9C2B8", glossy=False),
+    "dark": dict(bg="#0F141B", code="#2B4C7E", ai="#8C3550", out="#2F6B4F", goal="#3F4756",
+                 ink="#FFFFFF", muted="#E3E8F0", acc="#FFD166", edge="rgba(255,255,255,0.28)", arrow="#F2F5F9",
+                 mono="#BFE6FF", key="#FFD166", legend_edge="rgba(255,255,255,0.35)", glossy=True),
+}
+T = THEMES["light"]
+CODE = AI = OUT = GOAL = INK = MUTED = ACC = EDGE = None
+
+
+def use(theme):
+    global T, CODE, AI, OUT, GOAL, INK, MUTED, ACC, EDGE
+    T = THEMES[theme]
+    CODE, AI, OUT, GOAL = T["code"], T["ai"], T["out"], T["goal"]
+    INK, MUTED, ACC, EDGE = T["ink"], T["muted"], T["acc"], T["edge"]
+
+
+# words that get the accent colour inside body text (longest first so "circuit lingo" wins over "lingo")
+KEYWORDS = ["circuit lingo", "circuit-diagram engine", "3 reduction steps", "three reduction steps", "reduction step",
+            "reduction steps", "Schemdraw", "lingo", "AI", "ESTELA", "enumerator", "critic", "distractors",
+            "isomorphic", "canonical shape", "deterministic", "QTI", "YAML", "Canvas", "Fisher's exact test",
+            "5–6 resistors", "30 distinct circuits", "exactly 30", "30 problems", "rule-based", "wrong options",
+            "source: llm", "source: enumerate", "worked solution", "seed", "provenance", "difficulty"]
+_KW = re.compile("(" + "|".join(re.escape(k) for k in sorted(KEYWORDS, key=len, reverse=True)) + r")(?![\w-])")
 
 
 class Chart:
@@ -26,7 +53,7 @@ class Chart:
         lx = 40
         for fill, t in ((CODE, "rule-based code (same input, same output, every time)"), (AI, "AI language model"),
                         (OUT, "file or output"), (GOAL, "goal / context")):
-            self.p.append(f'<rect x="{lx}" y="110" width="22" height="16" fill="{fill}" stroke="#C9C2B8"/>')
+            self.p.append(f'<rect x="{lx}" y="110" width="22" height="16" fill="{fill}" stroke="{T["legend_edge"]}"/>')
             self.text(lx + 30, 123, t, 15)
             lx += 30 + 8.0 * len(t) + 36
 
@@ -34,9 +61,16 @@ class Chart:
     def esc(s):
         return s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
 
-    def text(self, x, y, s, size=16, fill=MUTED, anchor="start", weight="normal", family=F):
+    def text(self, x, y, s, size=16, fill=None, anchor="start", weight="normal", family=F, keywords=False):
+        fill = MUTED if fill is None else fill
+        if keywords:
+            parts = _KW.split(s)
+            body = "".join(f'<tspan fill="{T["key"]}" font-weight="bold">{self.esc(t)}</tspan>' if i % 2 else self.esc(t)
+                           for i, t in enumerate(parts))
+        else:
+            body = self.esc(s)
         self.p.append(f'<text x="{x}" y="{y}" font-size="{size}" fill="{fill}" text-anchor="{anchor}" '
-                      f'font-weight="{weight}" font-family="{family}">{self.esc(s)}</text>')
+                      f'font-weight="{weight}" font-family="{family}">{body}</text>')
 
     def box(self, fill, title, lines, tag=None, mono=(), gap=56, x=None, w=None, y=None, pad_bottom=18):
         """a stage box; returns its (top, bottom). lines starting with '`' are set in monospace."""
@@ -44,13 +78,24 @@ class Chart:
         w = self.bw if w is None else w
         top = self.y if y is None else y
         h = 52 + 25 * len(lines) + pad_bottom
-        self.p.append(f'<rect x="{x}" y="{top}" width="{w}" height="{h}" rx="14" fill="{fill}" stroke="{EDGE}" stroke-width="1.5"/>')
+        if T["glossy"]:
+            gid = f"g{len(self.p)}"
+            self.p.append(f'<linearGradient id="{gid}" x1="0" y1="0" x2="0" y2="1">'
+                          f'<stop offset="0" stop-color="{fill}" stop-opacity="1"/>'
+                          f'<stop offset="1" stop-color="#000000" stop-opacity="0.45"/></linearGradient>')
+            self.p.append(f'<rect x="{x}" y="{top}" width="{w}" height="{h}" rx="16" fill="{fill}"/>')
+            self.p.append(f'<rect x="{x}" y="{top}" width="{w}" height="{h}" rx="16" fill="url(#{gid})" '
+                          f'stroke="{EDGE}" stroke-width="1.5" filter="url(#shadow)"/>')
+            # the sheen: a soft white band across the top half
+            self.p.append(f'<rect x="{x + 2}" y="{top + 2}" width="{w - 4}" height="{h * 0.48}" rx="14" fill="url(#sheen)"/>')
+        else:
+            self.p.append(f'<rect x="{x}" y="{top}" width="{w}" height="{h}" rx="14" fill="{fill}" stroke="{EDGE}" stroke-width="1.5"/>')
         self.text(x + 20, top + 34, title, 22, INK, weight="bold")
         for i, ln in enumerate(lines):
             if ln.startswith("`"):
-                self.text(x + 32, top + 66 + i * 25, ln[1:], 15, INK, family=MONO)
+                self.text(x + 32, top + 66 + i * 25, ln[1:], 15, T["mono"], family=MONO)
             else:
-                self.text(x + 20, top + 66 + i * 25, ln, 16)
+                self.text(x + 20, top + 66 + i * 25, ln, 16, keywords=True)
         if tag:
             self.text(x + w - 16, top + h - 12, tag, 14, ACC, anchor="end")
         if y is None:
@@ -59,14 +104,14 @@ class Chart:
 
     def arrow(self, y1, y2, label=None, x=None):
         x = (self.bx + self.bw / 2) if x is None else x
-        self.p.append(f'<path d="M{x},{y1} L{x},{y2}" stroke="#555" stroke-width="4" fill="none" marker-end="url(#a)"/>')
+        self.p.append(f'<path d="M{x},{y1} L{x},{y2}" stroke="{T["arrow"]}" stroke-width="7" stroke-linecap="round" fill="none" marker-end="url(#a)"/>')
         if label:
             self.text(x + 14, (y1 + y2) / 2 + 5, label, 14)
 
     def side_arrow(self, y, label=None, dashed=True, to_main=False):
         dash = ' stroke-dasharray="8,6"' if dashed else ""
         a, b = (self.sx, self.bx + self.bw) if to_main else (self.bx + self.bw, self.sx)
-        self.p.append(f'<path d="M{a},{y} L{b},{y}" stroke="#555" stroke-width="3" fill="none" marker-end="url(#a)"{dash}/>')
+        self.p.append(f'<path d="M{a},{y} L{b},{y}" stroke="{T["arrow"]}" stroke-width="4" stroke-linecap="round" fill="none" marker-end="url(#a)"{dash}/>')
         if label:
             self.text((a + b) / 2, y - 10, label, 13, MUTED, "middle")
 
@@ -74,7 +119,7 @@ class Chart:
         """arrow leaving the box at y_from on the left, going up to y_to, re-entering on the left"""
         x0 = self.bx
         self.p.append(f'<path d="M{x0},{y_from} L{x_gutter},{y_from} L{x_gutter},{y_to} L{x0},{y_to}" '
-                      f'stroke="#555" stroke-width="4" fill="none" marker-end="url(#a)"/>')
+                      f'stroke="{T["arrow"]}" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none" marker-end="url(#a)"/>')
         for i, ln in enumerate(label.split("\n")):
             self.text(x_gutter - 10, (y_from + y_to) / 2 + i * 19, ln, 15, MUTED, "end")
 
@@ -82,9 +127,14 @@ class Chart:
         h = self.y + 10
         head = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{self.w // 2}" height="{h // 2}" '
                 f'viewBox="0 0 {self.w} {h}" font-family="{F}">',
-                f'<rect width="{self.w}" height="{h}" fill="#FFFFFF"/>',
-                '<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" '
-                'orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#555"/></marker></defs>']
+                f'<rect width="{self.w}" height="{h}" fill="{T["bg"]}"/>',
+                '<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="4" markerHeight="4" '
+                f'orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="{T["arrow"]}"/></marker>'
+                '<filter id="shadow" x="-5%" y="-5%" width="110%" height="120%">'
+                '<feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000" flood-opacity="0.55"/></filter>'
+                '<linearGradient id="sheen" x1="0" y1="0" x2="0" y2="1">'
+                '<stop offset="0" stop-color="#FFFFFF" stop-opacity="0.22"/>'
+                '<stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></linearGradient></defs>']
         path.write_text("\n".join(head + self.p + ["</svg>"]), encoding="utf-8")
         if shutil.which("rsvg-convert"):
             subprocess.run(["rsvg-convert", "-z", "2", "-o", str(path.with_suffix(".png")), str(path)], check=True)
@@ -142,7 +192,7 @@ def simple():
     t, b = c.box(OUT, "6  Use", ["The bank loads into the ESTELA exam builder straight from GitHub.",
                                  "Each exam version draws one of the 30 problems, so students get different circuits",
                                  "of the same difficulty.  Export to Canvas (QTI), PDF or LaTeX."], gap=10)
-    return c.save(HERE / "workflow-simple.svg")
+    return c.save(HERE / f"workflow-simple{SUFFIX}.svg")
 
 
 # ---------------------------------------------------------------- DETAILED
@@ -152,8 +202,8 @@ def detailed():
               box_x=280, box_w=820, side_x=1200, side_w=370)
 
     def file_(y, name, note):
-        c.p.append(f'<rect x="{c.sx}" y="{y}" width="{c.sw}" height="64" rx="8" fill="{OUT}" stroke="#C9C2B8" stroke-dasharray="4,3"/>')
-        c.text(c.sx + c.sw / 2, y + 27, name, 15, INK, "middle", family=MONO)
+        c.p.append(f'<rect x="{c.sx}" y="{y}" width="{c.sw}" height="64" rx="8" fill="{OUT}" stroke="{T["legend_edge"]}" stroke-dasharray="4,3"{" filter=\"url(#shadow)\"" if T["glossy"] else ""}/>')
+        c.text(c.sx + c.sw / 2, y + 27, name, 15, T["mono"], "middle", family=MONO)
         c.text(c.sx + c.sw / 2, y + 50, note, 13, MUTED, "middle")
 
     t, b = c.box(GOAL, "Goal", ["An isomorphic bank: same objective, variation beyond numbers (the circuit topology changes),",
@@ -222,9 +272,13 @@ def detailed():
                                       "ESTELA Enhanced Exam Builder loads it from GitHub: each exam version draws one item,",
                                       "exports Canvas QTI, PDF or LaTeX.",
                                       "Planned validation: item-accuracy spread + extended Fisher's exact test on student data."], gap=10)
-    return c.save(HERE / "workflow-detailed.svg")
+    return c.save(HERE / f"workflow-detailed{SUFFIX}.svg")
 
+
+SUFFIX = ""
 
 if __name__ == "__main__":
-    for p in (simple(), detailed()):
-        print(p.name, "+", p.with_suffix(".png").name)
+    for theme, SUFFIX in (("light", ""), ("dark", "-dark")):
+        use(theme)
+        for p in (simple(), detailed()):
+            print(p.name, "+", p.with_suffix(".png").name)
