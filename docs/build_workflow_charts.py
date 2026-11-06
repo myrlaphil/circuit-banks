@@ -20,71 +20,71 @@ class Chart:
     def __init__(self, w, title, subtitle, box_x, box_w, side_x=None, side_w=0):
         self.w, self.p = w, []
         self.bx, self.bw, self.sx, self.sw = box_x, box_w, side_x, side_w
-        self.y = 150
-        self.text(40, 50, title, 30, INK, weight="bold")
-        self.text(40, 78, subtitle, 14)
+        self.y = 170
+        self.text(40, 56, title, 36, INK, weight="bold")
+        self.text(40, 88, subtitle, 17)
         lx = 40
         for fill, t in ((CODE, "rule-based code (same input, same output, every time)"), (AI, "AI language model"),
                         (OUT, "file or output"), (GOAL, "goal / context")):
-            self.p.append(f'<rect x="{lx}" y="98" width="18" height="14" fill="{fill}" stroke="#C9C2B8"/>')
-            self.text(lx + 26, 110, t, 13)
-            lx += 26 + 7.2 * len(t) + 30
+            self.p.append(f'<rect x="{lx}" y="110" width="22" height="16" fill="{fill}" stroke="#C9C2B8"/>')
+            self.text(lx + 30, 123, t, 15)
+            lx += 30 + 8.0 * len(t) + 36
 
     @staticmethod
     def esc(s):
         return s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
 
-    def text(self, x, y, s, size=14, fill=MUTED, anchor="start", weight="normal", family=F):
+    def text(self, x, y, s, size=16, fill=MUTED, anchor="start", weight="normal", family=F):
         self.p.append(f'<text x="{x}" y="{y}" font-size="{size}" fill="{fill}" text-anchor="{anchor}" '
                       f'font-weight="{weight}" font-family="{family}">{self.esc(s)}</text>')
 
-    def box(self, fill, title, lines, tag=None, mono=(), gap=40, x=None, w=None, y=None, pad_bottom=18):
+    def box(self, fill, title, lines, tag=None, mono=(), gap=56, x=None, w=None, y=None, pad_bottom=18):
         """a stage box; returns its (top, bottom). lines starting with '`' are set in monospace."""
         x = self.bx if x is None else x
         w = self.bw if w is None else w
         top = self.y if y is None else y
-        h = 44 + 20 * len(lines) + pad_bottom
-        self.p.append(f'<rect x="{x}" y="{top}" width="{w}" height="{h}" rx="12" fill="{fill}" stroke="{EDGE}"/>')
-        self.text(x + 18, top + 30, title, 19, INK, weight="bold")
+        h = 52 + 25 * len(lines) + pad_bottom
+        self.p.append(f'<rect x="{x}" y="{top}" width="{w}" height="{h}" rx="14" fill="{fill}" stroke="{EDGE}" stroke-width="1.5"/>')
+        self.text(x + 20, top + 34, title, 22, INK, weight="bold")
         for i, ln in enumerate(lines):
             if ln.startswith("`"):
-                self.text(x + 30, top + 58 + i * 20, ln[1:], 13, INK, family=MONO)
+                self.text(x + 32, top + 66 + i * 25, ln[1:], 15, INK, family=MONO)
             else:
-                self.text(x + 18, top + 58 + i * 20, ln, 14)
+                self.text(x + 20, top + 66 + i * 25, ln, 16)
         if tag:
-            self.text(x + w - 14, top + h - 10, tag, 12, ACC, anchor="end")
+            self.text(x + w - 16, top + h - 12, tag, 14, ACC, anchor="end")
         if y is None:
             self.y = top + h + gap
         return top, top + h
 
     def arrow(self, y1, y2, label=None, x=None):
         x = (self.bx + self.bw / 2) if x is None else x
-        self.p.append(f'<path d="M{x},{y1} L{x},{y2}" stroke="#777" stroke-width="2" fill="none" marker-end="url(#a)"/>')
+        self.p.append(f'<path d="M{x},{y1} L{x},{y2}" stroke="#555" stroke-width="4" fill="none" marker-end="url(#a)"/>')
         if label:
-            self.text(x + 12, (y1 + y2) / 2 + 5, label, 12)
+            self.text(x + 14, (y1 + y2) / 2 + 5, label, 14)
 
     def side_arrow(self, y, label=None, dashed=True, to_main=False):
-        dash = ' stroke-dasharray="5,4"' if dashed else ""
+        dash = ' stroke-dasharray="8,6"' if dashed else ""
         a, b = (self.sx, self.bx + self.bw) if to_main else (self.bx + self.bw, self.sx)
-        self.p.append(f'<path d="M{a},{y} L{b},{y}" stroke="#777" stroke-width="1.5" fill="none" marker-end="url(#a)"{dash}/>')
+        self.p.append(f'<path d="M{a},{y} L{b},{y}" stroke="#555" stroke-width="3" fill="none" marker-end="url(#a)"{dash}/>')
         if label:
-            self.text((a + b) / 2, y - 7, label, 11, MUTED, "middle")
+            self.text((a + b) / 2, y - 10, label, 13, MUTED, "middle")
 
     def loop(self, y_from, y_to, label, x_gutter):
         """arrow leaving the box at y_from on the left, going up to y_to, re-entering on the left"""
         x0 = self.bx
         self.p.append(f'<path d="M{x0},{y_from} L{x_gutter},{y_from} L{x_gutter},{y_to} L{x0},{y_to}" '
-                      f'stroke="#777" stroke-width="2" fill="none" marker-end="url(#a)"/>')
+                      f'stroke="#555" stroke-width="4" fill="none" marker-end="url(#a)"/>')
         for i, ln in enumerate(label.split("\n")):
-            self.text(x_gutter - 8, (y_from + y_to) / 2 + i * 16, ln, 12, MUTED, "end")
+            self.text(x_gutter - 10, (y_from + y_to) / 2 + i * 19, ln, 15, MUTED, "end")
 
     def save(self, path):
         h = self.y + 10
         head = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{self.w // 2}" height="{h // 2}" '
                 f'viewBox="0 0 {self.w} {h}" font-family="{F}">',
                 f'<rect width="{self.w}" height="{h}" fill="#FFFFFF"/>',
-                '<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" '
-                'orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#777"/></marker></defs>']
+                '<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" '
+                'orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#555"/></marker></defs>']
         path.write_text("\n".join(head + self.p + ["</svg>"]), encoding="utf-8")
         if shutil.which("rsvg-convert"):
             subprocess.run(["rsvg-convert", "-z", "2", "-o", str(path.with_suffix(".png")), str(path)], check=True)
@@ -93,8 +93,8 @@ class Chart:
 
 # ---------------------------------------------------------------- SIMPLE
 def simple():
-    c = Chart(1140, "From a one-page request to an exam-ready problem bank",
-              "Every arrow is a program step. AI appears in exactly one place.", box_x=110, box_w=640, side_x=800, side_w=300)
+    c = Chart(1420, "From a one-page request to an exam-ready problem bank",
+              "Every arrow is a program step. AI appears in exactly one place.", box_x=120, box_w=780, side_x=1010, side_w=370)
     t, b = c.box(GOAL, "Goal", ["30 exam problems that all ask the same question (total current from the battery),",
                                 "each on a different circuit, all at one defendable difficulty,",
                                 "ready to load into an exam builder."], tag="problem to solve")
@@ -111,8 +111,8 @@ def simple():
                                    "type no rule can produce may AI",
                                    "propose one; such items are tagged",
                                    "and still checked in step 3."],
-          x=c.sx, w=c.sw, y=t - 10, pad_bottom=12)
-    c.side_arrow(t + 72, "checks the request")
+          x=c.sx, w=c.sw, y=t - 20, pad_bottom=14)
+    c.side_arrow(t + 90, "reads it")
     c.arrow(b, c.y)
     t, b = c.box(CODE, "2  List every circuit that fits", [
         "Code enumerates all circuit shapes with exactly 3 reduction steps and 5–6 resistors.",
@@ -147,14 +147,14 @@ def simple():
 
 # ---------------------------------------------------------------- DETAILED
 def detailed():
-    c = Chart(1230, "Circuit problem-bank workflow — detailed",
+    c = Chart(1600, "Circuit problem-bank workflow — detailed",
               "Generate → check → count loop from the isomorphic-bank-creation framework; every numerical stage is rule-based code.",
-              box_x=240, box_w=640, side_x=920, side_w=280)
+              box_x=280, box_w=820, side_x=1200, side_w=370)
 
     def file_(y, name, note):
-        c.p.append(f'<rect x="{c.sx}" y="{y}" width="{c.sw}" height="56" rx="6" fill="{OUT}" stroke="#C9C2B8" stroke-dasharray="4,3"/>')
-        c.text(c.sx + c.sw / 2, y + 24, name, 13, INK, "middle", family=MONO)
-        c.text(c.sx + c.sw / 2, y + 43, note, 11, MUTED, "middle")
+        c.p.append(f'<rect x="{c.sx}" y="{y}" width="{c.sw}" height="64" rx="8" fill="{OUT}" stroke="#C9C2B8" stroke-dasharray="4,3"/>')
+        c.text(c.sx + c.sw / 2, y + 27, name, 15, INK, "middle", family=MONO)
+        c.text(c.sx + c.sw / 2, y + 50, note, 13, MUTED, "middle")
 
     t, b = c.box(GOAL, "Goal", ["An isomorphic bank: same objective, variation beyond numbers (the circuit topology changes),",
                                 "each variant has its own solution path, and difficulty is held constant and defined up front."])
@@ -164,16 +164,16 @@ def detailed():
                                            "Counts: n_scenarios 30.   Ranges: resistors 1–12 Ω, voltage 6–24 V.",
                                            "Difficulty: reduction_steps 3, min_resistors 5, max_resistors 6.",
                                            "Generator: auto (rules first, AI only as a tagged fallback), seed 0."], tag="validated by schema check")
-    file_(t + 20, "circuit-input.yaml", "the recipe; the item count lives here, never in chat")
+    file_(t + 16, "circuit-input.yaml", "the recipe; the item count lives here, never in chat")
     c.side_arrow(t + 48)
     c.box(AI, "AI, step 1", ["Turns a plain-English request into",
-                             "this file; fixes typos. Nothing numerical."], x=c.sx, w=c.sw, y=t + 82, pad_bottom=8)
+                             "this file; fixes typos. Nothing numerical."], x=c.sx, w=c.sw, y=t + 100, pad_bottom=10)
     c.arrow(b, c.y)
 
     t, b = c.box(CODE, "2  Scenario list", ["A sidecar file tracks the target (30), accepted / pending / rejected scenarios,",
                                             "reasons for rejection and the pass count (cap: 5 passes)."], tag="scenario_list.py")
-    file_(t + 14, "circuit-input.scenarios.yaml", "source of truth for what is in the bank")
-    c.side_arrow(t + 42)
+    file_(t + 24, "circuit-input.scenarios.yaml", "source of truth for what is in the bank")
+    c.side_arrow(t + 56)
     c.arrow(b, c.y)
 
     loop_top = c.y
@@ -189,7 +189,7 @@ def detailed():
                                     "Proposals go through step 4 like any",
                                     "other and are tagged source: llm.",
                                     "Enumerated items: source: enumerate."], x=c.sx, w=c.sw, y=t, pad_bottom=10)
-    c.side_arrow(t + 80, "if no rule covers it")
+    c.side_arrow(t + 100, "if no rule fits")
     c.arrow(b, c.y)
 
     t, b = c.box(CODE, "4  Critique  (Agent 3)", [
@@ -197,7 +197,7 @@ def detailed():
         "canonical shape with everything accepted so far.  Rejections carry a reason",
         "(does not parse / outside ranges / wrong step count / repeated shape / repeated answer).",
         "Accepted items are added via the framework's own add command; counts go back to the sidecar."], tag="critic.py --apply")
-    c.loop(b - 20, loop_top + 20, "fewer than 30\naccepted:\nnext pass\n(max 5)", x_gutter=150)
+    c.loop(b - 20, loop_top + 20, "fewer than 30\naccepted:\nnext pass\n(max 5)", x_gutter=190)
     c.arrow(b, c.y)
 
     t, b = c.box(CODE, "5  Assemble  (replaces Agents 4 & 5)", [
@@ -214,8 +214,8 @@ def detailed():
                                        "figure paths, worked solutions, feedback, per-item source tag,",
                                        "a difficulty block (steps 3 ×30; resistors 5 ×10, 6 ×20; parallel groups 1 ×15, 2 ×15)",
                                        "and a provenance count (enumerate 30, llm 0).   PDF worksheet + key alongside."])
-    file_(t + 10, "PHY2-DC-SPRTC3-10292026.yaml", "+ Figures/q1…q30.png + .pdf")
-    c.side_arrow(t + 38)
+    file_(t + 16, "PHY2-DC-SPRTC3-10292026.yaml", "+ Figures/q1…q30.png + .pdf")
+    c.side_arrow(t + 48)
     c.arrow(b, c.y)
 
     t, b = c.box(OUT, "7  Delivery", ["Folder added to the ESTELA problem-bank repository (pull request).",
