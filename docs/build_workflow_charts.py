@@ -54,6 +54,7 @@ _KW = re.compile("(" + "|".join(re.escape(k) for k in sorted(KEYWORDS, key=len, 
 class Chart:
     def __init__(self, title, subtitle, box_x, box_w, side_x, side_w, left_x=None, left_w=0):
         self.p = []
+        self.uid = f"{PART or 'all'}{SUFFIX or ''}".replace("-", "")
         self.bx, self.bw, self.sx, self.sw = box_x, box_w, side_x, side_w
         self.lx, self.lw = left_x, left_w
         self.w = side_x + side_w + 30
@@ -103,7 +104,7 @@ class Chart:
     def panel(self, x, y, w, h, fill, at=None):
         """a rounded panel; glossy = one smooth gradient + shadow.  `at` inserts it earlier in the draw order."""
         if T["glossy"]:
-            gid = f"g{len(self.p)}_{int(y)}"
+            gid = f"g{self.uid}_{len(self.p)}_{int(y)}"
             parts = [f'<linearGradient id="{gid}" x1="0" y1="0" x2="0" y2="1">'
                      f'<stop offset="0" stop-color="#FFFFFF" stop-opacity="0.16"/>'
                      f'<stop offset="0.6" stop-color="#FFFFFF" stop-opacity="0"/>'
@@ -207,9 +208,9 @@ class Chart:
         r = 40
         y, x_img = 18, self.w - 30 - 2 * r
         data = base64.b64encode(PHOTO.read_bytes()).decode("ascii")
-        self.p.append(f'<clipPath id="clip"><circle cx="{x_img + r}" cy="{y + r}" r="{r}"/></clipPath>')
+        self.p.append(f'<clipPath id="clip{self.uid}"><circle cx="{x_img + r}" cy="{y + r}" r="{r}"/></clipPath>')
         self.p.append(f'<image x="{x_img}" y="{y}" width="{2 * r}" height="{2 * r}" preserveAspectRatio="xMidYMin slice" '
-                      f'clip-path="url(#clip)" href="data:image/jpeg;base64,{data}"/>')
+                      f'clip-path="url(#clip{self.uid})" href="data:image/jpeg;base64,{data}"/>')
         self.p.append(f'<circle cx="{x_img + r}" cy="{y + r}" r="{r}" fill="none" stroke="{T["legend_edge"]}" stroke-width="2"/>')
         self.text(x_img - 16, y + 34, NAME, 20, INK, "end", weight="bold")
         self.text(x_img - 16, y + 58, ROLE, 15, MUTED, "end")
@@ -219,12 +220,13 @@ class Chart:
         head = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{self.w // 2}" height="{h // 2}" '
                 f'viewBox="0 0 {self.w} {h}" font-family="{F}">',
                 f'<rect width="{self.w}" height="{h}" fill="{T["bg"]}"/>',
-                '<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="4" markerHeight="4" '
+                f'<defs><marker id="a{self.uid}" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="4" markerHeight="4" '
                 f'orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="{T["arrow"]}"/></marker>'
-                '<filter id="shadow" x="-5%" y="-5%" width="110%" height="120%">'
+                f'<filter id="shadow{self.uid}" x="-5%" y="-5%" width="110%" height="120%">'
                 '<feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000" flood-opacity="0.55"/></filter>'
                 '</defs>']
-        path.write_text("\n".join(head + self.p + ["</svg>"]), encoding="utf-8")
+        body = [ln.replace('url(#a)', f'url(#a{self.uid})').replace('url(#shadow)', f'url(#shadow{self.uid})') for ln in self.p]
+        path.write_text("\n".join(head + body + ["</svg>"]), encoding="utf-8")
         if shutil.which("rsvg-convert"):
             subprocess.run(["rsvg-convert", "-z", "2", "-o", str(path.with_suffix(".png")), str(path)], check=True)
         return path
