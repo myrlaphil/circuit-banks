@@ -400,14 +400,23 @@ CSS = """
   .page svg { display:block; max-width:100vw; max-height:100vh; width:auto; height:100vh; }
   .dark { display:contents; } .light { display:none; }
   html[data-theme="light"] .dark { display:none; } html[data-theme="light"] .light { display:contents; }
-  @media print { .bar { display:none; } .page { height:auto; } .page svg { height:auto; width:100%; } }
+  .links { position:fixed; right:12px; bottom:10px; font-size:13px; opacity:.6; z-index:2; }
+  .links:hover { opacity:1; }
+  .links a { color:var(--fg); text-decoration:none; margin-left:14px; border-bottom:1px dotted currentColor; }
+  @media print { .bar, .links { display:none; } .page { height:auto; } .page svg { height:auto; width:100%; } }
 """
+LINKS = ('<div class="links">Links:'
+         '<a href="https://github.com/myrlaphil/circuit-diagram-skill/blob/main/scripts/lingo.py" target="_blank">lingo.py (parser + solver)</a>'
+         '<a href="https://schemdraw.readthedocs.io/" target="_blank">Schemdraw</a>'
+         '<a href="https://github.com/myrlaphil/circuit-diagram-skill" target="_blank">circuit-diagram-skill (GitHub)</a>'
+         '<a href="https://github.com/myrlaphil/circuit-banks" target="_blank">circuit-banks (GitHub)</a></div>')
 PAGE_TPL = """<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{title}</title><style>{css}{extra_css}</style></head>
 <body>
 <div class="bar">{nav}<button onclick="toggle()">Light / dark</button><button onclick="document.documentElement.requestFullscreen()">Full screen</button></div>
 {body}
+{links}
 <script>
 function toggle(){{const h=document.documentElement;h.dataset.theme=h.dataset.theme==='light'?'':'light';}}
 {script}
@@ -435,19 +444,20 @@ def _svg(name):
             f'<div class="light">{strip((HERE / f"{name}.svg").read_text())}</div>')
 
 
-def html_pages():
+def html_pages(out_dir=HERE, links=False):
+    """links=True adds the footer with GitHub / Schemdraw links (used for the online copies, not the attachments)"""
     for name, title in (("simple", "Circuit problem bank — workflow (simple)"),
                         ("detailed", "Circuit problem bank — workflow (detailed)")):
-        out = HERE / f"workflow-{name}.html"
-        out.write_text(PAGE_TPL.format(title=title, css=CSS, extra_css="", nav="", script="",
+        out = out_dir / f"workflow-{name}.html"
+        out.write_text(PAGE_TPL.format(title=title, css=CSS, extra_css="", nav="", script="", links=LINKS if links else "",
                                        body=f'<div class="page">{_svg(f"workflow-{name}")}</div>'), encoding="utf-8")
-        print(out.name)
-        out = HERE / f"workflow-{name}-slides.html"
+        print(out)
+        out = out_dir / f"workflow-{name}-slides.html"
         body = "".join(f'<div class="page">{_svg(f"workflow-{name}-p{k}")}</div>' for k in (1, 2)) + '<div class="count"></div>'
         nav = '<button onclick="go(i-1)">◀</button><button onclick="go(i+1)">▶</button>'
-        out.write_text(PAGE_TPL.format(title=title + " — two pages", css=CSS, extra_css=SLIDES_CSS, nav=nav,
+        out.write_text(PAGE_TPL.format(title=title + " — two pages", css=CSS, extra_css=SLIDES_CSS, nav=nav, links=LINKS if links else "",
                                        script=SLIDES_JS, body=body), encoding="utf-8")
-        print(out.name)
+        print(out)
 
 
 SUFFIX, PART = "", ""
@@ -459,3 +469,7 @@ if __name__ == "__main__":
             for p in (simple(part), detailed(part)):
                 print(p.name)
     html_pages()
+    import sys
+    if len(sys.argv) > 1:                      # python3 build_workflow_charts.py <dir>  -> web copies with the links footer
+        d = Path(sys.argv[1]); d.mkdir(parents=True, exist_ok=True)
+        html_pages(d, links=True)
