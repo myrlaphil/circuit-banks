@@ -127,8 +127,64 @@ class Chart:
         for i, ln in enumerate(label.split("\n")):
             self.text(x_gutter - 10, (y_from + y_to) / 2 + i * 19, ln, 15, MUTED, "end")
 
+    def example(self, y, fig_path, lingo, options, correct, steps, title="In action: problem 1 of 30", x=None, w=None):
+        """side panel: real lingo -> the figure the engine drew -> the five options -> the reduction steps.
+        Content is laid out first, then the panel is sized to fit it."""
+        import base64
+        x = self.sx if x is None else x
+        w = self.sw if w is None else w
+        img_w = w - 36
+        img_h = int(img_w * 1212 / 1506)
+        mark = len(self.p)                       # the panel rects are inserted here afterwards
+        self.text(x + 18, y + 34, title, 20, INK, weight="bold")
+        cy = y + 66
+        self.text(x + 18, cy, "lingo in", 13, T["key"], weight="bold")
+        for ln in lingo:
+            cy += 23
+            self.text(x + 30, cy, ln, 15, T["mono"], family=MONO)
+        cy += 34
+        self.text(x + 18, cy, "figure out (Schemdraw)", 13, T["key"], weight="bold")
+        cy += 10
+        data = base64.b64encode(Path(fig_path).read_bytes()).decode("ascii")
+        self.p.append(f'<rect x="{x + 18}" y="{cy}" width="{img_w}" height="{img_h}" rx="8" fill="#FFFFFF"/>')
+        self.p.append(f'<image x="{x + 18}" y="{cy}" width="{img_w}" height="{img_h}" href="data:image/png;base64,{data}"/>')
+        cy += img_h + 30
+        self.text(x + 18, cy, "options out", 13, T["key"], weight="bold")
+        for i, o in enumerate(options):
+            cy += 24
+            tick = "  ✓ correct" if i == correct else ""
+            self.text(x + 30, cy, f"({'ABCDE'[i]})  {o}{tick}", 15, INK if i == correct else MUTED,
+                      weight="bold" if i == correct else "normal")
+        cy += 34
+        self.text(x + 18, cy, "the 3 reduction steps", 13, T["key"], weight="bold")
+        for st in steps:
+            cy += 23
+            self.text(x + 30, cy, st, 14)
+        h = cy + 26 - y
+        fill = OUT
+        if T["glossy"]:
+            gid = f"gx{mark}"
+            rects = [f'<linearGradient id="{gid}" x1="0" y1="0" x2="0" y2="1">'
+                     f'<stop offset="0" stop-color="#FFFFFF" stop-opacity="0.16"/>'
+                     f'<stop offset="0.6" stop-color="#FFFFFF" stop-opacity="0"/>'
+                     f'<stop offset="1" stop-color="#000000" stop-opacity="0.12"/></linearGradient>',
+                     f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="16" fill="{fill}" filter="url(#shadow)"/>',
+                     f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="16" fill="url(#{gid})" stroke="{EDGE}" stroke-width="1.5"/>']
+        else:
+            rects = [f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="14" fill="{fill}" stroke="{EDGE}" stroke-width="1.5"/>']
+        self.p[mark:mark] = rects
+        self.y_extra = max(getattr(self, "y_extra", 0), y + h)
+        return y, y + h
+
+    def left_arrow(self, y, x_to, label=None):
+        """solid arrow from the main box's left edge to a panel on the left"""
+        self.p.append(f'<path d="M{self.bx},{y} L{x_to},{y}" stroke="{T["arrow"]}" stroke-width="4" stroke-linecap="round" '
+                      f'fill="none" marker-end="url(#a)"/>')
+        if label:
+            self.text((self.bx + x_to) / 2, y - 10, label, 13, MUTED, "middle")
+
     def save(self, path):
-        h = self.y + 10
+        h = max(self.y + 10, getattr(self, "y_extra", 0) + 30)
         head = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{self.w // 2}" height="{h // 2}" '
                 f'viewBox="0 0 {self.w} {h}" font-family="{F}">',
                 f'<rect width="{self.w}" height="{h}" fill="{T["bg"]}"/>',
@@ -186,6 +242,11 @@ def simple():
         "«Compute the wrong options from known student mistakes»: all resistors added in series,",
         "parallel group not inverted, a branch current reported, plus one decoy near the largest value.",
         "Shuffle the option order."], tag="circuit-diagram engine")
+    _, eb = c.example(t, HERE.parent / "PHY II Electricity and Magnetism" / "1_DC Circuits" / "PHY2-DC-SPRTC3-10292026" / "figures" / "q1.png",
+                      ["source: 20 V", "circuit: 12 || 4 || (10 || 10 + 1)", "ask: total current"],
+                      ["0.54 A", "17.14 A", "5.00 A", "15.43 A", "10.00 A"], 4,
+                      ["1.  10 ‖ 10 → 5 Ω", "2.  5 + 1 → 6 Ω", "3.  12 ‖ 4 ‖ 6 → 2 Ω,  so I = 20 V / 2 Ω = 10 A"])
+    c.side_arrow(t + 60, "example", dashed=False)
     c.arrow(b, c.y)
     t, b = c.box(OUT, "5  Output", ["One bank file (YAML) with 30 problems, «figures», «answers», wrong options and «solutions»,",
                                     "plus a «PDF» and an «HTML» worksheet, each with its answer key.",
@@ -199,9 +260,9 @@ def simple():
 
 # ---------------------------------------------------------------- DETAILED
 def detailed():
-    c = Chart(1600, "Circuit problem-bank workflow — detailed",
+    c = Chart(1780, "Circuit problem-bank workflow — detailed",
               "Generate → check → count loop from the isomorphic-bank-creation framework; every numerical stage is rule-based code.",
-              box_x=280, box_w=820, side_x=1200, side_w=370)
+              box_x=460, box_w=820, side_x=1380, side_w=370)
 
     def file_(y, name, note):
         c.p.append(f'<rect x="{c.sx}" y="{y}" width="{c.sw}" height="64" rx="8" fill="{OUT}" stroke="{T["legend_edge"]}" stroke-dasharray="4,3"{" filter=\"url(#shadow)\"" if T["glossy"] else ""}/>')
@@ -249,7 +310,7 @@ def detailed():
         "canonical shape with everything accepted so far.  Rejections carry a reason",
         "(does not parse / outside ranges / wrong step count / repeated shape / repeated answer).",
         "Accepted items are added via the framework's own add command; counts go back to the sidecar."], tag="critic.py --apply")
-    c.loop(b - 20, loop_top + 20, "fewer than 30\naccepted:\nnext pass\n(max 5)", x_gutter=190)
+    c.loop(b - 20, loop_top + 20, "fewer than 30\naccepted:\nnext pass\n(max 5)", x_gutter=370)
     c.arrow(b, c.y)
 
     t, b = c.box(CODE, "5  Assemble  (replaces Agents 4 & 5)", [
@@ -260,6 +321,12 @@ def detailed():
         "     and decoy_near_largest = 0.9 × the largest option;",
         "   • rotates the correct answer's position (k = n mod 5) so it is not always the same letter;",
         "   • writes feedback naming the mistake behind each wrong option."], tag="assemble_bank.py + distractors.py")
+    c.example(t, HERE.parent / "PHY II Electricity and Magnetism" / "1_DC Circuits" / "PHY2-DC-SPRTC3-10292026" / "figures" / "q1.png",
+              ["source: 20 V", "circuit: 12 || 4 || (10 || 10 + 1)", "ask: total current"],
+              ["0.54 A   (all in series)", "17.14 A  (not inverted)", "5.00 A   (branch current)", "15.43 A  (decoy)", "10.00 A"], 4,
+              ["1.  R3 ‖ R4:  10 ‖ 10 → 5 Ω", "2.  + R5:  5 + 1 → 6 Ω", "3.  R1 ‖ R2 ‖ R345:  12 ‖ 4 ‖ 6 → 2 Ω",
+               "     I = 20 V / 2 Ω = 10.00 A"], x=40, w=370)
+    c.left_arrow(t + 60, 40 + 370)
     c.arrow(b, c.y)
 
     t, b = c.box(OUT, "6  Bank file", ["Problem-bank YAML in the shared template: 30 multiple-choice items, 5 options each,",
