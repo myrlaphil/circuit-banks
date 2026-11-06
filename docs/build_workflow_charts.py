@@ -3,7 +3,8 @@
     workflow-simple.svg    - for someone hearing about the project for the first time
     workflow-detailed.svg  - for someone who knows problem banks and wants the mechanics
 Colour = what kind of thing does the work: rule-based code, AI (language model), file / output.
-Written twice: light (print) and -dark (glossy, for screens; keywords in amber).
+Written twice: light (print) and -dark (glossy, for screens; keywords in amber), plus workflow-*.html
+(both themes embedded, light/dark toggle, full-screen button).
     python3 docs/build_workflow_charts.py      (also writes PNGs if rsvg-convert is installed)
 """
 import re
@@ -344,6 +345,46 @@ def detailed():
     return c.save(HERE / f"workflow-detailed{SUFFIX}.svg")
 
 
+HTML_TPL = """<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{title}</title>
+<style>
+  :root {{ --bg:#0F141B; --fg:#E3E8F0; --btn:#2B4C7E; }}
+  html[data-theme="light"] {{ --bg:#FFFFFF; --fg:#1E1E1E; --btn:#DCE6EE; }}
+  html, body {{ margin:0; background:var(--bg); color:var(--fg); font-family:Helvetica, Arial, sans-serif; }}
+  .bar {{ position:fixed; top:12px; right:16px; display:flex; gap:8px; z-index:2; }}
+  .bar button {{ background:var(--btn); color:var(--fg); border:1px solid rgba(128,128,128,.4); border-radius:8px;
+                 padding:6px 12px; font-size:14px; cursor:pointer; }}
+  main {{ max-width:1800px; margin:0 auto; padding:16px; }}
+  svg {{ width:100%; height:auto; display:block; }}
+  .dark {{ display:block; }} .light {{ display:none; }}
+  html[data-theme="light"] .dark {{ display:none; }} html[data-theme="light"] .light {{ display:block; }}
+  @media print {{ .bar {{ display:none; }} }}
+</style></head>
+<body>
+<div class="bar"><button onclick="toggle()">Light / dark</button><button onclick="document.documentElement.requestFullscreen()">Full screen</button></div>
+<main>
+<div class="dark">{dark}</div>
+<div class="light">{light}</div>
+</main>
+<script>
+function toggle(){{const h=document.documentElement;h.dataset.theme=h.dataset.theme==='light'?'':'light';}}
+</script>
+</body></html>
+"""
+
+
+def html_pages():
+    """one self-contained HTML page per chart, both themes embedded, light/dark toggle + full-screen button"""
+    strip = lambda t: re.sub(r'<svg ([^>]*?)width="\d+" height="\d+" ', r'<svg \1', t, count=1)
+    for name, title in (("simple", "Circuit problem bank — workflow (simple)"),
+                        ("detailed", "Circuit problem bank — workflow (detailed)")):
+        out = HERE / f"workflow-{name}.html"
+        out.write_text(HTML_TPL.format(title=title, dark=strip((HERE / f"workflow-{name}-dark.svg").read_text()),
+                                       light=strip((HERE / f"workflow-{name}.svg").read_text())), encoding="utf-8")
+        print(out.name)
+
+
 SUFFIX = ""
 
 if __name__ == "__main__":
@@ -351,3 +392,4 @@ if __name__ == "__main__":
         use(theme)
         for p in (simple(), detailed()):
             print(p.name, "+", p.with_suffix(".png").name)
+    html_pages()
